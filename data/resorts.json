@@ -3,15 +3,30 @@
     "resort": "The Westin Langkawi Resort",
     "country": "Malaysia",
     "city": "Langkawi",
+    "area": "Pantai Kok",
+    "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
+
     "nightlyCost": 320,
     "priceDisplay": "From $320 per night",
-    "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
+
     "familyScore": 97,
+
     "poolRating": 5,
     "beachRating": 5,
     "kidsClubRating": 4,
+
     "allInclusive": "Available",
-    "description": "Luxury beachfront family resort with pools, activities and beautiful surroundings.",
-    "bestFor": "Families wanting a relaxed tropical holiday"
+
+    "kidsActivities": "Kids club, pools, beach activities, island adventures",
+
+    "bestFor": "Families wanting a luxury tropical escape",
+
+    "octoberWeather": "Warm with tropical showers",
+
+    "flightTimeHours": 8,
+
+    "familyHighlight": "Large pools, private beach and excellent family facilities",
+
+    "description": "Luxury beachfront resort with multiple pools, family activities and beautiful Langkawi surroundings."
   }
 ]

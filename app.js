@@ -35,9 +35,9 @@ fetch("data/resorts.json")
                     ${resort.description}
                     </p>
 
-                   <button onclick="openResort(${JSON.stringify(resort).replace(/"/g, '&quot;')})">
-                   View Resort
-                   </button>
+                  <button class="view-button" data-resort='${JSON.stringify(resort)}'>
+View Resort
+</button>
 
                 </div>
 
@@ -92,3 +92,14 @@ window.onclick = function(event) {
     }
 
 }
+document.addEventListener("click", function(e) {
+
+    if (e.target.classList.contains("view-button")) {
+
+        const resort = JSON.parse(e.target.dataset.resort);
+
+        openResort(resort);
+
+    }
+
+});

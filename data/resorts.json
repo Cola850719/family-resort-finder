@@ -5,28 +5,38 @@
     "city": "Langkawi",
     "area": "Pantai Kok",
     "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
-
     "nightlyCost": 320,
     "priceDisplay": "From $320 per night",
-
     "familyScore": 97,
-
     "poolRating": 5,
     "beachRating": 5,
     "kidsClubRating": 4,
-
     "allInclusive": "Available",
-
-    "kidsActivities": "Kids club, pools, beach activities, island adventures",
-
-    "bestFor": "Families wanting a luxury tropical escape",
-
+    "kidsActivities": "Kids club, pools, beach activities",
+    "bestFor": "Luxury tropical family holidays",
     "octoberWeather": "Warm with tropical showers",
-
     "flightTimeHours": 8,
-
-    "familyHighlight": "Large pools, private beach and excellent family facilities",
-
-    "description": "Luxury beachfront resort with multiple pools, family activities and beautiful Langkawi surroundings."
+    "familyHighlight": "Private beach and excellent pools",
+    "description": "Luxury beachfront resort with excellent family facilities."
+  },
+  {
+    "resort": "Berjaya Langkawi Resort",
+    "country": "Malaysia",
+    "city": "Langkawi",
+    "area": "Burau Bay",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    "nightlyCost": 220,
+    "priceDisplay": "From $220 per night",
+    "familyScore": 92,
+    "poolRating": 5,
+    "beachRating": 4,
+    "kidsClubRating": 4,
+    "allInclusive": "No",
+    "kidsActivities": "Pools, nature activities, kids club",
+    "bestFor": "Families wanting value and nature",
+    "octoberWeather": "Warm with occasional rain",
+    "flightTimeHours": 8,
+    "familyHighlight": "Rainforest setting with beach access",
+    "description": "A family-friendly resort surrounded by rainforest and ocean views."
   }
 ]

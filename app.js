@@ -257,3 +257,130 @@ document.querySelector(".close").onclick = function(){
 document.getElementById("resort-modal").style.display="none";
 
 };
+document.getElementById("find-resort").onclick = function(){
+
+    document.getElementById("finder-modal").style.display="block";
+
+};
+document.querySelector(".finder-close").onclick = function(){
+
+    document.getElementById("finder-modal").style.display="none";
+
+};
+document.getElementById("recommend-button").onclick = function(){
+
+
+let budget =
+Number(document.getElementById("budget").value);
+
+
+let priority =
+document.getElementById("priority").value;
+
+
+
+let ranked = [...allResorts];
+
+
+
+ranked = ranked.filter(resort =>
+
+    resort.nightlyCost <= budget
+
+);
+
+
+
+ranked.sort((a,b)=>{
+
+
+let scoreA = a.familyScore;
+
+let scoreB = b.familyScore;
+
+
+
+if(priority === "kids"){
+
+scoreA += a.kidsClubRating * 5;
+
+scoreB += b.kidsClubRating * 5;
+
+}
+
+
+if(priority === "beach"){
+
+scoreA += a.beachRating * 5;
+
+scoreB += b.beachRating * 5;
+
+}
+
+
+if(priority === "pool"){
+
+scoreA += a.poolRating * 5;
+
+scoreB += b.poolRating * 5;
+
+}
+
+
+if(priority === "allinclusive"){
+
+if(a.allInclusive === "Yes")
+scoreA += 10;
+
+if(b.allInclusive === "Yes")
+scoreB += 10;
+
+}
+
+
+
+return scoreB-scoreA;
+
+
+});
+
+
+
+let results = ranked.slice(0,3);
+
+
+
+const output =
+document.getElementById("recommendations");
+
+
+
+output.innerHTML = `
+
+<h3>Your Top Matches</h3>
+
+${results.map(r => `
+
+<div class="recommend-card">
+
+<h4>${r.resort}</h4>
+
+<p>
+⭐ ${r.familyScore}/100 Family Score
+</p>
+
+<p>
+${r.country} - ${r.city}
+</p>
+
+<p>
+${r.priceDisplay}
+</p>
+
+</div>
+
+`).join("")}
+
+`;
+
+};

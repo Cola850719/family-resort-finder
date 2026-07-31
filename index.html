@@ -115,7 +115,64 @@
 </div>
 </div>
 
+<div id="finder-modal" class="modal">
 
+    <div class="modal-content">
+
+        <span class="finder-close close">&times;</span>
+
+        <h2>🎯 Find My Resort</h2>
+
+        <p>Tell us what matters most.</p>
+
+
+        <label>Travel Month</label>
+
+        <select id="travel-month">
+
+            <option value="October">October</option>
+            <option value="July">July</option>
+            <option value="Easter">Easter</option>
+            <option value="Anytime">Anytime</option>
+
+        </select>
+
+
+        <label>Budget</label>
+
+        <select id="budget">
+
+            <option value="200">Under $200/night</option>
+            <option value="300">$200-$300/night</option>
+            <option value="500">$300+/night</option>
+
+        </select>
+
+
+        <label>Priority</label>
+
+        <select id="priority">
+
+            <option value="kids">Kids Club</option>
+            <option value="beach">Beach</option>
+            <option value="pool">Pool</option>
+            <option value="allinclusive">All Inclusive</option>
+
+        </select>
+
+
+        <button id="recommend-button">
+            Show My Matches
+        </button>
+
+
+        <div id="recommendations"></div>
+
+
+    </div>
+
+</div>
+    
 <script src="app.js"></script>
 
 </body>

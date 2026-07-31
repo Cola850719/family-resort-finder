@@ -83,12 +83,23 @@ button {
 }
 
 .modal-content {
+
     background: white;
+
     margin: 5% auto;
+
     padding: 25px;
+
     width: 90%;
+
     max-width: 600px;
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
     border-radius: 15px;
+
 }
 
 .modal-content img {

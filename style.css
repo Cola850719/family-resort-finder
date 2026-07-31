@@ -333,3 +333,18 @@ button {
     margin-bottom:6px;
 
 }
+.favourite-button {
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+}

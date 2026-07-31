@@ -5,15 +5,13 @@
     "city": "Langkawi",
     "nightlyCost": 320,
     "priceDisplay": "From $320 per night",
-    "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80"
+    "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
     "familyScore": 97,
     "poolRating": 5,
     "beachRating": 5,
     "kidsClubRating": 4,
     "allInclusive": "Available",
     "description": "Luxury beachfront family resort with pools, activities and beautiful surroundings.",
-    "bestFor": "Families wanting a relaxed tropical holiday",
-    "dayTrips": "Island tours, waterfalls and markets",
-    "shopping": "Local markets and shopping areas nearby"
+    "bestFor": "Families wanting a relaxed tropical holiday"
   }
 ]

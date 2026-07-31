@@ -158,5 +158,45 @@
   "flightTimeHours": 10,
   "familyHighlight": "Huge resort with entertainment options",
   "description": "Family-focused resort with pools, beaches and activities."
-} 
+},
+ {
+  "resort": "Sokha Siem Reap Resort",
+  "country": "Cambodia",
+  "city": "Siem Reap",
+  "area": "Near Angkor Wat",
+  "image": "https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80",
+  "nightlyCost": 150,
+  "priceDisplay": "From $150 per night",
+  "familyScore": 88,
+  "poolRating": 5,
+  "beachRating": 1,
+  "kidsClubRating": 3,
+  "allInclusive": "No",
+  "kidsActivities": "Pool, cultural tours, family activities",
+  "bestFor": "Affordable adventure holidays",
+  "octoberWeather": "Warm with some rain",
+  "flightTimeHours": 11,
+  "familyHighlight": "Great value with Angkor Wat experiences",
+  "description": "A comfortable family resort close to Cambodia's famous temples."
+},
+{
+  "resort": "Shangri-La Boracay",
+  "country": "Philippines",
+  "city": "Boracay",
+  "area": "Ilig Iligan Bay",
+  "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+  "nightlyCost": 420,
+  "priceDisplay": "From $420 per night",
+  "familyScore": 98,
+  "poolRating": 5,
+  "beachRating": 5,
+  "kidsClubRating": 5,
+  "allInclusive": "No",
+  "kidsActivities": "Kids club, marine activities, beaches",
+  "bestFor": "Premium family luxury",
+  "octoberWeather": "Warm tropical conditions",
+  "flightTimeHours": 11,
+  "familyHighlight": "One of Asia's best family beach resorts",
+  "description": "Luxury island resort with incredible beaches and family facilities."
+}  
 ]

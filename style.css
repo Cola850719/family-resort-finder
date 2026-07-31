@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f7f7f7;
+    color: #333;
+}
+
+header {
+    background: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+header p {
+    color: #666;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.resort-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.resort-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.resort-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.resort-info {
+    padding: 20px;
+}
+
+.resort-info h2 {
+    margin-top: 0;
+}
+
+.score {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.price {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+button {
+    background: #1b6ca8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}

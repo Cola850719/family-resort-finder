@@ -237,3 +237,23 @@ button {
     border-radius:30px;
 
 }
+.hero-buttons {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.find-button {
+
+    background:white;
+
+    color:#1b6ca8;
+
+}

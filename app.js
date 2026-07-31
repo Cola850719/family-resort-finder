@@ -23,17 +23,33 @@ fetch("data/resorts.json")
                     ${resort.city}, ${resort.country}
                     </p>
 
-                    <p class="score">
-                    ⭐ ${resort.familyScore}/100 Family Rating
-                    </p>
+                   <div class="badges">
 
-                    <p class="price">
-                    ${resort.priceDisplay}
-                    </p>
+    <div class="badge family">
+        ⭐ ${resort.familyScore}/100
+        <span>Family</span>
+    </div>
 
-                    <p>
-                    ${resort.description}
-                    </p>
+    <div class="badge">
+        🏊 ${resort.poolRating}/5
+        <span>Pool</span>
+    </div>
+
+    <div class="badge">
+        🏖 ${resort.beachRating}/5
+        <span>Beach</span>
+    </div>
+
+    <div class="badge">
+        👧 ${resort.kidsClubRating}/5
+        <span>Kids Club</span>
+    </div>
+
+</div>
+
+<p class="price">
+${resort.priceDisplay}
+</p>
 
                   <button class="view-button" data-resort='${JSON.stringify(resort)}'>
 View Resort

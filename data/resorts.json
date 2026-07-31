@@ -1,0 +1,19 @@
+[
+  {
+    "resort": "The Westin Langkawi Resort",
+    "country": "Malaysia",
+    "city": "Langkawi",
+    "nightlyCost": 320,
+    "priceDisplay": "From $320 per night",
+    "image": "PASTE IMAGE URL HERE",
+    "familyScore": 97,
+    "poolRating": 5,
+    "beachRating": 5,
+    "kidsClubRating": 4,
+    "allInclusive": "Available",
+    "description": "Luxury beachfront family resort with pools, activities and beautiful surroundings.",
+    "bestFor": "Families wanting a relaxed tropical holiday",
+    "dayTrips": "Island tours, waterfalls and markets",
+    "shopping": "Local markets and shopping areas nearby"
+  }
+]

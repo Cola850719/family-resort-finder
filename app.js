@@ -357,29 +357,99 @@ document.getElementById("recommendations");
 
 output.innerHTML = `
 
-<h3>Your Top Matches</h3>
+<h3>🏆 Your Top Matches</h3>
 
-${results.map(r => `
+${results.map(r => {
+
+
+let reasons = [];
+
+
+if(r.familyScore >= 95){
+
+reasons.push("⭐ Excellent family rating");
+
+}
+
+
+if(r.kidsClubRating >= 5){
+
+reasons.push("👧 Outstanding kids club");
+
+}
+
+
+if(r.poolRating >= 5){
+
+reasons.push("🏊 Amazing pool facilities");
+
+}
+
+
+if(r.beachRating >= 5){
+
+reasons.push("🏖 Beautiful beach location");
+
+}
+
+
+if(r.allInclusive === "Yes"){
+
+reasons.push("🍽 All-inclusive experience");
+
+}
+
+
+return `
 
 <div class="recommend-card">
 
 <h4>${r.resort}</h4>
 
+
 <p>
-⭐ ${r.familyScore}/100 Family Score
+🏆 Match Score: ${r.familyScore}/100
 </p>
+
 
 <p>
 ${r.country} - ${r.city}
 </p>
 
+
+<h5>
+Why we picked it:
+</h5>
+
+
+<ul>
+
+${reasons.map(reason =>
+
+`<li>${reason}</li>`
+
+).join("")}
+
+</ul>
+
+
 <p>
 ${r.priceDisplay}
 </p>
 
+
+<button 
+class="view-button"
+data-resort='${JSON.stringify(r)}'>
+View Resort
+</button>
+
+
 </div>
 
-`).join("")}
+`;
+
+}).join("")}
 
 `;
 

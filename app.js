@@ -1,4 +1,5 @@
 let allResorts = [];
+let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
 
 fetch("data/resorts.json")
@@ -78,6 +79,10 @@ function displayResorts(resorts) {
 
             <button class="view-button" data-resort='${JSON.stringify(resort)}'>
             View Resort
+            </button>
+
+            <button class="favourite-button" data-resort='${JSON.stringify(resort)}'>
+            ❤️ Save Favourite
             </button>
 
 
@@ -454,3 +459,43 @@ View Resort
 `;
 
 };
+document.addEventListener("click", function(e){
+
+
+if(e.target.classList.contains("favourite-button")) {
+
+
+const resort = JSON.parse(e.target.dataset.resort);
+
+
+const exists = favourites.find(
+r => r.resort === resort.resort
+);
+
+
+if(!exists){
+
+favourites.push(resort);
+
+localStorage.setItem(
+"favourites",
+JSON.stringify(favourites)
+);
+
+
+e.target.textContent = "❤️ Saved";
+
+
+}
+
+else {
+
+alert("Already saved in favourites");
+
+}
+
+
+}
+
+
+});

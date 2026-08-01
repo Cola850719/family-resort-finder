@@ -60,7 +60,10 @@
     <button class="hero-button">
         Explore Resorts
     </button>
-
+            
+    <button class="hero-button" id="open-budget">
+    💰 Holiday Budget
+    </button>
             
     <button class="hero-button find-button" id="find-resort">
         🎯 Find My Resort
@@ -117,6 +120,62 @@
         <p id="modal-description"></p>
 
         <p id="modal-best"></p>
+
+        <div id="budget-modal" class="modal">
+
+<div class="modal-content">
+
+<span class="budget-close close">&times;</span>
+
+<h2>💰 Holiday Budget Calculator</h2>
+
+
+<label>Adults</label>
+
+<input id="budget-adults" type="number" value="2">
+
+
+<label>Children</label>
+
+<input id="budget-children" type="number" value="2">
+
+
+<label>Nights</label>
+
+<input id="budget-nights" type="number" value="7">
+
+
+<label>Flights per person</label>
+
+<input id="budget-flight" type="number" value="900">
+
+
+<label>Food per day</label>
+
+<input id="budget-food" type="number" value="150">
+
+
+<label>Activities</label>
+
+<input id="budget-activities" type="number" value="500">
+
+
+<label>Transfers</label>
+
+<input id="budget-transfers" type="number" value="150">
+
+
+<button id="calculate-budget">
+Calculate Holiday Cost
+</button>
+
+
+<div id="budget-results"></div>
+
+
+</div>
+
+</div>
 
     </div>
 

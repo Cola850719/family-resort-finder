@@ -607,3 +607,114 @@ localStorage.removeItem("favourites");
 displayFavourites();
 
 };
+document.getElementById("compare-favourites").onclick = function(){
+
+    showComparison();
+
+    document.getElementById("compare-modal").style.display="block";
+
+};
+function showComparison(){
+
+
+const table =
+document.getElementById("comparison-table");
+
+
+if(favourites.length < 2){
+
+table.innerHTML =
+"<p>Please save at least 2 resorts to compare.</p>";
+
+return;
+
+}
+
+
+
+table.innerHTML = `
+
+<table class="compare-table">
+
+<tr>
+
+<th>Feature</th>
+
+${favourites.map(r =>
+`<th>${r.resort}</th>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>Family Score</td>
+
+${favourites.map(r =>
+`<td>⭐ ${r.familyScore}/100</td>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>Price</td>
+
+${favourites.map(r =>
+`<td>${r.priceDisplay}</td>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>Kids Club</td>
+
+${favourites.map(r =>
+`<td>${r.kidsClubRating}/5</td>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>Pool</td>
+
+${favourites.map(r =>
+`<td>${r.poolRating}/5</td>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>Beach</td>
+
+${favourites.map(r =>
+`<td>${r.beachRating}/5</td>`
+).join("")}
+
+</tr>
+
+
+<tr>
+
+<td>All Inclusive</td>
+
+${favourites.map(r =>
+`<td>${r.allInclusive}</td>`
+).join("")}
+
+</tr>
+
+
+</table>
+
+`;
+
+}

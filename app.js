@@ -83,11 +83,7 @@ function displayResorts(resorts) {
             View Resort
             </button>
 
-<button 
-class="remove-favourite"
-data-name="${resort.resort}">
-❌ Remove
-</button>
+
 
             <button class="favourite-button" data-resort='${JSON.stringify(resort)}'>
             ❤️ Save Favourite
@@ -718,3 +714,53 @@ ${favourites.map(r =>
 `;
 
 }
+document.querySelector(".compare-close").onclick = function(){
+
+    document.getElementById("compare-modal").style.display = "none";
+
+};
+window.onclick = function(event) {
+
+
+    const resortModal = document.getElementById("resort-modal");
+
+    const finderModal = document.getElementById("finder-modal");
+
+    const favouritesModal = document.getElementById("favourites-modal");
+
+    const compareModal = document.getElementById("compare-modal");
+
+
+
+    if (event.target === resortModal) {
+
+        resortModal.style.display = "none";
+
+    }
+
+
+
+    if (event.target === finderModal) {
+
+        finderModal.style.display = "none";
+
+    }
+
+
+
+    if (event.target === favouritesModal) {
+
+        favouritesModal.style.display = "none";
+
+    }
+
+
+
+    if (event.target === compareModal) {
+
+        compareModal.style.display = "none";
+
+    }
+
+
+};

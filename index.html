@@ -246,74 +246,7 @@
 
 </div>
     
- document.getElementById("show-voting").onclick = function(){
 
-    displayVoting();
-
-    document.getElementById("voting-modal")
-    .style.display = "block";
-
-}; 
-document.addEventListener("click", function(e){
-
-    if(e.target.classList.contains("vote-button")){
-
-        const resort =
-        e.target.dataset.name;
-
-        votes[resort] =
-        (votes[resort] || 0) + 1;
-
-        localStorage.setItem(
-            "votes",
-            JSON.stringify(votes)
-        );
-
-        displayVoting();
-
-    }
-
-});
-document.getElementById("calculate-winner").onclick = function(){
-
-    let winner = "";
-
-    let highest = 0;
-
-    Object.keys(votes).forEach(resort => {
-
-        if(votes[resort] > highest){
-
-            highest = votes[resort];
-
-            winner = resort;
-
-        }
-
-    });
-
-    document.getElementById("voting-results")
-    .innerHTML = `
-
-    <h2>
-    🏆 Family Winner
-    </h2>
-
-    <h3>${winner}</h3>
-
-    <p>
-    ${highest} votes
-    </p>
-
-    `;
-
-};
-document.querySelector(".voting-close").onclick = function(){
-
-    document.getElementById("voting-modal")
-    .style.display = "none";
-
-};
     
 <script src="app.js"></script>
 

@@ -439,19 +439,30 @@ function openResort(resort){
 
 document.addEventListener("click", function(e){
 
+    if(e.target.classList.contains("favourite-button")){
 
-    if(e.target.classList.contains("view-button")){
+        const resort = JSON.parse(
+            decodeURIComponent(e.target.dataset.resort)
+        );
 
+        const exists = favourites.some(
+            f => f.resort === resort.resort
+        );
 
-        const resort = JSON.parse(decodeURIComponent(e.target.dataset.resort))
+        if(!exists){
 
+            favourites.push(resort);
 
-        openResort(resort);
+            localStorage.setItem(
+                "favourites",
+                JSON.stringify(favourites)
+            );
 
+            updateFavouriteButtons();
 
+        }
 
     }
-
 
 });
 

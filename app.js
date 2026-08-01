@@ -1,6 +1,9 @@
 let allResorts = [];
 
 let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
+let votes = JSON.parse(
+    localStorage.getItem("votes")
+) || {};
 
 
 // LOAD RESORT DATA
@@ -216,7 +219,44 @@ function updateFavouriteButtons(){
 
 }
 
+function displayVoting(){
 
+    const list =
+    document.getElementById("voting-list");
+
+    if(favourites.length === 0){
+
+        list.innerHTML =
+        "<p>Add favourites before voting.</p>";
+
+        return;
+
+    }
+
+    list.innerHTML = favourites.map(resort => `
+
+        <div class="recommend-card">
+
+            <h3>${resort.resort}</h3>
+
+            <p>${resort.country}</p>
+
+            <button
+            class="vote-button"
+            data-name="${resort.resort}">
+            ⭐ Vote
+            </button>
+
+            <p>
+            Votes:
+            ${votes[resort.resort] || 0}
+            </p>
+
+        </div>
+
+    `).join("");
+
+}
 
 
 

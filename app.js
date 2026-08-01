@@ -1682,8 +1682,24 @@ document.addEventListener("click", function(e){
 
 
 });
+// OPEN BUDGET FROM HERO BUTTON
 
+document.addEventListener("click", function(e){
 
+    if(e.target.id === "open-budget"){
+
+        document.getElementById("budget-modal").style.display = "block";
+
+    }
+
+});
+
+document.querySelector(".budget-close").onclick = function(){
+
+    document.getElementById("budget-modal")
+    .style.display = "none";
+
+};
 
 
 

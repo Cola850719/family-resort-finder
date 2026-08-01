@@ -120,9 +120,7 @@ function displayResorts(resorts) {
             <button 
             class="view-button"
             data-resort="${encodeURIComponent(JSON.stringify(resort))}">
-
             View Resort
-
             </button>
 
 

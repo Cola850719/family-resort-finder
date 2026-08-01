@@ -970,7 +970,6 @@ document.addEventListener("click", function(e){
 
 document.getElementById("calculate-winner").onclick = function(){
 
-...
 
 };
 

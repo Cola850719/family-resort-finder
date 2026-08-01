@@ -1688,7 +1688,8 @@ document.addEventListener("click", function(e){
 
     if(e.target.id === "open-budget"){
 
-        document.getElementById("budget-modal").style.display = "block";
+        document.getElementById("budget-modal")
+        .style.display = "block";
 
     }
 

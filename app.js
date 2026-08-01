@@ -714,9 +714,15 @@ ${favourites.map(r =>
 `;
 
 }
-document.querySelector(".compare-close").onclick = function(){
+document.addEventListener("click", function(e){
 
-    document.getElementById("compare-modal").style.display = "none";
+    if(e.target.classList.contains("compare-close")){
+
+        document.getElementById("compare-modal").style.display = "none";
+
+    }
+
+});
 
 };
 window.onclick = function(event) {

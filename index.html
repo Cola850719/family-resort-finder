@@ -249,6 +249,46 @@ document.addEventListener("click", function(e){
     }
 
 });
+document.getElementById("calculate-winner").onclick = function(){
+
+    let winner = "";
+
+    let highest = 0;
+
+    Object.keys(votes).forEach(resort => {
+
+        if(votes[resort] > highest){
+
+            highest = votes[resort];
+
+            winner = resort;
+
+        }
+
+    });
+
+    document.getElementById("voting-results")
+    .innerHTML = `
+
+    <h2>
+    🏆 Family Winner
+    </h2>
+
+    <h3>${winner}</h3>
+
+    <p>
+    ${highest} votes
+    </p>
+
+    `;
+
+};
+document.querySelector(".voting-close").onclick = function(){
+
+    document.getElementById("voting-modal")
+    .style.display = "none";
+
+};
     
 <script src="app.js"></script>
 

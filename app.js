@@ -19,6 +19,7 @@ fetch("data/resorts.json")
 
     populateCountries();
 
+    populateBudgetResorts();
 
     displayResorts(allResorts);
 
@@ -260,6 +261,36 @@ function displayVoting(){
 // COUNTRY FILTER OPTIONS
 
 function populateCountries(){
+
+    const countrySelect = document.getElementById("country-filter");
+
+
+    const countries = [
+        ...new Set(allResorts.map(r => r.country))
+    ];
+
+
+    countries.forEach(country => {
+
+
+        const option = document.createElement("option");
+
+
+        option.value = country;
+
+
+        option.textContent = country;
+
+
+        countrySelect.appendChild(option);
+
+
+    });
+
+}
+
+
+
 // POPULATE BUDGET RESORT DROPDOWN
 
 function populateBudgetResorts(){
@@ -292,39 +323,6 @@ function populateBudgetResorts(){
 
 
     });
-
-}
-
-    const countrySelect = document.getElementById("country-filter");
-
-
-    const countries = [
-
-        ...new Set(allResorts.map(r => r.country))
-
-    ];
-
-
-
-    countries.forEach(country => {
-
-
-        const option = document.createElement("option");
-
-
-        option.value = country;
-
-
-        option.textContent = country;
-
-
-        countrySelect.appendChild(option);
-
-
-
-    });
-
-
 
 }
 

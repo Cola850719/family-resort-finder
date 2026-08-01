@@ -1278,8 +1278,18 @@ let nights =
 Number(document.getElementById("budget-nights").value);
 
 
+let selectedResort =
+document.getElementById("budget-resort").value;
+
+
+let resort =
+allResorts.find(
+    r => r.resort === selectedResort
+);
+
+
 let resortCost =
-allResorts[0].nightlyCost * nights;
+resort.nightlyCost * nights;
 
 
 let flights =

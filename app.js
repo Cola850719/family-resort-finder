@@ -1,23 +1,182 @@
+
+
+
+
+
+Claim offer
+Good idea. 👍 Since your app.js is now quite large, replacing the entire file is actually the safest option.
+
+However, I don't want to give you a partial app.js that accidentally removes features you already have working (Hero, Find My Resort, Recommendations, Favourites, Compare, popups etc.).
+
+The safest way is:
+
+I will rewrite your full app.js with:
+
+✅ Resort loading
+
+✅ Filters
+
+✅ Recommendation engine
+
+✅ Why Recommended
+
+✅ View Resort popup
+
+✅ Find My Resort
+
+✅ Save Favourite
+
+✅ Saved button state
+
+✅ Remove Favourite
+
+✅ Clear Favourite
+
+✅ Compare Resorts
+
+✅ All popup closing
+
+You will:
+
+Open GitHub → app.js
+
+Select all
+
+Delete
+
+Paste the new file
+
+Commit changes
+
+Before I generate it, I need one quick check because your current code has a few custom parts:
+
+Can you confirm your index.html button IDs are still exactly these?
+
+find-resort
+recommend-button
+show-favourites
+clear-favourites
+compare-favourites
+And your popup IDs are:
+
+resort-modal
+finder-modal
+favourites-modal
+compare-modal
+If yes, reply:
+
+"IDs confirmed"
+
+and I will give you the complete clean app.js ready to paste. 👍
+
+
+"IDs confirmed"
+
+Perfect. 👍
+
+I will rewrite your complete app.js cleanly.
+
+Before you paste it, a couple of important notes:
+
+Make a backup first
+
+In GitHub open app.js
+
+Copy everything into a temporary Notepad file
+
+Then replace it
+
+The new version will keep your current features:
+
+Resort loading
+
+Filters
+
+Recommendations
+
+Why Recommended
+
+View Resort popup
+
+Find My Resort
+
+Favourites
+
+Compare Resorts
+
+Popup closing
+
+Because your file is now around 500+ lines, the full replacement will be too large for one chat message and risks being cut off.
+
+I will send it in 3 copy/paste sections:
+
+Part 1/3 → Loading, cards, filters, resort popup
+
+Part 2/3 → Find Resort, recommendations, favourites
+
+Part 3/3 → Compare, popup controls, final closing code
+
+You will paste them together into one app.js file in that order.
+
+Do not commit until all 3 parts are pasted.
+
+I’ll send Part 1/3 next. 👍
+
+
+
+
+Ad
+
+Part 1
+
+Great. 👍
+
+Before you paste Part 1, open your app.js, select all, delete everything, and paste the parts in order.
+
+Do not commit until Part 3 is added.
+
+Part 1/3 — Resort Loading, Cards, Filters, Resort Popup
 let allResorts = [];
+
 let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
 
 
+// LOAD RESORT DATA
+
 fetch("data/resorts.json")
+
 .then(response => response.json())
+
 .then(resorts => {
+
 
     allResorts = resorts;
 
+
     populateCountries();
 
+
     displayResorts(allResorts);
+
+
+})
+
+.catch(error => {
+
+    console.error("Error loading resorts:", error);
 
 });
 
 
+
+
+// DISPLAY RESORT CARDS
+
 function displayResorts(resorts) {
 
+
     const container = document.getElementById("resort-grid");
+
 
     container.innerHTML = "";
 
@@ -27,29 +186,37 @@ function displayResorts(resorts) {
 
         const card = document.createElement("div");
 
+
         card.className = "resort-card";
 
 
+
         card.innerHTML = `
+
 
         <img src="${resort.image}" alt="${resort.resort}">
 
 
         <div class="resort-info">
 
+
             <h2>${resort.resort}</h2>
+
 
             <p>
             ${resort.city}, ${resort.country}
             </p>
 
 
+
             <div class="badges">
+
 
                 <div class="badge family">
                     ⭐ ${resort.familyScore}/100
                     <span>Family</span>
                 </div>
+
 
 
                 <div class="badge">
@@ -58,10 +225,12 @@ function displayResorts(resorts) {
                 </div>
 
 
+
                 <div class="badge">
                     🏖 ${resort.beachRating}/5
                     <span>Beach</span>
                 </div>
+
 
 
                 <div class="badge">
@@ -69,479 +238,746 @@ function displayResorts(resorts) {
                     <span>Kids Club</span>
                 </div>
 
+
+
             </div>
 
 
+
             <p class="price">
+
             ${resort.priceDisplay}
+
             </p>
 
 
-            <button 
+
+            <button
+
             class="view-button"
+
             data-resort='${JSON.stringify(resort)}'>
+
             View Resort
+
             </button>
 
 
 
-            <button 
+
+            <button
+
             class="favourite-button"
+
             data-resort='${JSON.stringify(resort)}'>
 
-            ${favourites.some(f => f.resort === resort.resort)
-
-            ? "💚 Saved"
-
-            : "❤️ Save Favourite"}
+            ❤️ Save Favourite
 
             </button>
+
 
 
         </div>
 
+
         `;
+
 
 
         container.appendChild(card);
 
 
+
     });
+
+
+
+    updateFavouriteButtons();
+
 
 }
 
 
 
-function populateCountries() {
+
+
+// UPDATE SAVED BUTTON STATUS
+
+function updateFavouriteButtons(){
+
+
+    document.querySelectorAll(".favourite-button")
+
+    .forEach(button => {
+
+
+
+        const resort = JSON.parse(button.dataset.resort);
+
+
+
+        const saved = favourites.some(
+
+            f => f.resort === resort.resort
+
+        );
+
+
+
+        if(saved){
+
+
+            button.textContent = "💚 Saved";
+
+
+            button.classList.add("saved");
+
+
+
+        }
+
+
+        else {
+
+
+            button.textContent = "❤️ Save Favourite";
+
+
+            button.classList.remove("saved");
+
+
+        }
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+// COUNTRY FILTER OPTIONS
+
+function populateCountries(){
+
 
     const countrySelect = document.getElementById("country-filter");
 
-    const countries = [...new Set(allResorts.map(r => r.country))];
+
+    const countries = [
+
+        ...new Set(allResorts.map(r => r.country))
+
+    ];
+
 
 
     countries.forEach(country => {
 
+
         const option = document.createElement("option");
+
 
         option.value = country;
 
+
         option.textContent = country;
+
 
         countrySelect.appendChild(option);
 
+
+
     });
+
+
 
 }
 
 
 
-function applyFilters() {
+
+
+// FILTER SYSTEM
+
+function applyFilters(){
 
 
     let filtered = [...allResorts];
 
 
+
     const country =
+
     document.getElementById("country-filter").value;
 
 
+
     const score =
+
     Number(document.getElementById("score-filter").value);
 
 
+
     const sort =
+
     document.getElementById("sort-filter").value;
 
 
 
-    if(country !== "all") {
+    if(country !== "all"){
+
 
         filtered = filtered.filter(
+
             r => r.country === country
+
         );
+
 
     }
 
 
 
-    if(score > 0) {
+    if(score > 0){
+
 
         filtered = filtered.filter(
+
             r => r.familyScore >= score
+
         );
+
 
     }
 
 
 
-    if(sort === "price-low") {
+
+    if(sort === "price-low"){
+
 
         filtered.sort(
+
             (a,b)=>a.nightlyCost-b.nightlyCost
+
         );
+
 
     }
 
 
 
-    if(sort === "score-high") {
+
+    if(sort === "score-high"){
+
 
         filtered.sort(
+
             (a,b)=>b.familyScore-a.familyScore
+
         );
 
+
     }
+
 
 
     displayResorts(filtered);
 
+
+
 }
+
+
 
 
 
 document.addEventListener("change", function(e){
 
+
+
     if(
+
         e.target.id === "country-filter" ||
+
         e.target.id === "score-filter" ||
+
         e.target.id === "sort-filter"
+
     ){
+
 
         applyFilters();
 
+
+
     }
+
+
 
 });
 
 
 
-function openResort(resort) {
 
 
-document.getElementById("modal-image").src = resort.image;
+// RESORT DETAILS POPUP
 
-document.getElementById("modal-title").textContent = resort.resort;
-
-document.getElementById("modal-location").textContent =
-resort.city + ", " + resort.country;
+function openResort(resort){
 
 
-document.getElementById("modal-score").textContent =
-"⭐ " + resort.familyScore + "/100 Family Rating";
+    document.getElementById("modal-image").src = resort.image;
 
 
-document.getElementById("modal-price").textContent =
-resort.priceDisplay;
+    document.getElementById("modal-title").textContent = resort.resort;
 
 
-document.getElementById("modal-description").textContent =
-resort.description;
+    document.getElementById("modal-location").textContent =
+
+    resort.city + ", " + resort.country;
 
 
-document.getElementById("modal-best").textContent =
-"Best for: " + resort.bestFor;
+
+    document.getElementById("modal-score").textContent =
+
+    "⭐ " + resort.familyScore + "/100 Family Rating";
 
 
-document.getElementById("resort-modal").style.display="block";
+
+    document.getElementById("modal-price").textContent =
+
+    resort.priceDisplay;
+
+
+
+    document.getElementById("modal-description").textContent =
+
+    resort.description;
+
+
+
+    document.getElementById("modal-best").textContent =
+
+    "Best for: " + resort.bestFor;
+
+
+
+    document.getElementById("resort-modal").style.display = "block";
+
 
 
 }
+
+
 
 
 
 document.addEventListener("click", function(e){
 
 
-if(e.target.classList.contains("view-button")) {
+    if(e.target.classList.contains("view-button")){
 
 
-const resort =
-JSON.parse(e.target.dataset.resort);
+        const resort = JSON.parse(e.target.dataset.resort);
 
 
-openResort(resort);
+        openResort(resort);
 
 
-}
+
+    }
 
 
 });
 
+// FIND MY RESORT POPUP
 
-
-document.querySelector(".close").onclick = function(){
-
-document.getElementById("resort-modal").style.display="none";
-
-};
 document.getElementById("find-resort").onclick = function(){
 
-    document.getElementById("finder-modal").style.display="block";
+    document.getElementById("finder-modal").style.display = "block";
 
 };
-document.querySelector(".finder-close").onclick = function(){
 
-    document.getElementById("finder-modal").style.display="none";
 
-};
+
+
+
+// RECOMMENDATION ENGINE
+
 document.getElementById("recommend-button").onclick = function(){
 
 
-let budget =
-Number(document.getElementById("budget").value);
+    let budget = Number(
+        document.getElementById("budget").value
+    );
 
 
-let priority =
-document.getElementById("priority").value;
+    let priority =
+    document.getElementById("priority").value;
 
 
 
-let ranked = [...allResorts];
+    let ranked = [...allResorts];
 
 
 
-ranked = ranked.filter(resort =>
+    ranked = ranked.filter(resort =>
 
-    resort.nightlyCost <= budget
+        resort.nightlyCost <= budget
 
-);
+    );
 
 
 
-ranked.sort((a,b)=>{
+    ranked.sort((a,b)=>{
 
 
-let scoreA = a.familyScore;
+        let scoreA = a.familyScore;
 
-let scoreB = b.familyScore;
+        let scoreB = b.familyScore;
 
 
 
-if(priority === "kids"){
+        if(priority === "kids"){
 
-scoreA += a.kidsClubRating * 5;
 
-scoreB += b.kidsClubRating * 5;
+            scoreA += a.kidsClubRating * 5;
 
-}
+            scoreB += b.kidsClubRating * 5;
 
 
-if(priority === "beach"){
+        }
 
-scoreA += a.beachRating * 5;
 
-scoreB += b.beachRating * 5;
 
-}
+        if(priority === "beach"){
 
 
-if(priority === "pool"){
+            scoreA += a.beachRating * 5;
 
-scoreA += a.poolRating * 5;
+            scoreB += b.beachRating * 5;
 
-scoreB += b.poolRating * 5;
 
-}
+        }
 
 
-if(priority === "allinclusive"){
 
-if(a.allInclusive === "Yes")
-scoreA += 10;
+        if(priority === "pool"){
 
-if(b.allInclusive === "Yes")
-scoreB += 10;
 
-}
+            scoreA += a.poolRating * 5;
 
+            scoreB += b.poolRating * 5;
 
 
-return scoreB-scoreA;
+        }
 
 
-});
 
+        if(priority === "allinclusive"){
 
 
-let results = ranked.slice(0,3);
+            if(a.allInclusive === "Yes")
 
+            scoreA += 10;
 
 
-const output =
-document.getElementById("recommendations");
 
+            if(b.allInclusive === "Yes")
 
+            scoreB += 10;
 
-output.innerHTML = `
 
-<h3>🏆 Your Top Matches</h3>
+        }
 
-${results.map(r => {
 
 
-let reasons = [];
+        return scoreB - scoreA;
 
 
-if(r.familyScore >= 95){
 
-reasons.push("⭐ Excellent family rating");
+    });
 
-}
 
 
-if(r.kidsClubRating >= 5){
 
-reasons.push("👧 Outstanding kids club");
+    let results = ranked.slice(0,3);
 
-}
 
 
-if(r.poolRating >= 5){
+    const output =
 
-reasons.push("🏊 Amazing pool facilities");
+    document.getElementById("recommendations");
 
-}
 
 
-if(r.beachRating >= 5){
+    output.innerHTML = `
 
-reasons.push("🏖 Beautiful beach location");
 
-}
+    <h3>🏆 Your Top Matches</h3>
 
 
-if(r.allInclusive === "Yes"){
 
-reasons.push("🍽 All-inclusive experience");
+    ${results.map(r => {
 
-}
 
 
-return `
+        let reasons = [];
 
-<div class="recommend-card">
 
-<h4>${r.resort}</h4>
 
+        if(r.familyScore >= 95){
 
-<p>
-🏆 Match Score: ${r.familyScore}/100
-</p>
+            reasons.push("⭐ Excellent family rating");
 
+        }
 
-<p>
-${r.country} - ${r.city}
-</p>
 
 
-<h5>
-Why we picked it:
-</h5>
+        if(r.kidsClubRating >= 5){
 
+            reasons.push("👧 Outstanding kids club");
 
-<ul>
+        }
 
-${reasons.map(reason =>
 
-`<li>${reason}</li>`
 
-).join("")}
+        if(r.poolRating >= 5){
 
-</ul>
+            reasons.push("🏊 Amazing pool facilities");
 
+        }
 
-<p>
-${r.priceDisplay}
-</p>
 
 
-<button 
-class="view-button"
-data-resort='${JSON.stringify(r)}'>
-View Resort
-</button>
+        if(r.beachRating >= 5){
 
+            reasons.push("🏖 Beautiful beach location");
 
-</div>
+        }
 
-`;
 
-}).join("")}
 
-`;
+        if(r.allInclusive === "Yes"){
+
+            reasons.push("🍽 All-inclusive experience");
+
+        }
+
+
+
+
+
+        return `
+
+
+
+        <div class="recommend-card">
+
+
+            <h4>${r.resort}</h4>
+
+
+            <p>
+            🏆 Match Score: ${r.familyScore}/100
+            </p>
+
+
+            <p>
+            ${r.country} - ${r.city}
+            </p>
+
+
+
+            <h5>
+            Why we picked it:
+            </h5>
+
+
+
+            <ul>
+
+            ${reasons.map(reason =>
+
+            `<li>${reason}</li>`
+
+            ).join("")}
+
+
+            </ul>
+
+
+
+            <p>
+            ${r.priceDisplay}
+            </p>
+
+
+
+
+            <button
+
+            class="view-button"
+
+            data-resort='${JSON.stringify(r)}'>
+
+            View Resort
+
+            </button>
+
+
+
+        </div>
+
+
+        `;
+
+
+
+    }).join("")}
+
+
+
+    `;
+
+
 
 };
+
+
+
+
+
+// SAVE FAVOURITES
+
 document.addEventListener("click", function(e){
 
 
-if(e.target.classList.contains("favourite-button")) {
+
+    if(e.target.classList.contains("favourite-button")){
 
 
-const resort = JSON.parse(e.target.dataset.resort);
+
+        const resort = JSON.parse(
+
+            e.target.dataset.resort
+
+        );
 
 
-const exists = favourites.find(
-r => r.resort === resort.resort
-);
 
 
-if(!exists){
+        const exists = favourites.some(
 
-    favourites.push(resort);
+            f => f.resort === resort.resort
 
-    localStorage.setItem(
-        "favourites",
-        JSON.stringify(favourites)
-    );
-
-    e.target.textContent = "💚 Saved";
-
-    e.target.classList.add("saved");
-
-}
+        );
 
 
-e.target.textContent = "💚 Saved";
 
 
-}
 
-else {
+        if(!exists){
 
-alert("Already saved in favourites");
+
+
+            favourites.push(resort);
+
+
+
+            localStorage.setItem(
+
+                "favourites",
+
+                JSON.stringify(favourites)
+
+            );
+
+
+
+            updateFavouriteButtons();
+
+
+
+        }
+
+
+
+
+    }
 
 
 
 });
+
+
+
+
+
+
+// OPEN FAVOURITES
+
+
 document.getElementById("show-favourites").onclick = function(){
+
 
     displayFavourites();
 
-    document.getElementById("favourites-modal").style.display="block";
+
+    document.getElementById("favourites-modal").style.display = "block";
+
 
 };
+
+
+
+
+
+
 function displayFavourites(){
+
+
 
     const list = document.getElementById("favourites-list");
 
 
+
+
     if(favourites.length === 0){
 
-        list.innerHTML = "<p>No favourites saved yet.</p>";
+
+        list.innerHTML =
+
+        "<p>No favourites saved yet.</p>";
+
 
         return;
+
 
     }
 
 
+
+
     list.innerHTML = favourites.map(resort => `
 
+
+
         <div class="recommend-card">
+
+
 
             <img src="${resort.image}" width="100%">
 
 
+
             <h3>${resort.resort}</h3>
+
 
 
             <p>
@@ -549,9 +985,11 @@ function displayFavourites(){
             </p>
 
 
+
             <p>
             ⭐ ${resort.familyScore}/100 Family Score
             </p>
+
 
 
             <p>
@@ -559,224 +997,461 @@ function displayFavourites(){
             </p>
 
 
-            <button 
+
+            <button
+
             class="view-button"
+
             data-resort='${JSON.stringify(resort)}'>
+
             View Resort
+
             </button>
+
+
+
+
+            <button
+
+            class="remove-favourite"
+
+            data-name="${resort.resort}">
+
+            ❌ Remove
+
+            </button>
+
 
 
         </div>
 
 
+
     `).join("");
 
+
+
 }
-document.querySelector(".favourites-close").onclick = function(){
 
-    document.getElementById("favourites-modal").style.display="none";
 
-};
+
+
+
+
+// REMOVE FAVOURITE
+
+
 document.addEventListener("click", function(e){
 
 
-if(e.target.classList.contains("remove-favourite")) {
+
+    if(e.target.classList.contains("remove-favourite")){
 
 
-const name = e.target.dataset.name;
+
+        const name = e.target.dataset.name;
 
 
-favourites = favourites.filter(
-r => r.resort !== name
-);
+
+        favourites = favourites.filter(
+
+            r => r.resort !== name
+
+        );
 
 
-localStorage.setItem(
-"favourites",
-JSON.stringify(favourites)
-);
+
+        localStorage.setItem(
+
+            "favourites",
+
+            JSON.stringify(favourites)
+
+        );
 
 
-displayFavourites();
+
+        displayFavourites();
+
+        updateFavouriteButtons();
 
 
-}
+
+    }
+
 
 
 });
+
+
+
+
+
+// CLEAR ALL FAVOURITES
+
+
 document.getElementById("clear-favourites").onclick = function(){
 
-favourites = [];
 
-localStorage.removeItem("favourites");
+    favourites = [];
 
-displayFavourites();
+
+    localStorage.removeItem("favourites");
+
+
+    displayFavourites();
+
+
+    updateFavouriteButtons();
+
 
 };
+
+// COMPARE FAVOURITES
+
+
 document.getElementById("compare-favourites").onclick = function(){
+
 
     showComparison();
 
-    document.getElementById("compare-modal").style.display="block";
+
+    document.getElementById("compare-modal").style.display = "block";
+
 
 };
+
+
+
+
+
 function showComparison(){
 
 
-const table =
-document.getElementById("comparison-table");
+
+    const table =
+
+    document.getElementById("comparison-table");
 
 
-if(favourites.length < 2){
 
-table.innerHTML =
-"<p>Please save at least 2 resorts to compare.</p>";
 
-return;
+    if(favourites.length < 2){
+
+
+        table.innerHTML =
+
+        "<p>Please save at least 2 resorts to compare.</p>";
+
+
+        return;
+
+
+    }
+
+
+
+
+
+    table.innerHTML = `
+
+
+
+    <table class="compare-table">
+
+
+
+    <tr>
+
+    <th>Feature</th>
+
+
+    ${favourites.map(r =>
+
+    `<th>${r.resort}</th>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>Family Score</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>⭐ ${r.familyScore}/100</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>Price</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>${r.priceDisplay}</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>Kids Club</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>${r.kidsClubRating}/5</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>Pool</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>${r.poolRating}/5</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>Beach</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>${r.beachRating}/5</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+
+    <tr>
+
+    <td>All Inclusive</td>
+
+
+    ${favourites.map(r =>
+
+    `<td>${r.allInclusive}</td>`
+
+    ).join("")}
+
+
+
+    </tr>
+
+
+
+
+    </table>
+
+
+
+    `;
+
+
 
 }
 
 
 
-table.innerHTML = `
-
-<table class="compare-table">
-
-<tr>
-
-<th>Feature</th>
-
-${favourites.map(r =>
-`<th>${r.resort}</th>`
-).join("")}
-
-</tr>
 
 
-<tr>
-
-<td>Family Score</td>
-
-${favourites.map(r =>
-`<td>⭐ ${r.familyScore}/100</td>`
-).join("")}
-
-</tr>
 
 
-<tr>
 
-<td>Price</td>
-
-${favourites.map(r =>
-`<td>${r.priceDisplay}</td>`
-).join("")}
-
-</tr>
+// CLOSE BUTTONS
 
 
-<tr>
 
-<td>Kids Club</td>
-
-${favourites.map(r =>
-`<td>${r.kidsClubRating}/5</td>`
-).join("")}
-
-</tr>
+document.querySelector(".close").onclick = function(){
 
 
-<tr>
-
-<td>Pool</td>
-
-${favourites.map(r =>
-`<td>${r.poolRating}/5</td>`
-).join("")}
-
-</tr>
+    document.getElementById("resort-modal").style.display = "none";
 
 
-<tr>
-
-<td>Beach</td>
-
-${favourites.map(r =>
-`<td>${r.beachRating}/5</td>`
-).join("")}
-
-</tr>
+};
 
 
-<tr>
-
-<td>All Inclusive</td>
-
-${favourites.map(r =>
-`<td>${r.allInclusive}</td>`
-).join("")}
-
-</tr>
 
 
-</table>
 
-`;
 
-}
+document.querySelector(".finder-close").onclick = function(){
+
+
+    document.getElementById("finder-modal").style.display = "none";
+
+
+};
+
+
+
+
+
+
+document.querySelector(".favourites-close").onclick = function(){
+
+
+    document.getElementById("favourites-modal").style.display = "none";
+
+
+};
+
+
+
+
+
+
 document.addEventListener("click", function(e){
+
 
     if(e.target.classList.contains("compare-close")){
 
+
         document.getElementById("compare-modal").style.display = "none";
 
+
     }
+
 
 });
 
-};
-window.onclick = function(event) {
-
-
-    const resortModal = document.getElementById("resort-modal");
-
-    const finderModal = document.getElementById("finder-modal");
-
-    const favouritesModal = document.getElementById("favourites-modal");
-
-    const compareModal = document.getElementById("compare-modal");
 
 
 
-    if (event.target === resortModal) {
+
+
+
+
+// CLICK OUTSIDE POPUPS TO CLOSE
+
+
+
+window.onclick = function(event){
+
+
+
+    const resortModal =
+
+    document.getElementById("resort-modal");
+
+
+
+    const finderModal =
+
+    document.getElementById("finder-modal");
+
+
+
+    const favouritesModal =
+
+    document.getElementById("favourites-modal");
+
+
+
+    const compareModal =
+
+    document.getElementById("compare-modal");
+
+
+
+
+
+    if(event.target === resortModal){
+
 
         resortModal.style.display = "none";
 
+
     }
 
 
 
-    if (event.target === finderModal) {
+
+
+    if(event.target === finderModal){
+
 
         finderModal.style.display = "none";
 
+
     }
 
 
 
-    if (event.target === favouritesModal) {
+
+
+    if(event.target === favouritesModal){
+
 
         favouritesModal.style.display = "none";
 
+
     }
 
 
 
-    if (event.target === compareModal) {
+
+
+    if(event.target === compareModal){
+
 
         compareModal.style.display = "none";
 
+
     }
+
 
 
 };

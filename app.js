@@ -260,7 +260,40 @@ function displayVoting(){
 // COUNTRY FILTER OPTIONS
 
 function populateCountries(){
+// POPULATE BUDGET RESORT DROPDOWN
 
+function populateBudgetResorts(){
+
+    const select = document.getElementById("budget-resort");
+
+
+    if(!select){
+        return;
+    }
+
+
+    select.innerHTML = "";
+
+
+    allResorts.forEach(resort => {
+
+
+        const option = document.createElement("option");
+
+
+        option.value = resort.resort;
+
+
+        option.textContent =
+        `${resort.resort} - ${resort.priceDisplay}`;
+
+
+        select.appendChild(option);
+
+
+    });
+
+}
 
     const countrySelect = document.getElementById("country-filter");
 

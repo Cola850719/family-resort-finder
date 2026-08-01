@@ -114,11 +114,9 @@ function displayResorts(resorts) {
 
 
 
-            <button
-
+            <button 
             class="view-button"
-
-            data-resort='${JSON.stringify(resort)}'>
+            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
 
             View Resort
 
@@ -128,10 +126,8 @@ function displayResorts(resorts) {
 
 
             <button
-
             class="favourite-button"
-
-            data-resort='${JSON.stringify(resort)}'>
+            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
 
             ❤️ Save Favourite
 
@@ -445,7 +441,7 @@ document.addEventListener("click", function(e){
     if(e.target.classList.contains("view-button")){
 
 
-        const resort = JSON.parse(e.target.dataset.resort);
+        const resort = JSON.parse(decodeURIComponent(e.target.dataset.resort))
 
 
         openResort(resort);
@@ -682,11 +678,9 @@ document.getElementById("recommend-button").onclick = function(){
 
 
 
-            <button
-
+            <button 
             class="view-button"
-
-            data-resort='${JSON.stringify(r)}'>
+            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
 
             View Resort
 
@@ -860,11 +854,9 @@ function displayFavourites(){
 
 
 
-            <button
-
+            <button 
             class="view-button"
-
-            data-resort='${JSON.stringify(resort)}'>
+            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
 
             View Resort
 

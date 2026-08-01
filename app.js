@@ -773,10 +773,8 @@ document.addEventListener("click", function(e){
 
 
         const resort = JSON.parse(
-
-            e.target.dataset.resort
-
-        );
+    decodeURIComponent(button.dataset.resort)
+);
 
 
 

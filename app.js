@@ -504,6 +504,25 @@ document.addEventListener("click", function(e){
 
 });
 
+// VIEW RESORT BUTTONS
+
+document.addEventListener("click", function(e){
+
+    if(e.target.classList.contains("view-button")){
+
+
+        const resort = JSON.parse(
+            decodeURIComponent(e.target.dataset.resort)
+        );
+
+
+        openResort(resort);
+
+
+    }
+
+});
+
 // FIND MY RESORT POPUP
 
 document.getElementById("find-resort").onclick = function(){

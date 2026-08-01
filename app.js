@@ -938,7 +938,48 @@ function displayFavourites(){
 
 }
 
+document.getElementById("show-voting").onclick = function(){
 
+    displayVoting();
+
+    document.getElementById("voting-modal")
+    .style.display = "block";
+
+};
+
+document.addEventListener("click", function(e){
+
+    if(e.target.classList.contains("vote-button")){
+
+        const resort =
+        e.target.dataset.name;
+
+        votes[resort] =
+        (votes[resort] || 0) + 1;
+
+        localStorage.setItem(
+            "votes",
+            JSON.stringify(votes)
+        );
+
+        displayVoting();
+
+    }
+
+});
+
+document.getElementById("calculate-winner").onclick = function(){
+
+...
+
+};
+
+document.querySelector(".voting-close").onclick = function(){
+
+    document.getElementById("voting-modal")
+    .style.display = "none";
+
+};
 
 
 

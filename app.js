@@ -1215,8 +1215,103 @@ document.querySelector(".voting-close").onclick = function(){
 
 };
 
+document.getElementById("open-budget").onclick = function(){
+
+    document.getElementById("budget-modal")
+    .style.display = "block";
+
+};
 
 
+document.querySelector(".budget-close").onclick = function(){
+
+    document.getElementById("budget-modal")
+    .style.display = "none";
+
+};
+document.getElementById("calculate-budget").onclick = function(){
+
+
+let adults =
+Number(document.getElementById("budget-adults").value);
+
+
+let children =
+Number(document.getElementById("budget-children").value);
+
+
+let people = adults + children;
+
+
+let nights =
+Number(document.getElementById("budget-nights").value);
+
+
+let resortCost =
+allResorts[0].nightlyCost * nights;
+
+
+let flights =
+people *
+Number(document.getElementById("budget-flight").value);
+
+
+let food =
+Number(document.getElementById("budget-food").value)
+* nights;
+
+
+let activities =
+Number(document.getElementById("budget-activities").value);
+
+
+let transfers =
+Number(document.getElementById("budget-transfers").value);
+
+
+
+let total =
+resortCost +
+flights +
+food +
+activities +
+transfers;
+
+
+
+document.getElementById("budget-results").innerHTML = `
+
+<h3>🏝 Estimated Holiday Cost</h3>
+
+<p>
+🏨 Accommodation: $${resortCost}
+</p>
+
+<p>
+✈ Flights: $${flights}
+</p>
+
+<p>
+🍽 Food: $${food}
+</p>
+
+<p>
+🎯 Activities: $${activities}
+</p>
+
+<p>
+🚕 Transfers: $${transfers}
+</p>
+
+<hr>
+
+<h2>
+TOTAL: $${total.toLocaleString()} AUD
+</h2>
+
+`;
+
+};
 
 // REMOVE FAVOURITE
 

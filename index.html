@@ -124,57 +124,137 @@
 
 </div>
     
- <div id="budget-modal" class="modal">
+<div id="budget-modal" class="modal">
 
-    <div class="modal-content">
+<div class="modal-content budget-box">
 
-        <span class="budget-close close">×</span>
-
-        <h2>💰 Holiday Budget Calculator</h2>
-
-        <label>Select Resort</label>
-
-        <select id="budget-resort"></select>
+<span class="budget-close close">×</span>
 
 
-        <label>Adults</label>
-        <input id="budget-adults" type="number" value="2">
+<h2>
+🏝️ Holiday Budget Planner
+</h2>
+
+<p class="budget-subtitle">
+Estimate your family holiday cost
+</p>
 
 
-        <label>Children</label>
-        <input id="budget-children" type="number" value="2">
+
+<div class="budget-section">
+
+<h3>🏨 Choose Resort</h3>
+
+<select id="budget-resort"></select>
+
+<div id="budget-resort-preview">
+
+</div>
+
+</div>
 
 
-        <label>Nights</label>
-        <input id="budget-nights" type="number" value="7">
 
 
-        <label>Flights per person</label>
-        <input id="budget-flight" type="number" value="900">
+<div class="budget-grid">
 
 
-        <label>Food per day</label>
-        <input id="budget-food" type="number" value="150">
+<div class="budget-section">
+
+<h3>👨‍👩‍👧‍👦 Family</h3>
+
+<label>Adults</label>
+
+<input 
+id="budget-adults" 
+type="number" 
+value="2">
 
 
-        <label>Activities</label>
-        <input id="budget-activities" type="number" value="500">
+<label>Children</label>
+
+<input 
+id="budget-children" 
+type="number" 
+value="2">
 
 
-        <label>Transfers</label>
-        <input id="budget-transfers" type="number" value="150">
+<label>Nights</label>
+
+<input 
+id="budget-nights" 
+type="number" 
+value="7">
 
 
-        <button id="calculate-budget">
-            Calculate Holiday Cost
-        </button>
+</div>
 
 
-        <div id="budget-results"></div>
 
-    </div>
 
-</div>   
+
+<div class="budget-section">
+
+<h3>💰 Extra Costs</h3>
+
+
+<label>Flights per person</label>
+
+<input 
+id="budget-flight" 
+type="number" 
+value="900">
+
+
+<label>Food per day</label>
+
+<input 
+id="budget-food" 
+type="number" 
+value="150">
+
+
+<label>Activities</label>
+
+<input 
+id="budget-activities" 
+type="number" 
+value="500">
+
+
+<label>Transfers</label>
+
+<input 
+id="budget-transfers" 
+type="number" 
+value="150">
+
+
+</div>
+
+
+</div>
+
+
+
+
+<button id="calculate-budget" class="budget-button">
+
+💰 Calculate Holiday Cost
+
+</button>
+
+
+
+<div id="budget-results">
+
+</div>
+
+
+
+</div>
+
+</div>  
 
 <h2>💰 Holiday Budget Calculator</h2>
 

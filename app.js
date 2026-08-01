@@ -1,9 +1,8 @@
 let allResorts = [];
 
 let favourites = JSON.parse(localStorage.getItem("favourites")) || [];
-let votes = JSON.parse(
-    localStorage.getItem("votes")
-) || {};
+
+let votes = JSON.parse(localStorage.getItem("votes")) || {};
 
 
 // LOAD RESORT DATA
@@ -849,8 +848,118 @@ document.addEventListener("click", function(e){
 
 document.getElementById("show-favourites").onclick = function(){
 
+    document.getElementById("show-voting").onclick = function(){
 
+    displayVoting();
+
+    document.getElementById("voting-modal")
+    .style.display = "block";
+
+};
+
+    document.addEventListener("click", function(e){
+
+
+    if(e.target.classList.contains("vote-button")){
+
+
+        const resort = e.target.dataset.name;
+
+
+        votes[resort] =
+        (votes[resort] || 0) + 1;
+
+
+        localStorage.setItem(
+            "votes",
+            JSON.stringify(votes)
+        );
+
+
+        displayVoting();
+
+
+    }
+
+
+});
+document.querySelector(".voting-close").onclick = function(){
+
+    document.getElementById("voting-modal")
+    .style.display = "none";
+
+};
     displayFavourites();
+
+    // FAMILY VOTING DISPLAY
+
+function displayVoting(){
+
+    const list = document.getElementById("voting-list");
+
+
+    if(favourites.length === 0){
+
+        list.innerHTML = `
+        <p>
+        Save some favourite resorts first before voting.
+        </p>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML = favourites.map(resort => {
+
+
+        return `
+
+        <div class="recommend-card">
+
+
+            <img src="${resort.image}" width="100%">
+
+
+            <h3>
+            ${resort.resort}
+            </h3>
+
+
+            <p>
+            ${resort.city}, ${resort.country}
+            </p>
+
+
+            <p>
+            ⭐ ${resort.familyScore}/100 Family Score
+            </p>
+
+
+            <p>
+            Votes:
+            ${votes[resort.resort] || 0}
+            </p>
+
+
+            <button 
+            class="vote-button"
+            data-name="${resort.resort}">
+            
+            🗳 Vote For This Resort
+
+            </button>
+
+
+        </div>
+
+        `;
+
+
+    }).join("");
+
+}
 
 
     document.getElementById("favourites-modal").style.display = "block";

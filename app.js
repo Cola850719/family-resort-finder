@@ -170,7 +170,9 @@ function updateFavouriteButtons(){
 
 
 
-        const resort = JSON.parse(button.dataset.resort);
+        const resort = JSON.parse(
+    decodeURIComponent(button.dataset.resort)
+);
 
 
 

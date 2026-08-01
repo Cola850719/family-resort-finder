@@ -85,8 +85,16 @@ function displayResorts(resorts) {
 
 
 
-            <button class="favourite-button" data-resort='${JSON.stringify(resort)}'>
-            ❤️ Save Favourite
+            <button 
+            class="favourite-button"
+            data-resort='${JSON.stringify(resort)}'>
+
+            ${favourites.some(f => f.resort === resort.resort)
+
+            ? "💚 Saved"
+
+            : "❤️ Save Favourite"}
+
             </button>
 
 
@@ -487,7 +495,7 @@ JSON.stringify(favourites)
 );
 
 
-e.target.textContent = "❤️ Saved";
+e.target.textContent = "💚 Saved";
 
 
 }

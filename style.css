@@ -355,3 +355,29 @@ button {
     margin-bottom:10px;
 
 }
+.compare-table {
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.compare-table th,
+.compare-table td {
+
+    padding:12px;
+
+    border-bottom:1px solid #ddd;
+
+    text-align:center;
+
+}
+
+
+.compare-table th {
+
+    font-size:14px;
+
+}

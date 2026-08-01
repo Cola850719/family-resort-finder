@@ -348,3 +348,10 @@ button {
     font-size:14px;
 
 }
+#favourites-list img {
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+
+}

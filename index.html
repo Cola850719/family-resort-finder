@@ -53,10 +53,15 @@
         ❤️ My Favourites
         </button>
 
+        <button id="show-voting">
+        🗳 Family Voting
+        </button>   
+
     <button class="hero-button">
         Explore Resorts
     </button>
 
+            
     <button class="hero-button find-button" id="find-resort">
         🎯 Find My Resort
     </button>
@@ -215,6 +220,15 @@
     </div>
 
 </div>
+    
+ document.getElementById("show-voting").onclick = function(){
+
+    displayVoting();
+
+    document.getElementById("voting-modal")
+    .style.display = "block";
+
+}; 
     
 <script src="app.js"></script>
 

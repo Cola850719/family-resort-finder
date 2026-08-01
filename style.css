@@ -408,3 +408,64 @@ button {
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 
 }
+
+/* BUDGET CALCULATOR */
+
+.budget-box{
+    max-width: 900px;
+}
+
+.budget-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:25px;
+    margin-top:20px;
+}
+
+.budget-section{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.budget-section h3{
+    margin-top:0;
+    margin-bottom:15px;
+}
+
+.budget-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.budget-row label{
+    font-weight:600;
+}
+
+.budget-row input{
+    width:120px;
+    padding:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:center;
+}
+
+.budget-button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.budget-subtitle{
+    text-align:center;
+    opacity:0.8;
+    margin-bottom:20px;
+}

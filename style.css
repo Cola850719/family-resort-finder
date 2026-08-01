@@ -381,3 +381,8 @@ button {
     font-size:14px;
 
 }
+.favourite-button.saved {
+
+    background:#d4edda;
+
+}

@@ -487,12 +487,18 @@ r => r.resort === resort.resort
 
 if(!exists){
 
-favourites.push(resort);
+    favourites.push(resort);
 
-localStorage.setItem(
-"favourites",
-JSON.stringify(favourites)
-);
+    localStorage.setItem(
+        "favourites",
+        JSON.stringify(favourites)
+    );
+
+    e.target.textContent = "💚 Saved";
+
+    e.target.classList.add("saved");
+
+}
 
 
 e.target.textContent = "💚 Saved";

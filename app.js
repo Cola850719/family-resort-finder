@@ -499,3 +499,67 @@ alert("Already saved in favourites");
 
 
 });
+document.getElementById("show-favourites").onclick = function(){
+
+    displayFavourites();
+
+    document.getElementById("favourites-modal").style.display="block";
+
+};
+function displayFavourites(){
+
+    const list = document.getElementById("favourites-list");
+
+
+    if(favourites.length === 0){
+
+        list.innerHTML = "<p>No favourites saved yet.</p>";
+
+        return;
+
+    }
+
+
+    list.innerHTML = favourites.map(resort => `
+
+        <div class="recommend-card">
+
+            <img src="${resort.image}" width="100%">
+
+
+            <h3>${resort.resort}</h3>
+
+
+            <p>
+            ${resort.city}, ${resort.country}
+            </p>
+
+
+            <p>
+            ⭐ ${resort.familyScore}/100 Family Score
+            </p>
+
+
+            <p>
+            ${resort.priceDisplay}
+            </p>
+
+
+            <button 
+            class="view-button"
+            data-resort='${JSON.stringify(resort)}'>
+            View Resort
+            </button>
+
+
+        </div>
+
+
+    `).join("");
+
+}
+document.querySelector(".favourites-close").onclick = function(){
+
+    document.getElementById("favourites-modal").style.display="none";
+
+};

@@ -77,9 +77,17 @@ function displayResorts(resorts) {
             </p>
 
 
-            <button class="view-button" data-resort='${JSON.stringify(resort)}'>
+            <button 
+            class="view-button"
+            data-resort='${JSON.stringify(resort)}'>
             View Resort
             </button>
+
+<button 
+class="remove-favourite"
+data-name="${resort.resort}">
+❌ Remove
+</button>
 
             <button class="favourite-button" data-resort='${JSON.stringify(resort)}'>
             ❤️ Save Favourite
@@ -561,5 +569,41 @@ function displayFavourites(){
 document.querySelector(".favourites-close").onclick = function(){
 
     document.getElementById("favourites-modal").style.display="none";
+
+};
+document.addEventListener("click", function(e){
+
+
+if(e.target.classList.contains("remove-favourite")) {
+
+
+const name = e.target.dataset.name;
+
+
+favourites = favourites.filter(
+r => r.resort !== name
+);
+
+
+localStorage.setItem(
+"favourites",
+JSON.stringify(favourites)
+);
+
+
+displayFavourites();
+
+
+}
+
+
+});
+document.getElementById("clear-favourites").onclick = function(){
+
+favourites = [];
+
+localStorage.removeItem("favourites");
+
+displayFavourites();
 
 };

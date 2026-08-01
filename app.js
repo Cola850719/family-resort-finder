@@ -512,10 +512,6 @@ alert("Already saved in favourites");
 
 }
 
-
-}
-
-
 });
 document.getElementById("show-favourites").onclick = function(){
 

@@ -1790,3 +1790,4 @@ window.onclick = function(event){
 
     }
 };
+console.log("APP JS FINISHED LOADING");

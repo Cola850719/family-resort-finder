@@ -1726,24 +1726,13 @@ document.querySelector(".budget-close").onclick = function(){
 
 };
 
-
-
-
-
-
 // CLICK OUTSIDE POPUPS TO CLOSE
 
-
-
 window.onclick = function(event){
-
-
 
     const resortModal =
 
     document.getElementById("resort-modal");
-
-
 
     const finderModal =
 
@@ -1773,10 +1762,6 @@ window.onclick = function(event){
 
     }
 
-
-
-
-
     if(event.target === finderModal){
 
 
@@ -1784,10 +1769,6 @@ window.onclick = function(event){
 
 
     }
-
-
-
-
 
     if(event.target === favouritesModal){
 

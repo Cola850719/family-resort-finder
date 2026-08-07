@@ -32,16 +32,6 @@ fetch("data/resorts.json")
 
 });
 
-let valueBadge = "💰 Great Value";
-
-if(resort.familyScore >= 95){
-    valueBadge = "🏆 Family Favourite";
-}
-else if(resort.nightlyCost >= 300){
-    valueBadge = "💎 Luxury Escape";
-}
-else if(resort.nightlyCost <= 220){
-    valueBadge = "🔥 Budget Friendly";
 }
 
 

@@ -32,14 +32,40 @@ fetch("data/resorts.json")
 
 });
 
+let valueBadge = "💰 Great Value";
 
+if(resort.familyScore >= 95){
+    valueBadge = "🏆 Family Favourite";
+}
+else if(resort.nightlyCost >= 300){
+    valueBadge = "💎 Luxury Escape";
+}
+else if(resort.nightlyCost <= 220){
+    valueBadge = "🔥 Budget Friendly";
+}
 
 
 // DISPLAY RESORT CARDS
 
 function displayResorts(resorts) {
 
+document.getElementById("budget-results").innerHTML = `
 
+<div class="budget-result-card">
+
+    <img
+        src="${resort.image}"
+        class="budget-image"
+    >
+
+    <h2>${resort.resort}</h2>
+
+    <div class="value-badge">
+        ${valueBadge}
+    </div>
+
+    <div class="budget-breakdown">
+    
     const container = document.getElementById("resort-grid");
 
 

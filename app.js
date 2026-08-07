@@ -32,8 +32,6 @@ fetch("data/resorts.json")
 
 });
 
-}
-
 
 // DISPLAY RESORT CARDS
 

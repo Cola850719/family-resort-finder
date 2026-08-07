@@ -48,23 +48,6 @@ else if(resort.nightlyCost <= 220){
 // DISPLAY RESORT CARDS
 
 function displayResorts(resorts) {
-
-document.getElementById("budget-results").innerHTML = `
-
-<div class="budget-result-card">
-
-    <img
-        src="${resort.image}"
-        class="budget-image"
-    >
-
-    <h2>${resort.resort}</h2>
-
-    <div class="value-badge">
-        ${valueBadge}
-    </div>
-
-    <div class="budget-breakdown">
     
     const container = document.getElementById("resort-grid");
 

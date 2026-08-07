@@ -1818,7 +1818,4 @@ window.onclick = function(event){
 
 
     }
-
-
-
 };

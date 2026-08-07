@@ -1317,39 +1317,76 @@ transfers;
 
 
 
+let valueBadge = "💰 Great Value";
+
+if(resort.familyScore >= 95){
+    valueBadge = "🏆 Family Favourite";
+}
+else if(resort.nightlyCost >= 300){
+    valueBadge = "💎 Luxury Escape";
+}
+else if(resort.nightlyCost <= 220){
+    valueBadge = "🔥 Budget Friendly";
+}
+
 document.getElementById("budget-results").innerHTML = `
 
-<h3>🏝 Estimated Holiday Cost</h3>
+<div class="budget-result-card">
 
-<p>
-🏨 Accommodation: $${resortCost}
-</p>
+    <img
+        src="${resort.image}"
+        class="budget-image"
+    >
 
-<p>
-✈ Flights: $${flights}
-</p>
+    <h2>${resort.resort}</h2>
 
-<p>
-🍽 Food: $${food}
-</p>
+    <div class="value-badge">
+        ${valueBadge}
+    </div>
 
-<p>
-🎯 Activities: $${activities}
-</p>
+    <div class="budget-breakdown">
 
-<p>
-🚕 Transfers: $${transfers}
-</p>
+        <p>🏨 Accommodation: $${resortCost.toLocaleString()}</p>
 
-<hr>
+        <p>✈️ Flights: $${flights.toLocaleString()}</p>
 
-<h2>
-TOTAL: $${total.toLocaleString()} AUD
-</h2>
+        <p>🍽 Food: $${food.toLocaleString()}</p>
+
+        <p>🎢 Activities: $${activities.toLocaleString()}</p>
+
+        <p>🚕 Transfers: $${transfers.toLocaleString()}</p>
+
+    </div>
+
+    <hr>
+
+    <h1>
+        $${total.toLocaleString()}
+    </h1>
+
+    <p>
+        Total Estimated Holiday Cost
+    </p>
+
+    <p>
+        ⭐ Family Score: ${resort.familyScore}/100
+    </p>
+
+    <p>
+        🏊 Pool Rating: ${resort.poolRating}/5
+    </p>
+
+    <p>
+        👧 Kids Club Rating: ${resort.kidsClubRating}/5
+    </p>
+
+    <p>
+        🏖 Beach Rating: ${resort.beachRating}/5
+    </p>
+
+</div>
 
 `;
-
-};
 
 // REMOVE FAVOURITE
 

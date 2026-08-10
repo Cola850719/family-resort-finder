@@ -1530,6 +1530,14 @@ document.getElementById("budget-results").innerHTML = `
     <p>🏊 Pool Rating: ${resort.poolRating}/5</p>
     <p>👧 Kids Club Rating: ${resort.kidsClubRating}/5</p>
     <p>🏖 Beach Rating: ${resort.beachRating}/5</p>
+
+    <button
+    id="save-holiday"
+    class="save-holiday-button">
+
+    💾 Save This Holiday
+
+</button>
     
     <div class="budget-comparison">
 

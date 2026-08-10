@@ -866,3 +866,64 @@ button {
     color: white;
     border-color: #1f7a5a;
 }
+/* =========================================
+   VISUAL COST BREAKDOWN
+========================================= */
+
+.budget-breakdown {
+    padding: 15px 20px;
+}
+
+.budget-breakdown h3 {
+    margin-bottom: 20px;
+}
+
+.cost-item {
+    margin-bottom: 18px;
+}
+
+.cost-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+.cost-header strong {
+    font-size: 14px;
+}
+
+.cost-bar {
+    width: 100%;
+    height: 10px;
+    background: #e9edf2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cost-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.cost-fill.accommodation {
+    background: #1f7a5a;
+}
+
+.cost-fill.flights {
+    background: #3b82f6;
+}
+
+.cost-fill.food {
+    background: #f59e0b;
+}
+
+.cost-fill.activities {
+    background: #8b5cf6;
+}
+
+.cost-fill.transfers {
+    background: #64748b;
+}

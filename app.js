@@ -1413,13 +1413,93 @@ document.getElementById("budget-results").innerHTML = `
 
     <div class="budget-breakdown">
 
-        <p>🏨 Accommodation: $${resortCost.toLocaleString()}</p>
-        <p>✈️ Flights: $${flights.toLocaleString()}</p>
-        <p>🍽 Food: $${food.toLocaleString()}</p>
-        <p>🎢 Activities: $${activities.toLocaleString()}</p>
-        <p>🚕 Transfers: $${transfers.toLocaleString()}</p>
+    <h3>💰 Where Your Money Goes</h3>
+
+    <div class="cost-item">
+
+        <div class="cost-header">
+            <span>🏨 Accommodation</span>
+            <strong>$${resortCost.toLocaleString()}</strong>
+        </div>
+
+        <div class="cost-bar">
+            <div
+                class="cost-fill accommodation"
+                style="width: ${total > 0 ? (resortCost / total * 100) : 0}%">
+            </div>
+        </div>
 
     </div>
+
+
+    <div class="cost-item">
+
+        <div class="cost-header">
+            <span>✈️ Flights</span>
+            <strong>$${flights.toLocaleString()}</strong>
+        </div>
+
+        <div class="cost-bar">
+            <div
+                class="cost-fill flights"
+                style="width: ${total > 0 ? (flights / total * 100) : 0}%">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="cost-item">
+
+        <div class="cost-header">
+            <span>🍽 Food</span>
+            <strong>$${food.toLocaleString()}</strong>
+        </div>
+
+        <div class="cost-bar">
+            <div
+                class="cost-fill food"
+                style="width: ${total > 0 ? (food / total * 100) : 0}%">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="cost-item">
+
+        <div class="cost-header">
+            <span>🎢 Activities</span>
+            <strong>$${activities.toLocaleString()}</strong>
+        </div>
+
+        <div class="cost-bar">
+            <div
+                class="cost-fill activities"
+                style="width: ${total > 0 ? (activities / total * 100) : 0}%">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="cost-item">
+
+        <div class="cost-header">
+            <span>🚕 Transfers</span>
+            <strong>$${transfers.toLocaleString()}</strong>
+        </div>
+
+        <div class="cost-bar">
+            <div
+                class="cost-fill transfers"
+                style="width: ${total > 0 ? (transfers / total * 100) : 0}%">
+            </div>
+        </div>
+
+    </div>
+
+</div>
 
     <hr>
 

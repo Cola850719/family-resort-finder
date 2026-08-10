@@ -1688,6 +1688,124 @@ if(comparisonContainer){
 }
 };
 
+// SAVE HOLIDAY BUDGET
+
+document.addEventListener("click", function(e){
+
+    if(e.target.id !== "save-holiday"){
+        return;
+    }
+
+    const selectedResort =
+        document.getElementById("budget-resort").value;
+
+    const resort =
+        allResorts.find(
+            r => r.resort === selectedResort
+        );
+
+    if(!resort){
+        return;
+    }
+
+    const adults =
+        Number(
+            document.getElementById("budget-adults").value
+        );
+
+    const children =
+        Number(
+            document.getElementById("budget-children").value
+        );
+
+    const nights =
+        Number(
+            document.getElementById("budget-nights").value
+        );
+
+    const flights =
+        (adults + children) *
+        Number(
+            document.getElementById("budget-flight").value
+        );
+
+    const food =
+        Number(
+            document.getElementById("budget-food").value
+        ) *
+        nights;
+
+    const activities =
+        Number(
+            document.getElementById("budget-activities").value
+        );
+
+    const transfers =
+        Number(
+            document.getElementById("budget-transfers").value
+        );
+
+    const accommodation =
+        resort.nightlyCost * nights;
+
+    const total =
+        accommodation +
+        flights +
+        food +
+        activities +
+        transfers;
+
+    const savedHoliday = {
+
+        id: Date.now(),
+
+        resort: resort.resort,
+
+        country: resort.country,
+
+        city: resort.city,
+
+        image: resort.image,
+
+        adults: adults,
+
+        children: children,
+
+        nights: nights,
+
+        flights: flights,
+
+        food: food,
+
+        activities: activities,
+
+        transfers: transfers,
+
+        accommodation: accommodation,
+
+        total: total,
+
+        savedDate:
+            new Date().toLocaleDateString()
+
+    };
+
+    let savedHolidays =
+        JSON.parse(
+            localStorage.getItem("savedHolidays")
+        ) || [];
+
+    savedHolidays.push(savedHoliday);
+
+    localStorage.setItem(
+        "savedHolidays",
+        JSON.stringify(savedHolidays)
+    );
+
+    alert("💾 Holiday saved successfully!");
+
+});
+
 // FAMILY PRESETS
 
 document.addEventListener("click", function(e){

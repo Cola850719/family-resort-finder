@@ -833,3 +833,36 @@ button {
     }
 
 }
+/* =========================================
+   FAMILY PRESETS
+========================================= */
+
+.family-presets {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.family-preset {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    background: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.family-preset:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.family-preset.active {
+    background: #1f7a5a;
+    color: white;
+    border-color: #1f7a5a;
+}

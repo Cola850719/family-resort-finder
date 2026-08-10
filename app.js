@@ -323,9 +323,76 @@ function populateBudgetResorts(){
 
 }
 
+function updateBudgetResortPreview(){
 
+    const select =
+    document.getElementById("budget-resort");
 
+    const preview =
+    document.getElementById("budget-resort-preview");
 
+    if(!select || !preview || !allResorts){
+        return;
+    }
+
+    const selectedResort =
+    allResorts.find(
+        r => r.resort === select.value
+    );
+
+    if(!selectedResort){
+        preview.innerHTML = "";
+        return;
+    }
+
+    preview.innerHTML = `
+
+        <div class="budget-preview-card">
+
+            <img
+                src="${selectedResort.image}"
+                alt="${selectedResort.resort}"
+            >
+
+            <div class="budget-preview-info">
+
+                <h3>
+                    ${selectedResort.resort}
+                </h3>
+
+                <p>
+                    📍 ${selectedResort.city},
+                    ${selectedResort.country}
+                </p>
+
+                <div class="budget-preview-details">
+
+                    <span>
+                        💰 ${selectedResort.priceDisplay}
+                    </span>
+
+                    <span>
+                        ⭐ ${selectedResort.familyScore}/100
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+document.addEventListener("change", function(e){
+
+    if(e.target.id === "budget-resort"){
+
+        updateBudgetResortPreview();
+
+    }
+
+});
 
 // FILTER SYSTEM
 

@@ -1356,9 +1356,28 @@ document.getElementById("budget-results").innerHTML = `
 
     <hr>
 
-    <h1>$${total.toLocaleString()}</h1>
+    <div class="budget-total">
 
-    <p>Total Estimated Holiday Cost</p>
+    <div class="total-main">
+        <span>💰 Total Holiday Cost</span>
+        <strong>$${total.toLocaleString()}</strong>
+    </div>
+
+    <div class="budget-stats">
+
+        <div>
+            <span>👨‍👩‍👧‍👦 Per Person</span>
+            <strong>$${Math.round(total / people).toLocaleString()}</strong>
+        </div>
+
+        <div>
+            <span>🌙 Per Night</span>
+            <strong>$${Math.round(total / nights).toLocaleString()}</strong>
+        </div>
+
+    </div>
+
+</div>
 
     <p>⭐ Family Score: ${resort.familyScore}/100</p>
     <p>🏊 Pool Rating: ${resort.poolRating}/5</p>

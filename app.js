@@ -1530,11 +1530,154 @@ document.getElementById("budget-results").innerHTML = `
     <p>🏊 Pool Rating: ${resort.poolRating}/5</p>
     <p>👧 Kids Club Rating: ${resort.kidsClubRating}/5</p>
     <p>🏖 Beach Rating: ${resort.beachRating}/5</p>
+    
+    <div class="budget-comparison">
+
+    <h3>🔄 Compare Your Resort</h3>
+
+    <div id="budget-comparison-options"></div>
+
+</div>
 
 </div>
 
 `;
+const cheaperResorts =
+    allResorts
+    .filter(r => r.nightlyCost < resort.nightlyCost)
+    .sort((a, b) => b.nightlyCost - a.nightlyCost);
 
+const luxuryResorts =
+    allResorts
+    .filter(r => r.nightlyCost > resort.nightlyCost)
+    .sort((a, b) => a.nightlyCost - b.nightlyCost);
+
+
+const budgetOption =
+    cheaperResorts.length
+    ? cheaperResorts[0]
+    : null;
+
+
+const luxuryOption =
+    luxuryResorts.length
+    ? luxuryResorts[0]
+    : null;
+
+
+let comparisonHTML = "";
+
+
+if(budgetOption){
+
+    const budgetTotal =
+        (budgetOption.nightlyCost * nights) +
+        flights +
+        food +
+        activities +
+        transfers;
+
+    const saving =
+        total - budgetTotal;
+
+    comparisonHTML += `
+
+        <div class="comparison-card budget-option">
+
+            <div class="comparison-icon">
+                🔥
+            </div>
+
+            <div class="comparison-info">
+
+                <h4>Budget Option</h4>
+
+                <strong>
+                    ${budgetOption.resort}
+                </strong>
+
+                <span>
+                    ${budgetOption.priceDisplay}
+                </span>
+
+                <span class="comparison-total">
+                    $${budgetTotal.toLocaleString()} total
+                </span>
+
+                <span class="saving">
+                    Save $${saving.toLocaleString()}
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+if(luxuryOption){
+
+    const luxuryTotal =
+        (luxuryOption.nightlyCost * nights) +
+        flights +
+        food +
+        activities +
+        transfers;
+
+    const difference =
+        luxuryTotal - total;
+
+    comparisonHTML += `
+
+        <div class="comparison-card luxury-option">
+
+            <div class="comparison-icon">
+                💎
+            </div>
+
+            <div class="comparison-info">
+
+                <h4>Luxury Option</h4>
+
+                <strong>
+                    ${luxuryOption.resort}
+                </strong>
+
+                <span>
+                    ${luxuryOption.priceDisplay}
+                </span>
+
+                <span class="comparison-total">
+                    $${luxuryTotal.toLocaleString()} total
+                </span>
+
+                <span class="difference">
+                    +$${difference.toLocaleString()}
+                </span>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+const comparisonContainer =
+    document.getElementById(
+        "budget-comparison-options"
+    );
+
+
+if(comparisonContainer){
+
+    comparisonContainer.innerHTML =
+        comparisonHTML;
+
+}
 };
 
 // FAMILY PRESETS

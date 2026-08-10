@@ -1347,13 +1347,9 @@ document.getElementById("budget-results").innerHTML = `
     <div class="budget-breakdown">
 
         <p>🏨 Accommodation: $${resortCost.toLocaleString()}</p>
-
         <p>✈️ Flights: $${flights.toLocaleString()}</p>
-
         <p>🍽 Food: $${food.toLocaleString()}</p>
-
         <p>🎢 Activities: $${activities.toLocaleString()}</p>
-
         <p>🚕 Transfers: $${transfers.toLocaleString()}</p>
 
     </div>
@@ -1365,11 +1361,8 @@ document.getElementById("budget-results").innerHTML = `
     <p>Total Estimated Holiday Cost</p>
 
     <p>⭐ Family Score: ${resort.familyScore}/100</p>
-
     <p>🏊 Pool Rating: ${resort.poolRating}/5</p>
-
     <p>👧 Kids Club Rating: ${resort.kidsClubRating}/5</p>
-
     <p>🏖 Beach Rating: ${resort.beachRating}/5</p>
 
 </div>
@@ -1791,4 +1784,3 @@ window.onclick = function(event){
     }
 };
 console.log("APP JS FINISHED LOADING");
-}

@@ -1144,9 +1144,51 @@ function displayFavourites(){
 
 
     }
+    
+// OPEN SAVED HOLIDAYS
+
+document.addEventListener("click", function(e){
+
+    if(e.target.id === "show-saved-holidays"){
+
+        displaySavedHolidays();
+
+        document.getElementById(
+            "saved-holidays-modal"
+        ).style.display = "block";
+
+    }
+
+});
+
+// SAVED HOLIDAYS
+
+document.addEventListener("click", function(e){
+
+    if(e.target.id === "show-saved-holidays"){
+
+        displaySavedHolidays();
+
+        document.getElementById(
+            "saved-holidays-modal"
+        ).style.display = "block";
+
+    }
+
+});
 
 
+// DISPLAY SAVED HOLIDAYS
 
+function displaySavedHolidays(){
+
+    const container =
+        document.getElementById(
+            "saved-holidays-list"
+        );
+
+    // ...the rest of Step 7D...
+}
 
     list.innerHTML = favourites.map(resort => `
 
@@ -1215,6 +1257,52 @@ function displayFavourites(){
 
 }
 
+document.addEventListener("click", function(e){
+
+    if(
+        e.target.classList.contains(
+            "saved-holidays-close"
+        )
+    ){
+
+        document.getElementById(
+            "saved-holidays-modal"
+        ).style.display = "none";
+
+    }
+
+});
+document.addEventListener("click", function(e){
+
+    if(
+        !e.target.classList.contains(
+            "delete-saved-holiday"
+        )
+    ){
+        return;
+    }
+
+    const id =
+        Number(e.target.dataset.id);
+
+    let savedHolidays =
+        JSON.parse(
+            localStorage.getItem("savedHolidays")
+        ) || [];
+
+    savedHolidays =
+        savedHolidays.filter(
+            holiday => holiday.id !== id
+        );
+
+    localStorage.setItem(
+        "savedHolidays",
+        JSON.stringify(savedHolidays)
+    );
+
+    displaySavedHolidays();
+
+});
 document.getElementById("show-voting").onclick = function(){
 
     displayVoting();

@@ -1724,63 +1724,33 @@ document.querySelector(".budget-close").onclick = function(){
 window.onclick = function(event){
 
     const resortModal =
-
     document.getElementById("resort-modal");
 
     const finderModal =
-
     document.getElementById("finder-modal");
 
-
-
     const favouritesModal =
-
     document.getElementById("favourites-modal");
 
-
-
     const compareModal =
-
     document.getElementById("compare-modal");
 
-
-
-
-
     if(event.target === resortModal){
-
-
         resortModal.style.display = "none";
-
-
     }
 
     if(event.target === finderModal){
-
-
         finderModal.style.display = "none";
-
-
     }
 
     if(event.target === favouritesModal){
-
-
         favouritesModal.style.display = "none";
-
-
     }
-
-
-
-
 
     if(event.target === compareModal){
-
-
         compareModal.style.display = "none";
-
-
     }
+
 };
+
 console.log("APP JS FINISHED LOADING");

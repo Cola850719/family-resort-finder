@@ -1457,6 +1457,32 @@ document.getElementById("budget-results").innerHTML = `
 
 };
 
+// FAMILY PRESETS
+
+document.addEventListener("click", function(e){
+
+    if(!e.target.classList.contains("family-preset")){
+        return;
+    }
+
+    const adults =
+    e.target.dataset.adults;
+
+    const children =
+    e.target.dataset.children;
+
+    document.getElementById("budget-adults").value = adults;
+
+    document.getElementById("budget-children").value = children;
+
+    document.querySelectorAll(".family-preset").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    e.target.classList.add("active");
+
+});
+
 // REMOVE FAVOURITE
 
 

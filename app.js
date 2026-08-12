@@ -2645,4 +2645,32 @@ if (flightSearchButton) {
 
 }
 
+// ==========================================
+// MAIN SCREEN - FIND FLIGHTS BUTTON
+// ==========================================
+
+const mainFindFlightsButton =
+    document.getElementById("main-find-flights-button");
+
+if (mainFindFlightsButton) {
+
+    mainFindFlightsButton.addEventListener("click", function () {
+
+        const flightSection =
+            document.getElementById("flight-search-section");
+
+        if (!flightSection) {
+            console.error("flight-search-section not found");
+            return;
+        }
+
+        flightSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    });
+
+}
+
 console.log("APP JS FINISHED LOADING");

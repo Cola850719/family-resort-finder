@@ -2672,29 +2672,5 @@ if (mainFindFlightsButton) {
     });
 
 }
-const findFlightsButton = document.getElementById("find-flights");
 
-if (findFlightsButton) {
-
-    findFlightsButton.onclick = function () {
-
-        const flightSection =
-            document.getElementById("flight-search-section");
-
-        if (flightSection) {
-
-            flightSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        } else {
-
-            console.error("Flight search section not found.");
-
-        }
-
-    };
-
-}
 console.log("APP JS FINISHED LOADING");

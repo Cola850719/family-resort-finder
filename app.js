@@ -2570,8 +2570,7 @@ if (compareClose) {
 
     });
 
-
-
+}
 
 console.log("APP JS FINISHED LOADING");
 

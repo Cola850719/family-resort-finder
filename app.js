@@ -2269,12 +2269,25 @@ document
             .style.display = "block";
 
     });
-document.getElementById("show-saved-holidays").addEventListener("click", function () {
+document.getElementById("show-saved-holidays").addEventListener("click", async function () {
 
     const list = document.getElementById("saved-holidays-list");
 
     const saved = JSON.parse(
         localStorage.getItem("savedHolidays") || "[]"
+        let resortData = [];
+
+try {
+
+    const response = await fetch("data/resorts.json");
+
+    resortData = await response.json();
+
+} catch (error) {
+
+    console.error("Could not load resort data:", error);
+
+}
     );
 
     if (saved.length === 0) {
@@ -2289,6 +2302,33 @@ const cheapestHoliday = saved.reduce(function(lowest, holiday) {
         : lowest;
 
 }, saved[0]);
+        let bestFamilyHoliday = null;
+
+saved.forEach(function(holiday) {
+
+    const resort = resortData.find(function(item) {
+
+        return item.resort === holiday.resort;
+
+    });
+
+    if (
+        resort &&
+        (
+            !bestFamilyHoliday ||
+            resort.familyScore >
+            bestFamilyHoliday.familyScore
+        )
+    ) {
+
+        bestFamilyHoliday = {
+            id: holiday.id,
+            familyScore: resort.familyScore
+        };
+
+    }
+
+});
         list.innerHTML = saved.map(function(holiday) {
 
             let imageUrl = holiday.image || "";
@@ -2305,6 +2345,10 @@ const cheapestHoliday = saved.reduce(function(lowest, holiday) {
                 <div class="saved-holiday-card">
 ${holiday.id === cheapestHoliday.id
     ? `<div class="best-value-badge">🏆 BEST VALUE</div>`
+    : ""}
+    ${bestFamilyHoliday &&
+  holiday.id === bestFamilyHoliday.id
+    ? `<div class="best-family-badge">⭐ BEST FAMILY RESORT</div>`
     : ""}
                     <img
                         src="${imageUrl}"

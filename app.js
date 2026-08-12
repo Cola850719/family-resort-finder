@@ -2319,13 +2319,44 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
                         🌙 ${holiday.nights} Nights
                     </p>
 
-                    <h2>
-                        $${holiday.total.toLocaleString()}
-                    </h2>
+                    <div class="saved-holiday-total">
 
-                    <p>
-                        💰 Total Estimated Holiday Cost
-                    </p>
+    <span>TOTAL HOLIDAY</span>
+
+    <strong>
+        $${holiday.total.toLocaleString()}
+    </strong>
+
+</div>
+
+<div class="saved-holiday-breakdown">
+
+    <div>
+        <span>🏨 Accommodation</span>
+        <strong>$${holiday.accommodation.toLocaleString()}</strong>
+    </div>
+
+    <div>
+        <span>✈️ Flights</span>
+        <strong>$${holiday.flights.toLocaleString()}</strong>
+    </div>
+
+    <div>
+        <span>🍽 Food</span>
+        <strong>$${holiday.food.toLocaleString()}</strong>
+    </div>
+
+    <div>
+        <span>🎢 Activities</span>
+        <strong>$${holiday.activities.toLocaleString()}</strong>
+    </div>
+
+    <div>
+        <span>🚕 Transfers</span>
+        <strong>$${holiday.transfers.toLocaleString()}</strong>
+    </div>
+
+</div>
 
                     <button
                         class="delete-saved-holiday"

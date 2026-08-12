@@ -2357,4 +2357,23 @@ document.addEventListener("click", function(e){
     }
 
 });
+
+// SAVED HOLIDAYS BUTTON
+
+const savedHolidayButton =
+    document.getElementById("show-saved-holidays");
+
+if(savedHolidayButton){
+
+    savedHolidayButton.onclick = function(){
+
+        displaySavedHolidays();
+
+        document.getElementById(
+            "saved-holidays-modal"
+        ).style.display = "block";
+
+    };
+
+}
 console.log("APP JS FINISHED LOADING");

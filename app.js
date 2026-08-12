@@ -2369,44 +2369,7 @@ list.innerHTML = `
 
 ` + saved.map(function(holiday) {
     
-
-<h2>📊 Holiday Comparison</h2>
-
-<table class="holiday-comparison-table">
-
-<tr>
-    <th>Holiday</th>
-    <th>Total</th>
-    <th>Flights</th>
-    <th>Accommodation</th>
-</tr>
-
-${saved.map(function(holiday){
-
-    return `
-        <tr>
-
-            <td>${holiday.resort}</td>
-
-            <td>
-                $${holiday.total.toLocaleString()}
-            </td>
-
-            <td>
-                $${holiday.flights.toLocaleString()}
-            </td>
-
-            <td>
-                $${holiday.accommodation.toLocaleString()}
-            </td>
-
-        </tr>
-    `;
-
-}).join("")}
-
-</table>
-`;
+    
             let imageUrl = holiday.image || "";
 
             const imageMatch = imageUrl.match(
@@ -2418,6 +2381,7 @@ ${saved.map(function(holiday){
             }
 
             return `
+            
                 <div class="saved-holiday-card">
 
                     ${holiday.id === cheapestHoliday.id

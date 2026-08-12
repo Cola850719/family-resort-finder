@@ -1578,3 +1578,64 @@ button {
     background: rgba(0, 0, 0, 0.65);
     overflow-y: auto;
 }
+/* ==========================================
+   COMPARE SAVED HOLIDAYS
+========================================== */
+
+#compare-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.7);
+    overflow-y: auto;
+}
+
+.compare-modal-content {
+    position: relative;
+    background: #ffffff;
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.compare-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.compare-modal-content h2 {
+    margin-top: 0;
+}
+
+.compare-subtitle {
+    margin-bottom: 25px;
+}
+
+#comparison-table {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.comparison-card {
+    width: 100%;
+    box-sizing: border-box;
+    background: #f7f7f7;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.comparison-card h3 {
+    margin-top: 0;
+}
+
+.comparison-card p {
+    margin: 8px 0;
+}

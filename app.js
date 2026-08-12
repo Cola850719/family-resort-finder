@@ -2296,6 +2296,12 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
 
                     <p>💰 Total Estimated Holiday Cost</p>
 
+                    <button
+                        class="delete-saved-holiday"
+                        data-id="${holiday.id}">
+                        🗑️ Delete Holiday
+                    </button>
+
                 </div>
             `;
 
@@ -2306,7 +2312,6 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
     document.getElementById("saved-holidays-modal").style.display = "block";
 
 });
-
 // DISPLAY SAVED HOLIDAYS
 
 function displaySavedHolidays() {

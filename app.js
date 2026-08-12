@@ -2672,19 +2672,4 @@ if (mainFindFlightsButton) {
     });
 
 }
-const mainFindFlightsButton =
-    document.getElementById("main-find-flights-button");
-
-console.log(
-    "Find Flights button:",
-    mainFindFlightsButton
-);
-
-const flightSection =
-    document.getElementById("flight-search-section");
-
-console.log(
-    "Flight section:",
-    flightSection
-);
 console.log("APP JS FINISHED LOADING");

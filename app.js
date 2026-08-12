@@ -2269,25 +2269,12 @@ document
             .style.display = "block";
 
     });
-document.getElementById("show-saved-holidays").addEventListener("click", async function () {
+document.getElementById("show-saved-holidays").addEventListener("click", function () {
 
     const list = document.getElementById("saved-holidays-list");
 
     const saved = JSON.parse(
         localStorage.getItem("savedHolidays") || "[]"
-        let resortData = [];
-
-try {
-
-    const response = await fetch("data/resorts.json");
-
-    resortData = await response.json();
-
-} catch (error) {
-
-    console.error("Could not load resort data:", error);
-
-}
     );
 
     if (saved.length === 0) {
@@ -2295,22 +2282,120 @@ try {
         list.innerHTML = "<p>No saved holidays yet.</p>";
 
     } else {
-const cheapestHoliday = saved.reduce(function(lowest, holiday) {
 
-    return holiday.total < lowest.total
-        ? holiday
-        : lowest;
+        const cheapestHoliday = saved.reduce(function(lowest, holiday) {
 
-}, saved[0]);
-        let bestFamilyHoliday = null;
+            return holiday.total < lowest.total
+                ? holiday
+                : lowest;
 
-saved.forEach(function(holiday) {
+        }, saved[0]);
 
-    const resort = resortData.find(function(item) {
+        list.innerHTML = saved.map(function(holiday) {
 
-        return item.resort === holiday.resort;
+            let imageUrl = holiday.image || "";
 
-    });
+            const imageMatch = imageUrl.match(
+                /\((https?:\/\/[^)]+)\)/
+            );
+
+            if (imageMatch) {
+                imageUrl = imageMatch[1];
+            }
+
+            return `
+                <div class="saved-holiday-card">
+
+                    ${holiday.id === cheapestHoliday.id
+                        ? `<div class="best-value-badge">🏆 BEST VALUE</div>`
+                        : ""}
+
+                    <img
+                        src="${imageUrl}"
+                        alt="${holiday.resort}"
+                        class="saved-holiday-image"
+                    >
+
+                    <h3>${holiday.resort}</h3>
+
+                    <p>
+                        📍 ${holiday.city}, ${holiday.country}
+                    </p>
+
+                    <p>
+                        👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+                        ${holiday.children} Children
+                    </p>
+
+                    <p>
+                        🌙 ${holiday.nights} Nights
+                    </p>
+
+                    <div class="saved-holiday-total">
+
+                        <span>TOTAL HOLIDAY</span>
+
+                        <strong>
+                            $${holiday.total.toLocaleString()}
+                        </strong>
+
+                    </div>
+
+                    <div class="saved-holiday-breakdown">
+
+                        <div>
+                            <span>🏨 Accommodation</span>
+                            <strong>
+                                $${holiday.accommodation.toLocaleString()}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>✈️ Flights</span>
+                            <strong>
+                                $${holiday.flights.toLocaleString()}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>🍽 Food</span>
+                            <strong>
+                                $${holiday.food.toLocaleString()}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>🎢 Activities</span>
+                            <strong>
+                                $${holiday.activities.toLocaleString()}
+                            </strong>
+                        </div>
+
+                        <div>
+                            <span>🚕 Transfers</span>
+                            <strong>
+                                $${holiday.transfers.toLocaleString()}
+                            </strong>
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="delete-saved-holiday"
+                        data-id="${holiday.id}">
+                        🗑️ Delete Holiday
+                    </button>
+
+                </div>
+            `;
+
+        }).join("");
+
+    }
+
+    document.getElementById("saved-holidays-modal").style.display = "block";
+
+});
 
     if (
         resort &&

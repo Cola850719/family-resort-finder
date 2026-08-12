@@ -1223,21 +1223,6 @@ function displaySavedHolidays(){
 
 }
     
-// OPEN SAVED HOLIDAYS
-
-document.addEventListener("click", function(e){
-
-    if(e.target.id === "show-saved-holidays"){
-
-        displaySavedHolidays();
-
-        document.getElementById(
-            "saved-holidays-modal"
-        ).style.display = "block";
-
-    }
-
-});
 
 // SAVED HOLIDAYS
 

@@ -679,6 +679,29 @@ document.getElementById("find-resort").onclick = function(){
 
 };
 
+document.getElementById("find-resort").onclick = function(){
+
+    document.getElementById("finder-modal").style.display = "block";
+
+};
+
+document.getElementById("find-flights").onclick = function(){
+
+    const flightSection =
+        document.getElementById("flight-search-section");
+
+    console.log("FIND FLIGHTS CLICKED", flightSection);
+
+    if (flightSection) {
+
+        flightSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+};
 
 
 // RECOMMENDATION ENGINE

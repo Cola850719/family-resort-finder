@@ -2348,13 +2348,13 @@ list.innerHTML = `
 
     <div class="dashboard-card">
 
-        <h4>📊 Average Cost</h4>
+    <h4>📊 Average Cost</h4>
 
-        <strong>$${averageCost.toLocaleString()}</strong>
+    <strong>$${averageCost.toLocaleString()}</strong>
 
-    </div>
-    
-    <div class="dashboard-card compare-dashboard-button">
+</div>
+
+<div class="dashboard-card compare-dashboard-button">
 
     <h4>⚖️ Compare</h4>
 
@@ -2362,7 +2362,7 @@ list.innerHTML = `
 
 </div>
 
-    ` + saved.map(function(holiday) {
+` + saved.map(function(holiday) {
     
             let imageUrl = holiday.image || "";
 

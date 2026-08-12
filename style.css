@@ -1527,3 +1527,46 @@ button {
 
     display: block;
 }
+/* HOLIDAY COMPARISON */
+
+.holiday-comparison-panel {
+
+    margin-bottom: 30px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
+}
+
+.holiday-comparison-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.holiday-comparison-table th {
+
+    background: #1e3a5f;
+
+    color: white;
+
+    padding: 12px;
+}
+
+.holiday-comparison-table td {
+
+    padding: 12px;
+
+    border-bottom: 1px solid #eee;
+}
+
+.holiday-comparison-table tr:hover {
+
+    background: #f8fafc;
+}

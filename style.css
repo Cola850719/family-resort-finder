@@ -1742,3 +1742,125 @@ button {
 #comparison-table strong {
     display: inline !important;
 }
+/* ==========================================
+   FLIGHT SEARCH
+========================================== */
+
+.flight-search-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.flight-search-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.flight-search-header h2 {
+    margin-bottom: 8px;
+}
+
+.flight-search-header p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+.flight-search-card {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 16px;
+
+    background: #ffffff;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
+}
+
+.flight-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.flight-field label {
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.flight-field select,
+.flight-field input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    background: #fff;
+
+    box-sizing: border-box;
+}
+
+.flight-field select:focus,
+.flight-field input:focus {
+    outline: none;
+}
+
+.flight-search-button {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    align-self: end;
+
+    min-height: 46px;
+}
+
+.flight-search-message {
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+
+    .flight-search-section {
+        padding: 0 12px;
+    }
+
+    .flight-search-card {
+        grid-template-columns: 1fr;
+        padding: 18px;
+    }
+
+    .flight-search-button {
+        margin-top: 5px;
+    }
+
+}

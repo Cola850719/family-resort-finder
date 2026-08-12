@@ -797,7 +797,7 @@ document.getElementById("recommend-button").onclick = function(){
 
 
 
-    ${results.map(r => {
+    data-resort="${encodeURIComponent(JSON.stringify(r))}"
 
 
 

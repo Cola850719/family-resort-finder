@@ -2498,7 +2498,9 @@ document.getElementById("saved-holidays-list").addEventListener("click", functio
         console.error("comparison-table not found");
         return;
     }
-
+    
+    compareModal.style.display = "block";
+    
     const saved = JSON.parse(
         localStorage.getItem("savedHolidays") || "[]"
     );

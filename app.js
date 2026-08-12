@@ -679,16 +679,7 @@ document.getElementById("find-resort").onclick = function(){
 
 };
 
-// FIND FLIGHTS
 
-document.getElementById("find-flights").onclick = function(){
-
-    document.getElementById("flight-search-section").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-};
 
 // RECOMMENDATION ENGINE
 

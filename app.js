@@ -2263,4 +2263,91 @@ document
 document.getElementById("show-saved-holidays").addEventListener("click", function () {
     document.getElementById("saved-holidays-modal").style.display = "block";
 });
+
+// DISPLAY SAVED HOLIDAYS
+
+function displaySavedHolidays() {
+
+    const list = document.getElementById("saved-holidays-list");
+
+    const saved = JSON.parse(
+        localStorage.getItem("savedHolidays") || "[]"
+    );
+
+    if (saved.length === 0) {
+
+        list.innerHTML = `
+            <p>No saved holidays yet.</p>
+        `;
+
+        return;
+    }
+
+    list.innerHTML = saved.map(holiday => `
+
+        <div class="saved-holiday-card">
+
+            <img
+                src="${holiday.image}"
+                alt="${holiday.resort}"
+            >
+
+            <div class="saved-holiday-info">
+
+                <h3>${holiday.resort}</h3>
+
+                <p>
+                    📍 ${holiday.city}, ${holiday.country}
+                </p>
+
+                <p>
+                    👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+                    ${holiday.children} Children
+                </p>
+
+                <p>
+                    🌙 ${holiday.nights} Nights
+                </p>
+
+                <hr>
+
+                <p>
+                    🏨 Accommodation:
+                    $${holiday.accommodation.toLocaleString()}
+                </p>
+
+                <p>
+                    ✈️ Flights:
+                    $${holiday.flights.toLocaleString()}
+                </p>
+
+                <p>
+                    🍽 Food:
+                    $${holiday.food.toLocaleString()}
+                </p>
+
+                <p>
+                    🎢 Activities:
+                    $${holiday.activities.toLocaleString()}
+                </p>
+
+                <p>
+                    🚕 Transfers:
+                    $${holiday.transfers.toLocaleString()}
+                </p>
+
+                <h2>
+                    $${holiday.total.toLocaleString()}
+                </h2>
+
+                <p>
+                    💰 Total Holiday Cost
+                </p>
+
+            </div>
+
+        </div>
+
+    `).join("");
+}
 console.log("APP JS FINISHED LOADING");

@@ -681,27 +681,6 @@ document.getElementById("find-resort").onclick = function(){
 
 };
 
-
-const findFlightsButton = document.getElementById("find-flights");
-
-if (findFlightsButton) {
-
-    findFlightsButton.addEventListener("click", function () {
-
-        const flightSection =
-            document.getElementById("flight-search-section");
-
-        if (flightSection) {
-
-            flightSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        }
-
-    });
-
 }
 
 

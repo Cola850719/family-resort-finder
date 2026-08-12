@@ -2353,6 +2353,14 @@ list.innerHTML = `
         <strong>$${averageCost.toLocaleString()}</strong>
 
     </div>
+    
+    <div class="dashboard-card compare-dashboard-button">
+
+    <h4>⚖️ Compare</h4>
+
+    <strong>Saved Holidays</strong>
+
+</div>
 
     ` + saved.map(function(holiday) {
     
@@ -2460,11 +2468,105 @@ list.innerHTML = `
 
    document.getElementById("saved-holidays-modal").style.display = "block";
 
+});
 
+
+// ==========================================
+// COMPARE SAVED HOLIDAYS
+// ==========================================
+
+document.getElementById("saved-holidays-list").addEventListener("click", function(e) {
+
+    const compareButton = e.target.closest(".compare-dashboard-button");
+
+    if (!compareButton) return;
+
+    console.log("COMPARE BUTTON CLICKED");
+
+    const compareModal = document.getElementById("compare-modal");
+
+    if (!compareModal) {
+        console.error("compare-modal not found");
+        return;
+    }
+
+    const comparisonTable = document.getElementById("comparison-table");
+
+    if (!comparisonTable) {
+        console.error("comparison-table not found");
+        return;
+    }
+
+    const saved = JSON.parse(
+        localStorage.getItem("savedHolidays") || "[]"
+    );
+
+    if (saved.length === 0) {
+
+        comparisonTable.innerHTML = "<p>No saved holidays to compare.</p>";
+
+    } else {
+
+        comparisonTable.innerHTML = saved.map(function(holiday) {
+
+            return `
+                <div class="comparison-card">
+
+                    <h3>${holiday.resort}</h3>
+
+                    <p>📍 ${holiday.city}, ${holiday.country}</p>
+
+                    <p>👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+                    ${holiday.children} Children</p>
+
+                    <p>🌙 ${holiday.nights} Nights</p>
+
+                    <hr>
+
+                    <p>🏨 Accommodation:
+                    <strong>$${holiday.accommodation.toLocaleString()}</strong></p>
+
+                    <p>✈️ Flights:
+                    <strong>$${holiday.flights.toLocaleString()}</strong></p>
+
+                    <p>🍽 Food:
+                    <strong>$${holiday.food.toLocaleString()}</strong></p>
+
+                    <p>🎢 Activities:
+                    <strong>$${holiday.activities.toLocaleString()}</strong></p>
+
+                    <p>🚕 Transfers:
+                    <strong>$${holiday.transfers.toLocaleString()}</strong></p>
+
+                    <h3>
+                        💰 Total:
+                        $${holiday.total.toLocaleString()}
+                    </h3>
+
+                </div>
+            `;
+
+        }).join("");
+    }
+
+    compareModal.style.display = "block";
 
 });
 
-    
+
+// Close comparison modal
+
+const compareClose = document.querySelector(".compare-close");
+
+if (compareClose) {
+
+    compareClose.addEventListener("click", function() {
+
+        document.getElementById("compare-modal").style.display = "none";
+
+    });
+
+}
 
 
 console.log("APP JS FINISHED LOADING");

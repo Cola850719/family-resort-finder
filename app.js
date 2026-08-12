@@ -2659,5 +2659,3 @@ if (flightSearchButton) {
 
 console.log("APP JS FINISHED LOADING");
 
-
-console.log("APP JS FINISHED LOADING");

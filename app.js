@@ -2333,8 +2333,6 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
 
 });
 
-});
-
 
 // DISPLAY SAVED HOLIDAYS
 

@@ -2350,15 +2350,21 @@ list.innerHTML = `
 
     <h4>📊 Average Cost</h4>
 
-    <strong>$${averageCost.toLocaleString()}</strong>
+        <div class="dashboard-card">
 
-</div>
+        <h4>📊 Average Cost</h4>
 
-<div class="dashboard-card compare-dashboard-button">
+        <strong>$${averageCost.toLocaleString()}</strong>
 
-    <h4>⚖️ Compare</h4>
+    </div>
 
-    <strong>Saved Holidays</strong>
+    <div class="dashboard-card compare-dashboard-button">
+
+        <h4>⚖️ Compare</h4>
+
+        <strong>Saved Holidays</strong>
+
+    </div>
 
 </div>
 

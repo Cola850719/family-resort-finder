@@ -660,16 +660,18 @@ document.addEventListener("click", function(e){
 
     if(e.target.classList.contains("view-button")){
 
-
         const resort = JSON.parse(
             decodeURIComponent(e.target.dataset.resort)
         );
 
-
         openResort(resort);
 
+    }
 
- // FIND MY RESORT POPUP
+});
+
+
+// FIND MY RESORT POPUP
 
 document.getElementById("find-resort").onclick = function(){
 
@@ -678,6 +680,7 @@ document.getElementById("find-resort").onclick = function(){
 };
 
 
+// RECOMMENDATION ENGINE
 // RECOMMENDATION ENGINE
 
 document.getElementById("recommend-button").onclick = function(){
@@ -893,7 +896,7 @@ document.getElementById("recommend-button").onclick = function(){
 
             <button 
             class="view-button"
-            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
+            data-resort="${encodeURIComponent(JSON.stringify(r))}">
 
             View Resort
 

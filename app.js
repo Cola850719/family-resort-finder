@@ -837,15 +837,15 @@ document.getElementById("recommend-button").onclick = function(){
 
 
 
-        if(r.allInclusive === "Yes"){
+ if(r.allInclusive === "Yes"){
 
-            reasons.push("🍽 All-inclusive experience");
+    reasons.push("🍽 All-inclusive experience");
 
-        }
+}
 
 return `
 
-    <div class="recommend-card">
+<div class="recommend-card">
 
         <h4>${r.resort}</h4>
 

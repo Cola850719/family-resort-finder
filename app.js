@@ -2570,128 +2570,94 @@ if (compareClose) {
 
     });
 
-}
 
-/* ==========================================
-   FLIGHT SEARCH
-========================================== */
+// ==========================================
+// FLIGHT SEARCH - STAGE 1
+// ==========================================
 
-.flight-search-section {
-    width: 100%;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-    box-sizing: border-box;
-}
+const flightSearchButton =
+    document.getElementById("search-flights-button");
 
-.flight-search-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
+if (flightSearchButton) {
 
-.flight-search-header h2 {
-    margin-bottom: 8px;
-}
+    flightSearchButton.addEventListener("click", function () {
 
-.flight-search-header p {
-    margin: 0;
-    opacity: 0.8;
-}
+        const from =
+            document.getElementById("flight-from").value;
 
-.flight-search-card {
-    display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
+        const to =
+            document.getElementById("flight-to").value;
 
-    gap: 16px;
+        const departure =
+            document.getElementById("flight-departure").value;
 
-    background: #ffffff;
+        const returnDate =
+            document.getElementById("flight-return").value;
 
-    padding: 25px;
+        const adults =
+            document.getElementById("flight-adults").value;
 
-    border-radius: 20px;
+        const children =
+            document.getElementById("flight-children").value;
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.08);
+        const cabin =
+            document.getElementById("flight-class").value;
 
-    box-sizing: border-box;
-}
+        const message =
+            document.getElementById("flight-search-message");
 
-.flight-field {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
+        if (!to) {
+            message.innerHTML =
+                "⚠️ Please select a destination.";
+            return;
+        }
 
-.flight-field label {
-    font-weight: 600;
-    margin-bottom: 7px;
-}
+        if (!departure) {
+            message.innerHTML =
+                "⚠️ Please select a departure date.";
+            return;
+        }
 
-.flight-field select,
-.flight-field input {
-    width: 100%;
+        if (!returnDate) {
+            message.innerHTML =
+                "⚠️ Please select a return date.";
+            return;
+        }
 
-    padding: 12px;
+        if (new Date(returnDate) <= new Date(departure)) {
+            message.innerHTML =
+                "⚠️ Return date must be after the departure date.";
+            return;
+        }
 
-    border: 1px solid #ddd;
+        message.innerHTML = `
+            ✈️ Flight search ready
+            <br>
+            ${from} → ${to}
+            <br>
+            ${departure} → ${returnDate}
+            <br>
+            ${adults} Adults,
+            ${children} Children
+            <br>
+            ${cabin}
+        `;
 
-    border-radius: 10px;
+        console.log("Flight Search:", {
+            from: from,
+            to: to,
+            departure: departure,
+            returnDate: returnDate,
+            adults: adults,
+            children: children,
+            cabin: cabin
+        });
 
-    font-size: 15px;
-
-    background: #fff;
-
-    box-sizing: border-box;
-}
-
-.flight-field select:focus,
-.flight-field input:focus {
-    outline: none;
-}
-
-.flight-search-button {
-    width: 100%;
-
-    padding: 13px 20px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    align-self: end;
-
-    min-height: 46px;
-}
-
-.flight-search-message {
-    margin-top: 15px;
-
-    text-align: center;
-
-    font-weight: 600;
-}
-
-@media (max-width: 600px) {
-
-    .flight-search-section {
-        padding: 0 12px;
-    }
-
-    .flight-search-card {
-        grid-template-columns: 1fr;
-        padding: 18px;
-    }
-
-    .flight-search-button {
-        margin-top: 5px;
-    }
+    });
 
 }
+
+console.log("APP JS FINISHED LOADING");
+
+
 console.log("APP JS FINISHED LOADING");

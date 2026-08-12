@@ -669,20 +669,13 @@ document.addEventListener("click", function(e){
         openResort(resort);
 
 
-    }
-
-});
-
-// FIND MY RESORT POPUP
+ // FIND MY RESORT POPUP
 
 document.getElementById("find-resort").onclick = function(){
 
     document.getElementById("finder-modal").style.display = "block";
 
 };
-
-}
-
 
 
 // RECOMMENDATION ENGINE

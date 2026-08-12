@@ -2366,7 +2366,15 @@ list.innerHTML = `
      class="holiday-comparison-panel">
 
 </div>
+<div class="holiday-comparison-panel">
 
+    <h2>📊 Holiday Comparison</h2>
+
+    <p>
+        Compare your saved holidays below.
+    </p>
+
+</div>
 ` + saved.map(function(holiday) {
     
 

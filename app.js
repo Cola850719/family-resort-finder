@@ -2260,4 +2260,7 @@ document
             .style.display = "block";
 
     });
+document.getElementById("show-saved-holidays").addEventListener("click", function () {
+    document.getElementById("saved-holidays-modal").style.display = "block";
+});
 console.log("APP JS FINISHED LOADING");

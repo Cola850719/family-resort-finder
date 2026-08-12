@@ -1453,3 +1453,29 @@ button {
 
     box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 }
+/* BEST FAMILY RESORT BADGE */
+
+.best-family-badge {
+
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    margin-bottom: 12px;
+
+    margin-left: 6px;
+
+    letter-spacing: 0.5px;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}

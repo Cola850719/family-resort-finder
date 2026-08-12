@@ -2205,7 +2205,7 @@ function displaySavedHolidays(){
    
 
     <img
-        src="${holiday.image}"
+        src="${holiday.image.match(/\((https?:\/\/[^)]+)\)/)?.[1] || holiday.image}"
         alt="${holiday.resort}"
         class="saved-holiday-image"
     >

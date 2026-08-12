@@ -2203,6 +2203,14 @@ function displaySavedHolidays(){
 
         <div class="saved-holiday-card">
 
+    <img
+        src="${holiday.image}"
+        alt="${holiday.resort}"
+        class="saved-holiday-image"
+    >
+
+    <h3>${holiday.resort}</h3>
+
             <img
                 src="${holiday.image}"
                 alt="${holiday.resort}"

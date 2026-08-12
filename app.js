@@ -2353,10 +2353,65 @@ list.innerHTML = `
         <strong>$${averageCost.toLocaleString()}</strong>
 
     </div>
+<div class="dashboard-card compare-dashboard-button">
+
+    <h4>📊 Compare</h4>
+
+    <strong>Saved Holidays</strong>
+
+</div>
+</div>
+...
+<div id="holiday-comparison-panel"
+     class="holiday-comparison-panel">
 
 </div>
 
 ` + saved.map(function(holiday) {
+    const comparisonPanel =
+    document.getElementById(
+        "holiday-comparison-panel"
+    );
+
+comparisonPanel.innerHTML = `
+
+<h2>📊 Holiday Comparison</h2>
+
+<table class="holiday-comparison-table">
+
+<tr>
+    <th>Holiday</th>
+    <th>Total</th>
+    <th>Flights</th>
+    <th>Accommodation</th>
+</tr>
+
+${saved.map(function(holiday){
+
+    return `
+        <tr>
+
+            <td>${holiday.resort}</td>
+
+            <td>
+                $${holiday.total.toLocaleString()}
+            </td>
+
+            <td>
+                $${holiday.flights.toLocaleString()}
+            </td>
+
+            <td>
+                $${holiday.accommodation.toLocaleString()}
+            </td>
+
+        </tr>
+    `;
+
+}).join("")}
+
+</table>
+`;
             let imageUrl = holiday.image || "";
 
             const imageMatch = imageUrl.match(

@@ -2285,25 +2285,47 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
 
         list.innerHTML = saved.map(function(holiday) {
 
+            let imageUrl = holiday.image || "";
+
+            const imageMatch = imageUrl.match(
+                /\((https?:\/\/[^)]+)\)/
+            );
+
+            if (imageMatch) {
+                imageUrl = imageMatch[1];
+            }
+
             return `
                 <div class="saved-holiday-card">
 
+                    <img
+                        src="${imageUrl}"
+                        alt="${holiday.resort}"
+                        class="saved-holiday-image"
+                    >
+
                     <h3>${holiday.resort}</h3>
 
-                    <p>📍 ${holiday.city}, ${holiday.country}</p>
+                    <p>
+                        📍 ${holiday.city}, ${holiday.country}
+                    </p>
 
                     <p>
                         👨‍👩‍👧‍👦 ${holiday.adults} Adults,
                         ${holiday.children} Children
                     </p>
 
-                    <p>🌙 ${holiday.nights} Nights</p>
+                    <p>
+                        🌙 ${holiday.nights} Nights
+                    </p>
 
                     <h2>
                         $${holiday.total.toLocaleString()}
                     </h2>
 
-                    <p>💰 Total Estimated Holiday Cost</p>
+                    <p>
+                        💰 Total Estimated Holiday Cost
+                    </p>
 
                     <button
                         class="delete-saved-holiday"

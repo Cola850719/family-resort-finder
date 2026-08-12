@@ -1262,3 +1262,110 @@ button {
 
     display: block;
 }
+/* PREMIUM SAVED HOLIDAY CARD */
+
+.saved-holiday-card {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 25px;
+    align-items: center;
+
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    border: 1px solid #e5e5e5;
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.saved-holiday-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+
+/* RESORT IMAGE */
+
+.saved-holiday-image {
+    width: 260px;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 16px;
+
+    display: block;
+}
+
+
+/* DETAILS */
+
+.saved-holiday-card h3 {
+    margin: 0 0 8px 0;
+
+    font-size: 24px;
+
+    color: #1e3a5f;
+}
+
+.saved-holiday-card p {
+    margin: 7px 0;
+
+    color: #444;
+}
+
+
+/* TOTAL */
+
+.saved-holiday-card h2 {
+    margin: 15px 0 0 0;
+
+    font-size: 34px;
+
+    color: #0f766e;
+}
+
+
+/* DELETE BUTTON */
+
+.delete-saved-holiday {
+    margin-top: 12px;
+
+    background: #dc2626;
+    color: white;
+
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.delete-saved-holiday:hover {
+    background: #b91c1c;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .saved-holiday-card {
+        grid-template-columns: 1fr;
+    }
+
+    .saved-holiday-image {
+        width: 100%;
+        height: 200px;
+    }
+
+}

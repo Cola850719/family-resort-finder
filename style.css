@@ -1570,3 +1570,11 @@ button {
 
     background: #f8fafc;
 }
+#compare-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.65);
+    overflow-y: auto;
+}

@@ -2460,32 +2460,7 @@ list.innerHTML = `
 
    document.getElementById("saved-holidays-modal").style.display = "block";
 
-const savedHolidaysList = document.getElementById("saved-holidays-list");
 
-if (savedHolidaysList && !savedHolidaysList.dataset.compareListener) {
-
-    savedHolidaysList.dataset.compareListener = "true";
-
-    savedHolidaysList.addEventListener("click", function(e) {
-
-        const compareButton = e.target.closest(".compare-dashboard-button");
-
-        if (compareButton) {
-
-            console.log("COMPARE BUTTON CLICKED");
-
-            const comparisonPanel =
-                document.getElementById("holiday-comparison-panel");
-
-            if (comparisonPanel) {
-                comparisonPanel.style.display = "block";
-            }
-
-        }
-
-    });
-
-}
 
 });
 

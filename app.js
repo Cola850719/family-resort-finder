@@ -2282,17 +2282,81 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
         list.innerHTML = "<p>No saved holidays yet.</p>";
 
     } else {
+const cheapestHoliday = saved.reduce(function(lowest, holiday) {
 
-        const cheapestHoliday = saved.reduce(function(lowest, holiday) {
+    return holiday.total < lowest.total
+        ? holiday
+        : lowest;
 
-            return holiday.total < lowest.total
-                ? holiday
-                : lowest;
+}, saved[0]);
 
-        }, saved[0]);
+const mostExpensiveHoliday = saved.reduce(function(highest, holiday) {
 
-        list.innerHTML = saved.map(function(holiday) {
+    return holiday.total > highest.total
+        ? holiday
+        : highest;
 
+}, saved[0]);
+
+const averageCost = Math.round(
+
+    saved.reduce(function(total, holiday) {
+
+        return total + holiday.total;
+
+    }, 0) / saved.length
+
+);
+        
+
+    
+list.innerHTML = `
+
+<div class="holiday-dashboard">
+
+    <div class="dashboard-card">
+
+        <h4>🏝️ Saved Holidays</h4>
+
+        <strong>${saved.length}</strong>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h4>🏆 Best Value</h4>
+
+        <strong>${cheapestHoliday.resort}</strong>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h4>💰 Cheapest</h4>
+
+        <strong>$${cheapestHoliday.total.toLocaleString()}</strong>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h4>💎 Most Expensive</h4>
+
+        <strong>$${mostExpensiveHoliday.total.toLocaleString()}</strong>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h4>📊 Average Cost</h4>
+
+        <strong>$${averageCost.toLocaleString()}</strong>
+
+    </div>
+
+</div>
+
+` + saved.map(function(holiday) {
             let imageUrl = holiday.image || "";
 
             const imageMatch = imageUrl.match(

@@ -2368,12 +2368,7 @@ list.innerHTML = `
 </div>
 
 ` + saved.map(function(holiday) {
-    const comparisonPanel =
-    document.getElementById(
-        "holiday-comparison-panel"
-    );
-
-comparisonPanel.innerHTML = `
+    
 
 <h2>📊 Holiday Comparison</h2>
 

@@ -2572,8 +2572,6 @@ if (compareClose) {
 
 }
 
-
-console.log("APP JS FINISHED LOADING");
 /* ==========================================
    FLIGHT SEARCH
 ========================================== */
@@ -2696,3 +2694,4 @@ console.log("APP JS FINISHED LOADING");
     }
 
 }
+console.log("APP JS FINISHED LOADING");

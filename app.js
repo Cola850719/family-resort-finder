@@ -2279,50 +2279,24 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
             return `
                 <div class="saved-holiday-card">
 
-    <img
-        src="${holiday.image}"
-        alt="${holiday.resort}"
-        class="saved-holiday-image"
-    >
+                    <h3>${holiday.resort}</h3>
 
-    <div class="saved-holiday-details">
+                    <p>📍 ${holiday.city}, ${holiday.country}</p>
 
-        <h3>${holiday.resort}</h3>
+                    <p>
+                        👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+                        ${holiday.children} Children
+                    </p>
 
-        <p>
-            📍 ${holiday.city}, ${holiday.country}
-        </p>
+                    <p>🌙 ${holiday.nights} Nights</p>
 
-        <p>
-            👨‍👩‍👧‍👦 ${holiday.adults} Adults,
-            ${holiday.children} Children
-        </p>
+                    <h2>
+                        $${holiday.total.toLocaleString()}
+                    </h2>
 
-        <p>
-            🌙 ${holiday.nights} Nights
-        </p>
+                    <p>💰 Total Estimated Holiday Cost</p>
 
-        <p>
-            📅 Saved ${holiday.savedDate}
-        </p>
-
-        <div class="saved-holiday-total">
-            $${holiday.total.toLocaleString()}
-        </div>
-
-        <p>
-            💰 Total Estimated Holiday Cost
-        </p>
-
-        <button
-            class="delete-saved-holiday"
-            data-id="${holiday.id}">
-            🗑️ Delete Holiday
-        </button>
-
-    </div>
-
-</div>
+                </div>
             `;
 
         }).join("");
@@ -2332,7 +2306,6 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
     document.getElementById("saved-holidays-modal").style.display = "block";
 
 });
-
 
 // DISPLAY SAVED HOLIDAYS
 

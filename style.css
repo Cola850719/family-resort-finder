@@ -1431,3 +1431,25 @@ button {
     color: #222;
     font-size: 14px;
 }
+/* BEST VALUE BADGE */
+
+.best-value-badge {
+    display: inline-block;
+
+    background: #f59e0b;
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    margin-bottom: 12px;
+
+    letter-spacing: 0.5px;
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}

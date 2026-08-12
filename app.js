@@ -2261,8 +2261,13 @@ document
 
     });
 document.getElementById("show-saved-holidays").addEventListener("click", function () {
+
+    displaySavedHolidays();
+
     document.getElementById("saved-holidays-modal").style.display = "block";
+
 });
+
 
 // DISPLAY SAVED HOLIDAYS
 

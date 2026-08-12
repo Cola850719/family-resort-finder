@@ -1639,3 +1639,63 @@ button {
 .comparison-card p {
     margin: 8px 0;
 }
+/* ==========================================
+   COMPARE MODAL - FINAL CARD FIX
+========================================== */
+
+#compare-modal {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10000 !important;
+    overflow-y: auto !important;
+}
+
+.compare-modal-content {
+    width: 92% !important;
+    max-width: 1100px !important;
+    margin: 40px auto !important;
+    padding: 30px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+#comparison-table {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#comparison-table .comparison-card {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    padding: 20px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: anywhere !important;
+}
+
+#comparison-table .comparison-card h3,
+#comparison-table .comparison-card p {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+#comparison-table .comparison-card hr {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#comparison-table .comparison-card strong {
+    white-space: normal !important;
+}

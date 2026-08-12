@@ -2352,5 +2352,18 @@ if(savedHolidayButton){
 
     };
 
-}
+// SAVED HOLIDAYS BUTTON TEST
+
+document
+    .getElementById("show-saved-holidays")
+    .addEventListener("click", function(){
+
+        console.log("SAVED HOLIDAYS BUTTON WORKING");
+
+        document
+            .getElementById("saved-holidays-modal")
+            .style.display = "block";
+
+    });
+
 console.log("APP JS FINISHED LOADING");

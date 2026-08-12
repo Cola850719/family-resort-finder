@@ -2279,24 +2279,50 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
             return `
                 <div class="saved-holiday-card">
 
-                    <h3>${holiday.resort}</h3>
+    <img
+        src="${holiday.image}"
+        alt="${holiday.resort}"
+        class="saved-holiday-image"
+    >
 
-                    <p>📍 ${holiday.city}, ${holiday.country}</p>
+    <div class="saved-holiday-details">
 
-                    <p>
-                        👨‍👩‍👧‍👦 ${holiday.adults} Adults,
-                        ${holiday.children} Children
-                    </p>
+        <h3>${holiday.resort}</h3>
 
-                    <p>🌙 ${holiday.nights} Nights</p>
+        <p>
+            📍 ${holiday.city}, ${holiday.country}
+        </p>
 
-                    <h2>
-                        $${holiday.total.toLocaleString()}
-                    </h2>
+        <p>
+            👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+            ${holiday.children} Children
+        </p>
 
-                    <p>💰 Total Estimated Holiday Cost</p>
+        <p>
+            🌙 ${holiday.nights} Nights
+        </p>
 
-                </div>
+        <p>
+            📅 Saved ${holiday.savedDate}
+        </p>
+
+        <div class="saved-holiday-total">
+            $${holiday.total.toLocaleString()}
+        </div>
+
+        <p>
+            💰 Total Estimated Holiday Cost
+        </p>
+
+        <button
+            class="delete-saved-holiday"
+            data-id="${holiday.id}">
+            🗑️ Delete Holiday
+        </button>
+
+    </div>
+
+</div>
             `;
 
         }).join("");

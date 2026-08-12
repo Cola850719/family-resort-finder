@@ -2249,7 +2249,7 @@ function displaySavedHolidays(){
 
 }
 
-// SAVED HOLIDAYS TEST
+// SAVED HOLIDAYS
 
 document
     .getElementById("show-saved-holidays")
@@ -2262,9 +2262,50 @@ document
     });
 document.getElementById("show-saved-holidays").addEventListener("click", function () {
 
-    displaySavedHolidays();
+    const list = document.getElementById("saved-holidays-list");
+
+    const saved = JSON.parse(
+        localStorage.getItem("savedHolidays") || "[]"
+    );
+
+    if (saved.length === 0) {
+
+        list.innerHTML = "<p>No saved holidays yet.</p>";
+
+    } else {
+
+        list.innerHTML = saved.map(function(holiday) {
+
+            return `
+                <div class="saved-holiday-card">
+
+                    <h3>${holiday.resort}</h3>
+
+                    <p>📍 ${holiday.city}, ${holiday.country}</p>
+
+                    <p>
+                        👨‍👩‍👧‍👦 ${holiday.adults} Adults,
+                        ${holiday.children} Children
+                    </p>
+
+                    <p>🌙 ${holiday.nights} Nights</p>
+
+                    <h2>
+                        $${holiday.total.toLocaleString()}
+                    </h2>
+
+                    <p>💰 Total Estimated Holiday Cost</p>
+
+                </div>
+            `;
+
+        }).join("");
+
+    }
 
     document.getElementById("saved-holidays-modal").style.display = "block";
+
+});
 
 });
 

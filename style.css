@@ -1699,3 +1699,46 @@ button {
 #comparison-table .comparison-card strong {
     white-space: normal !important;
 }
+/* ==========================================
+   FORCE COMPARE TEXT TO STAY INSIDE CARDS
+========================================== */
+
+#comparison-table,
+#comparison-table * {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+}
+
+#comparison-table {
+    width: 100% !important;
+    overflow: hidden !important;
+}
+
+#comparison-table .comparison-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+}
+
+#comparison-table .comparison-card h3,
+#comparison-table .comparison-card p,
+#comparison-table .comparison-card strong,
+#comparison-table .comparison-card span {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+}
+
+#comparison-table .comparison-card hr {
+    max-width: 100% !important;
+}
+
+#comparison-table strong {
+    display: inline !important;
+}

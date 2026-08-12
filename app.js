@@ -2572,5 +2572,77 @@ if (compareClose) {
 
 }
 
-console.log("APP JS FINISHED LOADING");
 
+// ==========================================
+// FLIGHT SEARCH - STAGE 1
+// ==========================================
+
+const flightSearchButton = document.getElementById("search-flights-button");
+
+if (flightSearchButton) {
+
+    flightSearchButton.addEventListener("click", function () {
+
+        const from = document.getElementById("flight-from").value;
+        const to = document.getElementById("flight-to").value;
+        const departure = document.getElementById("flight-departure").value;
+        const returnDate = document.getElementById("flight-return").value;
+        const adults = document.getElementById("flight-adults").value;
+        const children = document.getElementById("flight-children").value;
+        const cabin = document.getElementById("flight-class").value;
+
+        const message = document.getElementById("flight-search-message");
+
+        if (!message) {
+            console.error("flight-search-message not found");
+            return;
+        }
+
+        if (!to) {
+            message.innerHTML = "⚠️ Please select a destination.";
+            return;
+        }
+
+        if (!departure) {
+            message.innerHTML = "⚠️ Please select a departure date.";
+            return;
+        }
+
+        if (!returnDate) {
+            message.innerHTML = "⚠️ Please select a return date.";
+            return;
+        }
+
+        if (new Date(returnDate) <= new Date(departure)) {
+            message.innerHTML =
+                "⚠️ Return date must be after the departure date.";
+            return;
+        }
+
+        message.innerHTML = `
+            ✈️ Flight search ready
+            <br>
+            ${from} → ${to}
+            <br>
+            ${departure} → ${returnDate}
+            <br>
+            ${adults} Adults, ${children} Children
+            <br>
+            ${cabin}
+        `;
+
+        console.log("Flight Search:", {
+            from,
+            to,
+            departure,
+            returnDate,
+            adults,
+            children,
+            cabin
+        });
+
+    });
+
+}
+
+console.log("APP JS FINISHED LOADING");

@@ -2393,4 +2393,33 @@ function displaySavedHolidays() {
 
     `).join("");
 }
+// DELETE SAVED HOLIDAY
+
+document.addEventListener("click", function(e) {
+
+    if (e.target.classList.contains("delete-saved-holiday")) {
+
+        const id = Number(e.target.dataset.id);
+
+        let saved = JSON.parse(
+            localStorage.getItem("savedHolidays") || "[]"
+        );
+
+        saved = saved.filter(function(holiday) {
+            return holiday.id !== id;
+        });
+
+        localStorage.setItem(
+            "savedHolidays",
+            JSON.stringify(saved)
+        );
+
+        // Refresh the list
+        document
+            .getElementById("show-saved-holidays")
+            .click();
+
+    }
+
+});
 console.log("APP JS FINISHED LOADING");

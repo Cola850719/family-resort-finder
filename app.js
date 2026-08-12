@@ -681,10 +681,7 @@ document.getElementById("find-resort").onclick = function(){
 
 };
 
-<section
-    id="flight-search-section"
-    class="flight-search-section"
->
+
 const findFlightsButton = document.getElementById("find-flights");
 
 if (findFlightsButton) {

@@ -681,214 +681,168 @@ document.getElementById("find-resort").onclick = function(){
 
 
 // RECOMMENDATION ENGINE
-// RECOMMENDATION ENGINE
 
 document.getElementById("recommend-button").onclick = function(){
-
 
     let budget = Number(
         document.getElementById("budget").value
     );
 
-
     let priority =
-    document.getElementById("priority").value;
-
-
+        document.getElementById("priority").value;
 
     let ranked = [...allResorts];
 
-
-
     ranked = ranked.filter(resort =>
-
         resort.nightlyCost <= budget
-
     );
 
-
-
-    ranked.sort((a,b)=>{
-
+    ranked.sort((a, b) => {
 
         let scoreA = a.familyScore;
-
         let scoreB = b.familyScore;
-
-
 
         if(priority === "kids"){
 
-
             scoreA += a.kidsClubRating * 5;
-
             scoreB += b.kidsClubRating * 5;
 
-
         }
-
-
 
         if(priority === "beach"){
 
-
             scoreA += a.beachRating * 5;
-
             scoreB += b.beachRating * 5;
 
-
         }
-
-
 
         if(priority === "pool"){
 
-
             scoreA += a.poolRating * 5;
-
             scoreB += b.poolRating * 5;
 
-
         }
-
-
 
         if(priority === "allinclusive"){
 
+            if(a.allInclusive === "Yes"){
+                scoreA += 10;
+            }
 
-            if(a.allInclusive === "Yes")
-
-            scoreA += 10;
-
-
-
-            if(b.allInclusive === "Yes")
-
-            scoreB += 10;
-
+            if(b.allInclusive === "Yes"){
+                scoreB += 10;
+            }
 
         }
-
-
 
         return scoreB - scoreA;
 
-
-
     });
 
-
-
-
-    let results = ranked.slice(0,3);
-
-
+    let results = ranked.slice(0, 3);
 
     const output =
+        document.getElementById("recommendations");
 
-    document.getElementById("recommendations");
+    let html =
+        "<h3>🏆 Your Top Matches</h3>";
 
-
-
-    output.innerHTML = `
-
-
-    <h3>🏆 Your Top Matches</h3>
-
-
-
-    data-resort="${encodeURIComponent(JSON.stringify(r))}"
-
-
+    html += results.map(function(r){
 
         let reasons = [];
 
-
-
         if(r.familyScore >= 95){
 
-            reasons.push("⭐ Excellent family rating");
+            reasons.push(
+                "⭐ Excellent family rating"
+            );
 
         }
-
-
 
         if(r.kidsClubRating >= 5){
 
-            reasons.push("👧 Outstanding kids club");
+            reasons.push(
+                "👧 Outstanding kids club"
+            );
 
         }
-
-
 
         if(r.poolRating >= 5){
 
-            reasons.push("🏊 Amazing pool facilities");
+            reasons.push(
+                "🏊 Amazing pool facilities"
+            );
 
         }
-
-
 
         if(r.beachRating >= 5){
 
-            reasons.push("🏖 Beautiful beach location");
+            reasons.push(
+                "🏖 Beautiful beach location"
+            );
 
         }
 
+        if(r.allInclusive === "Yes"){
 
+            reasons.push(
+                "🍽 All-inclusive experience"
+            );
 
- if(r.allInclusive === "Yes"){
+        }
 
-    reasons.push("🍽 All-inclusive experience");
+        let reasonHTML =
+            reasons.map(function(reason){
 
-}
+                return "<li>" + reason + "</li>";
 
-return `
+            }).join("");
 
-<div class="recommend-card">
+        return (
+            '<div class="recommend-card">' +
 
-        <h4>${r.resort}</h4>
+                '<h4>' + r.resort + '</h4>' +
 
-        <p>
-            🏆 Match Score: ${r.familyScore}/100
-        </p>
+                '<p>' +
+                    '🏆 Match Score: ' +
+                    r.familyScore +
+                    '/100' +
+                '</p>' +
 
-        <p>
-            ${r.country} - ${r.city}
-        </p>
+                '<p>' +
+                    r.country +
+                    ' - ' +
+                    r.city +
+                '</p>' +
 
-        <h5>
-            Why we picked it:
-        </h5>
+                '<h5>Why we picked it:</h5>' +
 
-        <ul>
+                '<ul>' +
+                    reasonHTML +
+                '</ul>' +
 
-            ${reasons.map(reason =>
-                `<li>${reason}</li>`
-            ).join("")}
+                '<p>' +
+                    r.priceDisplay +
+                '</p>' +
 
-        </ul>
+                '<button ' +
+                    'class="view-button" ' +
+                    'data-resort="' +
+                    encodeURIComponent(
+                        JSON.stringify(r)
+                    ) +
+                    '">' +
+                    'View Resort' +
+                '</button>' +
 
-        <p>
-            ${r.priceDisplay}
-        </p>
+            '</div>'
+        );
 
-        <button
-            class="view-button"
-            data-resort="${encodeURIComponent(JSON.stringify(r))}"
-        >
-            View Resort
-        </button>
+    }).join("");
 
-    </div>
-
-`;
-
-
+    output.innerHTML = html;
 
 };
-
-
 
 
 

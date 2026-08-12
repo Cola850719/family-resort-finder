@@ -2202,6 +2202,7 @@ function displaySavedHolidays(){
         savedHolidays.map(holiday => `
 
         <div class="saved-holiday-card">
+   
 
     <img
         src="${holiday.image}"

@@ -2348,10 +2348,6 @@ list.innerHTML = `
 
     <div class="dashboard-card">
 
-    <h4>📊 Average Cost</h4>
-
-        <div class="dashboard-card">
-
         <h4>📊 Average Cost</h4>
 
         <strong>$${averageCost.toLocaleString()}</strong>

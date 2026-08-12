@@ -278,6 +278,218 @@ value="150">
 
 
 <button id="calculate-budget" class="budget-button">
+    
+ <!-- ==========================================
+     FLIGHT SEARCH
+========================================== -->
+
+<section class="flight-search-section">
+
+    <div class="flight-search-header">
+
+        <h2>✈️ Find Flights</h2>
+
+        <p>
+            Search flights from Sydney to your holiday destination
+        </p>
+
+    </div>
+
+    <div class="flight-search-card">
+
+        <div class="flight-field">
+
+            <label for="flight-from">
+                From
+            </label>
+
+            <select id="flight-from">
+
+                <option value="SYD" selected>
+                    Sydney (SYD)
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-to">
+                To
+            </label>
+
+            <select id="flight-to">
+
+                <option value="">
+                    Select destination
+                </option>
+
+                <option value="HKT">
+                    Phuket (HKT)
+                </option>
+
+                <option value="KBV">
+                    Krabi (KBV)
+                </option>
+
+                <option value="LGK">
+                    Langkawi (LGK)
+                </option>
+
+                <option value="PEN">
+                    Penang (PEN)
+                </option>
+
+                <option value="BKI">
+                    Kota Kinabalu (BKI)
+                </option>
+
+                <option value="KUL">
+                    Kuala Lumpur (KUL)
+                </option>
+
+                <option value="DPS">
+                    Bali / Denpasar (DPS)
+                </option>
+
+                <option value="DAD">
+                    Da Nang (DAD)
+                </option>
+
+                <option value="PQC">
+                    Phu Quoc (PQC)
+                </option>
+
+                <option value="CXR">
+                    Nha Trang / Cam Ranh (CXR)
+                </option>
+
+                <option value="REP">
+                    Siem Reap (REP)
+                </option>
+
+                <option value="PNH">
+                    Phnom Penh (PNH)
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-departure">
+                Departure
+            </label>
+
+            <input
+                type="date"
+                id="flight-departure"
+            >
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-return">
+                Return
+            </label>
+
+            <input
+                type="date"
+                id="flight-return"
+            >
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-adults">
+                Adults
+            </label>
+
+            <select id="flight-adults">
+
+                <option value="1">1 Adult</option>
+                <option value="2" selected>2 Adults</option>
+                <option value="3">3 Adults</option>
+                <option value="4">4 Adults</option>
+                <option value="5">5 Adults</option>
+                <option value="6">6 Adults</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-children">
+                Children
+            </label>
+
+            <select id="flight-children">
+
+                <option value="0">0 Children</option>
+                <option value="1">1 Child</option>
+                <option value="2">2 Children</option>
+                <option value="3">3 Children</option>
+                <option value="4">4 Children</option>
+                <option value="5">5 Children</option>
+                <option value="6">6 Children</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="flight-field">
+
+            <label for="flight-class">
+                Cabin
+            </label>
+
+            <select id="flight-class">
+
+                <option value="ECONOMY" selected>
+                    Economy
+                </option>
+
+                <option value="PREMIUM_ECONOMY">
+                    Premium Economy
+                </option>
+
+                <option value="BUSINESS">
+                    Business
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            id="search-flights-button"
+            class="flight-search-button"
+            type="button"
+        >
+            🔎 Search Flights
+        </button>
+
+    </div>
+
+
+    <div
+        id="flight-search-message"
+        class="flight-search-message"
+    ></div>
+
+</section>   
 
 💰 Calculate Holiday Cost
 

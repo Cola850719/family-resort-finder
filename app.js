@@ -843,75 +843,50 @@ document.getElementById("recommend-button").onclick = function(){
 
         }
 
+return `
 
+    <div class="recommend-card">
 
+        <h4>${r.resort}</h4>
 
-
-        return `
-
-
-
-        <div class="recommend-card">
-
-
-            <h4>${r.resort}</h4>
-
-
-            <p>
+        <p>
             🏆 Match Score: ${r.familyScore}/100
-            </p>
+        </p>
 
-
-            <p>
+        <p>
             ${r.country} - ${r.city}
-            </p>
+        </p>
 
-
-
-            <h5>
+        <h5>
             Why we picked it:
-            </h5>
+        </h5>
 
-
-
-            <ul>
+        <ul>
 
             ${reasons.map(reason =>
-
-            `<li>${reason}</li>`
-
+                `<li>${reason}</li>`
             ).join("")}
 
+        </ul>
 
-            </ul>
-
-
-
-            <p>
+        <p>
             ${r.priceDisplay}
-            </p>
+        </p>
 
-
-
-
-            <button 
+        <button
             class="view-button"
-            data-resort="${encodeURIComponent(JSON.stringify(r))}">
-
+            data-resort="${encodeURIComponent(JSON.stringify(r))}"
+        >
             View Resort
+        </button>
 
-            </button>
+    </div>
 
-
-
-        </div>
-
-
-        `;
+`;
 
 
 
-    }).join("")}
+          }).join("")}
 
 
 

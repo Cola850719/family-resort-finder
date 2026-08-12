@@ -1145,84 +1145,7 @@ function displayFavourites(){
 
     }
     
-    // DISPLAY SAVED HOLIDAYS
-
-function displaySavedHolidays(){
-
-    const container =
-        document.getElementById("saved-holidays-list");
-
-    if(!container){
-        return;
-    }
-
-    const savedHolidays =
-        JSON.parse(
-            localStorage.getItem("savedHolidays")
-        ) || [];
-
-    if(savedHolidays.length === 0){
-
-        container.innerHTML =
-            "<p>No saved holidays yet.</p>";
-
-        return;
-
-    }
-
-    container.innerHTML =
-        savedHolidays.map(holiday => `
-
-        <div class="saved-holiday-card">
-
-            <img
-                src="${holiday.image}"
-                alt="${holiday.resort}"
-            >
-
-            <div class="saved-holiday-info">
-
-                <h3>${holiday.resort}</h3>
-
-                <p>
-                    📍 ${holiday.city},
-                    ${holiday.country}
-                </p>
-
-                <p>
-                    👨‍👩‍👧‍👦
-                    ${holiday.adults} Adults +
-                    ${holiday.children} Children
-                </p>
-
-                <p>
-                    🌙 ${holiday.nights} Nights
-                </p>
-
-                <strong class="saved-holiday-total">
-                    $${holiday.total.toLocaleString()}
-                </strong>
-
-                <small>
-                    Saved ${holiday.savedDate}
-                </small>
-
-                <button
-                    class="delete-saved-holiday"
-                    data-id="${holiday.id}">
-
-                    🗑 Delete
-
-                </button>
-
-            </div>
-
-        </div>
-
-    `).join("");
-
-}
-    
+     
 
 // SAVED HOLIDAYS
 
@@ -2325,45 +2248,5 @@ function displaySavedHolidays(){
     `).join("");
 
 }
-
-
-// OPEN SAVED HOLIDAYS
-
-document.getElementById("show-saved-holidays").addEventListener("click", function(){
-
-    document.getElementById("saved-holidays-modal").style.display = "block";
-
-});
-
-// SAVED HOLIDAYS BUTTON
-
-const savedHolidayButton =
-    document.getElementById("show-saved-holidays");
-
-if(savedHolidayButton){
-
-    savedHolidayButton.onclick = function(){
-
-        displaySavedHolidays();
-
-        document.getElementById(
-            "saved-holidays-modal"
-        ).style.display = "block";
-
-    };
-
-// SAVED HOLIDAYS BUTTON TEST
-
-document
-    .getElementById("show-saved-holidays")
-    .addEventListener("click", function(){
-
-        console.log("SAVED HOLIDAYS BUTTON WORKING");
-
-        document
-            .getElementById("saved-holidays-modal")
-            .style.display = "block";
-
-    });
 
 console.log("APP JS FINISHED LOADING");

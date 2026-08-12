@@ -1163,3 +1163,86 @@ button {
     border-radius: 20px;
     box-sizing: border-box;
 }
+/* SAVED HOLIDAY CARDS */
+
+.saved-holiday-card {
+
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.12);
+
+    border: 1px solid #e5e5e5;
+
+    transition: 0.3s;
+}
+
+.saved-holiday-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.18);
+}
+
+.saved-holiday-card h3 {
+
+    margin: 0 0 10px 0;
+
+    font-size: 22px;
+
+    color: #1e3a5f;
+}
+
+.saved-holiday-card h2 {
+
+    margin-top: 15px;
+
+    color: #0f766e;
+
+    font-size: 32px;
+}
+
+.saved-holiday-card p {
+
+    margin: 6px 0;
+
+    color: #444;
+}
+
+.delete-saved-holiday {
+
+    margin-top: 15px;
+
+    background: #dc2626;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.delete-saved-holiday:hover {
+
+    background: #b91c1c;
+}
+.saved-holidays-box {
+
+    max-width: 900px !important;
+
+    width: 90% !important;
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+}

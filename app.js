@@ -2282,7 +2282,13 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
         list.innerHTML = "<p>No saved holidays yet.</p>";
 
     } else {
+const cheapestHoliday = saved.reduce(function(lowest, holiday) {
 
+    return holiday.total < lowest.total
+        ? holiday
+        : lowest;
+
+}, saved[0]);
         list.innerHTML = saved.map(function(holiday) {
 
             let imageUrl = holiday.image || "";
@@ -2297,7 +2303,9 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
 
             return `
                 <div class="saved-holiday-card">
-
+${holiday.id === cheapestHoliday.id
+    ? `<div class="best-value-badge">🏆 BEST VALUE</div>`
+    : ""}
                     <img
                         src="${imageUrl}"
                         alt="${holiday.resort}"

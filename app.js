@@ -2397,24 +2397,7 @@ document.getElementById("show-saved-holidays").addEventListener("click", functio
 
 });
 
-    if (
-        resort &&
-        (
-            !bestFamilyHoliday ||
-            resort.familyScore >
-            bestFamilyHoliday.familyScore
-        )
-    ) {
-
-        bestFamilyHoliday = {
-            id: holiday.id,
-            familyScore: resort.familyScore
-        };
-
-    }
-
-});
-        list.innerHTML = saved.map(function(holiday) {
+    
 
             let imageUrl = holiday.image || "";
 

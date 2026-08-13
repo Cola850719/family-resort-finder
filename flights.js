@@ -4,15 +4,9 @@
 
 console.log("Flights JS loaded");
 
-
-// ==========================================
-// INITIALISE FLIGHT FEATURES
-// ==========================================
-
-function initialiseFlights() {
+document.addEventListener("DOMContentLoaded", function () {
 
     console.log("Initialising Flights");
-
 
     // ==========================================
     // FIND FLIGHTS BUTTON
@@ -64,19 +58,22 @@ function initialiseFlights() {
 
 
     // ==========================================
-    // SEARCH FLIGHTS BUTTON
+    // SEARCH FLIGHTS
     // ==========================================
 
     const searchFlightsButton =
         document.getElementById("search-flights-button");
 
-if (!searchFlightsButton) {
+    if (!searchFlightsButton) {
 
-    console.log(
-        "Flight search form not loaded yet."
-    );
+        console.log(
+            "search-flights-button not found yet"
+        );
 
-} else {
+        return;
+
+    }
+
 
     searchFlightsButton.onclick = function () {
 
@@ -106,7 +103,13 @@ if (!searchFlightsButton) {
 
 
         if (!message) {
+
+            console.error(
+                "flight-search-message not found"
+            );
+
             return;
+
         }
 
 
@@ -165,24 +168,17 @@ if (!searchFlightsButton) {
             "<br>" +
             cabin;
 
+
+        console.log("Flight Search:", {
+            from: from,
+            to: to,
+            departure: departure,
+            returnDate: returnDate,
+            adults: adults,
+            children: children,
+            cabin: cabin
+        });
+
     };
 
-}
-
-
-// ==========================================
-// START
-// ==========================================
-
-if (document.readyState === "loading") {
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        initialiseFlights
-    );
-
-} else {
-
-    initialiseFlights();
-
-}
+});

@@ -70,16 +70,13 @@ function initialiseFlights() {
     const searchFlightsButton =
         document.getElementById("search-flights-button");
 
-    if (!searchFlightsButton) {
+if (!searchFlightsButton) {
 
-        console.error(
-            "search-flights-button not found"
-        );
+    console.log(
+        "Flight search form not loaded yet."
+    );
 
-        return;
-
-    }
-
+} else {
 
     searchFlightsButton.onclick = function () {
 
@@ -109,13 +106,7 @@ function initialiseFlights() {
 
 
         if (!message) {
-
-            console.error(
-                "flight-search-message not found"
-            );
-
             return;
-
         }
 
 
@@ -173,20 +164,6 @@ function initialiseFlights() {
             children + " Children" +
             "<br>" +
             cabin;
-
-
-        console.log(
-            "Flight Search:",
-            {
-                from: from,
-                to: to,
-                departure: departure,
-                returnDate: returnDate,
-                adults: adults,
-                children: children,
-                cabin: cabin
-            }
-        );
 
     };
 

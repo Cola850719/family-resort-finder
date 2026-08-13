@@ -680,34 +680,6 @@ document.getElementById("find-resort").onclick = function(){
 };
 
 
-// FIND FLIGHTS
-
-document.getElementById("find-flights").onclick = function(){
-
-    const flightSection =
-        document.getElementById("flight-search-section");
-
-    console.log("FIND FLIGHTS CLICKED", flightSection);
-
-    if (!flightSection) {
-
-        console.error("flight-search-section not found");
-        return;
-
-    }
-
-    const top =
-        flightSection.getBoundingClientRect().top +
-        window.pageYOffset -
-        30;
-
-    window.scrollTo({
-        top: top,
-        behavior: "smooth"
-    });
-
-};
-
 
 // RECOMMENDATION ENGINE
 

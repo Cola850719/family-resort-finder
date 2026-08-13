@@ -2289,3 +2289,77 @@ button {
     }
 
 }
+
+/* ==========================================
+   FLIGHT RESULTS TEXT FIX
+========================================== */
+
+.flight-results {
+    color: #222;
+}
+
+.flight-results-header {
+    color: #222;
+}
+
+.flight-results-header h2,
+.flight-results-header p {
+    color: #222;
+}
+
+.flight-results-summary {
+    color: #222;
+}
+
+.flight-results-summary strong,
+.flight-results-summary span {
+    color: #222;
+}
+
+.flight-result-card {
+    color: #222;
+    background: #ffffff;
+}
+
+.flight-result-card strong,
+.flight-result-card span,
+.flight-result-card small {
+    color: #222;
+}
+
+.flight-airline strong {
+    color: #222;
+}
+
+.flight-airline small {
+    color: #666;
+}
+
+.flight-price strong {
+    color: #111;
+}
+
+.flight-price span {
+    color: #666;
+}
+
+.flight-time strong {
+    color: #111;
+}
+
+.flight-time span {
+    color: #333;
+}
+
+.flight-route-middle span {
+    color: #555;
+}
+
+.flight-layover,
+.flight-direct {
+    color: #333;
+}
+
+.flight-card-footer {
+    color: #555;
+}

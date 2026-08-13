@@ -694,9 +694,14 @@ document.getElementById("find-flights").onclick = function(){
 
     if (flightSection) {
 
-        flightSection.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
+        const top =
+            flightSection.getBoundingClientRect().top +
+            window.pageYOffset -
+            30;
+
+        window.scrollTo({
+            top: top,
+            behavior: "smooth"
         });
 
     }

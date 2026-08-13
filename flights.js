@@ -15,6 +15,8 @@ let currentFlightAdults = 0;
 
 let currentFlightChildren = 0;
 
+let currentGoogleFlightsUrl = "";
+
 console.log("Flights JS loaded");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -286,6 +288,9 @@ currentFlightChildren =
 
 currentFlightSort =
     "best";
+
+            currentGoogleFlightsUrl =
+    data.google_flights_url || "";
             
             displayFlightResults(
                 data.results,
@@ -879,8 +884,9 @@ function displayFlightResults(
 
     <a
         href="${escapeHtml(
-            search.google_flights_url || ""
-        )}"
+    currentGoogleFlightsUrl || ""
+)}"
+        
         target="_blank"
         rel="noopener noreferrer"
         class="flight-view-button"

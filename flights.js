@@ -856,27 +856,39 @@ function displayFlightResults(
 ></div>
                         <div class="flight-card-footer">
 
-                            <span>
-                                ${escapeHtml(
-                                    first.travel_class ||
-                                    "Economy"
-                                )}
-                            </span>
+                        
+    <span>
+        ${escapeHtml(
+            first.travel_class ||
+            "Economy"
+        )}
+    </span>
 
-                            ${
-                                first.airplane
-                                    ? `
-                                        <span>
-                                            ✈️
-                                            ${escapeHtml(
-                                                first.airplane
-                                            )}
-                                        </span>
-                                    `
-                                    : ""
-                            }
+    ${
+        first.airplane
+            ? `
+                <span>
+                    ✈️
+                    ${escapeHtml(
+                        first.airplane
+                    )}
+                </span>
+              `
+            : ""
+    }
 
-                        </div>
+    <a
+        href="${escapeHtml(
+            search.google_flights_url || ""
+        )}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flight-view-button"
+    >
+        View Flight ↗
+    </a>
+
+</div>
 
                     </div>
 

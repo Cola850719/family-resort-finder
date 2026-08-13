@@ -713,11 +713,6 @@ document.getElementById("find-flights").onclick = function(){
 
 document.getElementById("recommend-button").onclick = function(){
 
-
-// RECOMMENDATION ENGINE
-
-document.getElementById("recommend-button").onclick = function(){
-
     let budget = Number(
         document.getElementById("budget").value
     );

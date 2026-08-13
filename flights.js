@@ -291,6 +291,7 @@ currentFlightChildren =
                 children
             );
 
+            addFlightSortControls();
 
         } catch (error) {
 
@@ -1281,6 +1282,258 @@ document.addEventListener(
                 "🗺 Show Flight Path";
 
         }
+
+    }
+);
+
+// ==========================================
+// FLIGHT SORT CONTROLS
+// ==========================================
+
+function addFlightSortControls() {
+
+    const resultsContainer =
+        document.getElementById(
+            "flight-results"
+        );
+
+    if (!resultsContainer) {
+        return;
+    }
+
+
+    // Don't create duplicates
+    if (
+        document.getElementById(
+            "flight-sort-controls"
+        )
+    ) {
+        return;
+    }
+
+
+    const controls =
+        document.createElement(
+            "div"
+        );
+
+    controls.id =
+        "flight-sort-controls";
+
+    controls.className =
+        "flight-sort-controls";
+
+
+    controls.innerHTML = `
+
+        <button
+            type="button"
+            class="flight-sort-button active"
+            data-sort="best"
+        >
+            🏆 Best Value
+        </button>
+
+        <button
+            type="button"
+            class="flight-sort-button"
+            data-sort="cheapest"
+        >
+            💰 Cheapest
+        </button>
+
+        <button
+            type="button"
+            class="flight-sort-button"
+            data-sort="fastest"
+        >
+            ⚡ Fastest
+        </button>
+
+    `;
+
+
+    resultsContainer.insertBefore(
+        controls,
+        resultsContainer.firstChild
+    );
+
+}
+
+
+// ==========================================
+// SORT FLIGHTS
+// ==========================================
+
+function sortFlightResults(
+    results,
+    sortType
+) {
+
+    const sorted =
+        [...results];
+
+
+    if (
+        sortType ===
+        "cheapest"
+    ) {
+
+        return sorted.sort(
+            function (a, b) {
+
+                return (
+                    Number(
+                        a.price || 999999
+                    ) -
+                    Number(
+                        b.price || 999999
+                    )
+                );
+
+            }
+        );
+
+    }
+
+
+    if (
+        sortType ===
+        "fastest"
+    ) {
+
+        return sorted.sort(
+            function (a, b) {
+
+                return (
+                    Number(
+                        a.total_duration ||
+                        999999
+                    ) -
+                    Number(
+                        b.total_duration ||
+                        999999
+                    )
+                );
+
+            }
+        );
+
+    }
+
+
+    // BEST VALUE
+
+    return sorted.sort(
+        function (a, b) {
+
+            const scoreA =
+                Number(
+                    a.price || 999999
+                ) +
+                Number(
+                    a.total_duration ||
+                    999999
+                ) * 0.5;
+
+
+            const scoreB =
+                Number(
+                    b.price || 999999
+                ) +
+                Number(
+                    b.total_duration ||
+                    999999
+                ) * 0.5;
+
+
+            return scoreA - scoreB;
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// SORT BUTTON CLICK
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                ".flight-sort-button"
+            );
+
+
+        if (!button) {
+            return;
+        }
+
+
+        if (
+            !currentFlightResults ||
+            !currentFlightResults.length
+        ) {
+
+            return;
+
+        }
+
+
+        const sortType =
+            button.dataset.sort;
+
+
+        const sorted =
+            sortFlightResults(
+                currentFlightResults,
+                sortType
+            );
+
+
+        currentFlightResults =
+            sorted;
+
+
+        // Update active button
+
+        document
+            .querySelectorAll(
+                ".flight-sort-button"
+            )
+            .forEach(
+                function (item) {
+
+                    item.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+        button.classList.add(
+            "active"
+        );
+
+
+        displayFlightResults(
+            currentFlightResults,
+            currentFlightSearch,
+            currentFlightAdults,
+            currentFlightChildren
+        );
+
+
+        // Re-add controls because
+        // displayFlightResults rebuilds
+        // the results area.
+
+        addFlightSortControls();
 
     }
 );

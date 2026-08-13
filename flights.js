@@ -2,6 +2,9 @@
 // FLIGHTS.JS
 // ==========================================
 
+const FLIGHTS_API_URL =
+    "https://family-resort-finder.vercel.app/api/flights";
+
 console.log("Flights JS loaded");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -136,51 +139,90 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        // ==========================================
-        // SEARCH READY
-        // ==========================================
+// ==========================================
+// CALL FLIGHT API
+// ==========================================
 
-        message.innerHTML =
+message.innerHTML =
+    "✈️ Searching Google Flights...";
 
-            "✈️ Flight search ready" +
-            "<br><br>" +
+searchFlightsButton.disabled = true;
 
-            "<strong>" +
-            from +
-            " → " +
-            to +
-            "</strong>" +
+try {
 
-            "<br>" +
+    const params =
+        new URLSearchParams({
 
-            departure +
-            " → " +
-            returnDate +
+            departure_id: from,
 
-            "<br><br>" +
+            arrival_id: to,
 
-            adults +
-            " Adults, " +
-            children +
-            " Children" +
+            outbound_date: departure,
 
-            "<br>" +
+            return_date: returnDate,
 
-            cabin;
-
-
-        console.log("Flight Search:", {
-
-            from: from,
-            to: to,
-            departure: departure,
-            returnDate: returnDate,
-            adults: adults,
-            children: children,
-            cabin: cabin
+            travel_class: cabin
 
         });
 
-    });
+    const response =
+        await fetch(
+            FLIGHTS_API_URL +
+            "?" +
+            params.toString()
+        );
 
-});
+    const data =
+        await response.json();
+
+    console.log(
+        "Flight API response:",
+        data
+    );
+
+    if (!response.ok) {
+
+        throw new Error(
+            data.message ||
+            data.error ||
+            "Flight search failed."
+        );
+
+    }
+
+    if (
+        !data.results ||
+        data.results.length === 0
+    ) {
+
+        message.innerHTML =
+            data.message ||
+            "😕 No flights were found.";
+
+        return;
+
+    }
+
+    displayFlightResults(
+        data.results,
+        data.search,
+        adults,
+        children
+    );
+
+} catch (error) {
+
+    console.error(
+        "Flight search error:",
+        error
+    );
+
+    message.innerHTML =
+        "❌ Flight search failed. " +
+        error.message;
+
+} finally {
+
+    searchFlightsButton.disabled = false;
+
+}

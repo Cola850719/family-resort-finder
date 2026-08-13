@@ -277,3 +277,469 @@ console.log(
     };
 
 });
+
+// ==========================================
+// DISPLAY FLIGHT RESULTS
+// ==========================================
+
+function displayFlightResults(
+    results,
+    search,
+    adults,
+    children
+) {
+
+    const section =
+        document.getElementById(
+            "flight-search-section"
+        );
+
+    const message =
+        document.getElementById(
+            "flight-search-message"
+        );
+
+    if (!section) {
+        return;
+    }
+
+    let resultsContainer =
+        document.getElementById(
+            "flight-results"
+        );
+
+    if (!resultsContainer) {
+
+        resultsContainer =
+            document.createElement(
+                "div"
+            );
+
+        resultsContainer.id =
+            "flight-results";
+
+        resultsContainer.className =
+            "flight-results";
+
+        section.appendChild(
+            resultsContainer
+        );
+
+    }
+
+    const exactDates =
+        search &&
+        search.outbound_date ===
+            search.requested_outbound_date &&
+        search.return_date ===
+            search.requested_return_date;
+
+
+    if (message) {
+
+        message.innerHTML =
+            exactDates
+                ? "✅ Flights found for your selected dates."
+                : "ℹ️ Exact dates unavailable. Showing the nearest available dates.";
+
+    }
+
+
+    const sorted =
+        [...results].sort(
+            function (a, b) {
+
+                return (
+                    Number(a.price || 999999) -
+                    Number(b.price || 999999)
+                );
+
+            }
+        );
+
+
+    const cheapest =
+        sorted[0];
+
+
+    const fastest =
+        [...results].sort(
+            function (a, b) {
+
+                return (
+                    Number(a.total_duration || 999999) -
+                    Number(b.total_duration || 999999)
+                );
+
+            }
+        )[0];
+
+
+    let html = `
+
+        <div class="flight-results-header">
+
+            <h2>✈️ Flight Results</h2>
+
+            <p>
+                ${formatDate(search.outbound_date)}
+                →
+                ${formatDate(search.return_date)}
+            </p>
+
+            <p>
+                ${adults} Adults,
+                ${children} Children
+            </p>
+
+        </div>
+
+        <div class="flight-results-summary">
+
+            <div>
+                💰
+                <strong>Cheapest</strong>
+                <span>
+                    $${Number(
+                        cheapest.price || 0
+                    ).toLocaleString("en-AU")}
+                </span>
+            </div>
+
+            <div>
+                ⚡
+                <strong>Fastest</strong>
+                <span>
+                    ${formatDuration(
+                        fastest.total_duration
+                    )}
+                </span>
+            </div>
+
+        </div>
+
+    `;
+
+
+    sorted
+        .slice(0, 10)
+        .forEach(
+            function (flight) {
+
+                html +=
+                    createFlightCard(
+                        flight,
+                        cheapest,
+                        fastest
+                    );
+
+            }
+        );
+
+
+    resultsContainer.innerHTML =
+        html;
+
+
+    resultsContainer.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+}
+
+
+// ==========================================
+// CREATE FLIGHT CARD
+// ==========================================
+
+function createFlightCard(
+    flight,
+    cheapest,
+    fastest
+) {
+
+    const segments =
+        Array.isArray(flight.flights)
+            ? flight.flights
+            : [];
+
+
+    if (!segments.length) {
+        return "";
+    }
+
+
+    const first =
+        segments[0];
+
+    const last =
+        segments[
+            segments.length - 1
+        ];
+
+
+    const airline =
+        first.airline ||
+        "Airline";
+
+
+    const departureCode =
+        first.departure_airport?.id ||
+        "";
+
+
+    const arrivalCode =
+        last.arrival_airport?.id ||
+        "";
+
+
+    const departureTime =
+        formatTime(
+            first.departure_airport?.time
+        );
+
+
+    const arrivalTime =
+        formatTime(
+            last.arrival_airport?.time
+        );
+
+
+    const duration =
+        formatDuration(
+            flight.total_duration
+        );
+
+
+    const stops =
+        Math.max(
+            segments.length - 1,
+            0
+        );
+
+
+    const stopText =
+        stops === 0
+            ? "Direct"
+            : stops +
+                " stop" +
+                (
+                    stops > 1
+                        ? "s"
+                        : ""
+                );
+
+
+    const price =
+        Number(
+            flight.price || 0
+        );
+
+
+    const logo =
+        flight.airline_logo ||
+        first.airline_logo ||
+        "";
+
+
+    let badge = "";
+
+    if (
+        flight === cheapest &&
+        flight === fastest
+    ) {
+
+        badge =
+            `<span class="flight-badge best">
+                🏆 BEST VALUE
+            </span>`;
+
+    } else if (flight === cheapest) {
+
+        badge =
+            `<span class="flight-badge cheapest">
+                💰 CHEAPEST
+            </span>`;
+
+    } else if (flight === fastest) {
+
+        badge =
+            `<span class="flight-badge fastest">
+                ⚡ FASTEST
+            </span>`;
+
+    }
+
+
+    return `
+
+        <div class="flight-result-card">
+
+            ${badge}
+
+            <div class="flight-result-top">
+
+                <div class="flight-airline">
+
+                    ${
+                        logo
+                            ? `
+                                <img
+                                    src="${escapeHtml(logo)}"
+                                    alt="${escapeHtml(airline)}"
+                                    class="flight-airline-logo"
+                                >
+                              `
+                            : ""
+                    }
+
+                    <div>
+
+                        <strong>
+                            ${escapeHtml(airline)}
+                        </strong>
+
+                        <small>
+                            ${escapeHtml(
+                                first.flight_number || ""
+                            )}
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="flight-price">
+
+                    <strong>
+                        $${price.toLocaleString("en-AU")}
+                    </strong>
+
+                    <span>
+                        AUD
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="flight-route">
+
+                <div class="flight-time">
+
+                    <strong>
+                        ${escapeHtml(
+                            departureTime
+                        )}
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(
+                            departureCode
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="flight-route-middle">
+
+                    <span>
+                        ${escapeHtml(
+                            duration
+                        )}
+                    </span>
+
+                    <div class="flight-line">
+                        ─────────✈
+                    </div>
+
+                    <span>
+                        ${escapeHtml(
+                            stopText
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="flight-time">
+
+                    <strong>
+                        ${escapeHtml(
+                            arrivalTime
+                        )}
+                    </strong>
+
+                    <span>
+                        ${escapeHtml(
+                            arrivalCode
+                        )}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            ${
+                stops > 0
+                    ? `
+                        <div class="flight-layover">
+
+                            🔄
+                            ${stops}
+                            ${stops === 1 ? "stop" : "stops"}
+
+                            ${
+                                flight.layovers &&
+                                flight.layovers[0]
+                                    ? "via " +
+                                      escapeHtml(
+                                          flight.layovers[0].id
+                                      )
+                                    : ""
+                            }
+
+                        </div>
+                      `
+                    : `
+                        <div class="flight-direct">
+                            ✅ Direct flight
+                        </div>
+                      `
+            }
+
+
+            <div class="flight-card-footer">
+
+                <span>
+                    ${escapeHtml(
+                        first.travel_class ||
+                        "Economy"
+                    )}
+                </span>
+
+                ${
+                    first.airplane
+                        ? `
+                            <span>
+                                ✈️
+                                ${escapeHtml(
+                                    first.airplane
+                                )}
+                            </span>
+                          `
+                        : ""
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}

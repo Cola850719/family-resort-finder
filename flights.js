@@ -47,48 +47,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // ==========================================
-    // SEARCH FLIGHTS BUTTON
-    // ==========================================
+   searchFlightsButton.onclick =
+    async function () {
 
-    const searchFlightsButton =
-        document.getElementById("search-flights-button");
+        const fromElement =
+            document.getElementById("flight-from");
 
-    if (!searchFlightsButton) {
+        const toElement =
+            document.getElementById("flight-to");
 
-        console.error(
-            "Search Flights button not found"
-        );
+        const departureElement =
+            document.getElementById("flight-departure");
 
-        return;
-    }
+        const returnElement =
+            document.getElementById("flight-return");
 
+        const adultsElement =
+            document.getElementById("flight-adults");
 
-    console.log("Search Flights button found");
+        const childrenElement =
+            document.getElementById("flight-children");
 
-
-    searchFlightsButton.addEventListener("click", function () {
-
-        const from =
-            document.getElementById("flight-from").value;
-
-        const to =
-            document.getElementById("flight-to").value;
-
-        const departure =
-            document.getElementById("flight-departure").value;
-
-        const returnDate =
-            document.getElementById("flight-return").value;
-
-        const adults =
-            document.getElementById("flight-adults").value;
-
-        const children =
-            document.getElementById("flight-children").value;
-
-        const cabin =
-            document.getElementById("flight-class").value;
+        const cabinElement =
+            document.getElementById("flight-class");
 
         const message =
             document.getElementById(
@@ -96,9 +77,50 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        // ==========================================
-        // VALIDATION
-        // ==========================================
+        if (
+            !fromElement ||
+            !toElement ||
+            !departureElement ||
+            !returnElement ||
+            !adultsElement ||
+            !childrenElement ||
+            !cabinElement ||
+            !message
+        ) {
+
+            console.error(
+                "One or more flight form elements are missing."
+            );
+
+            return;
+        }
+
+
+        const from =
+            fromElement.value;
+
+        const to =
+            toElement.value;
+
+        const departure =
+            departureElement.value;
+
+        const returnDate =
+            returnElement.value;
+
+        const adults =
+            Number(
+                adultsElement.value
+            );
+
+        const children =
+            Number(
+                childrenElement.value
+            );
+
+        const cabin =
+            cabinElement.value;
+
 
         if (!to) {
 
@@ -139,90 +161,100 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-// ==========================================
-// CALL FLIGHT API
-// ==========================================
-
-message.innerHTML =
-    "✈️ Searching Google Flights...";
-
-searchFlightsButton.disabled = true;
-
-try {
-
-    const params =
-        new URLSearchParams({
-
-            departure_id: from,
-
-            arrival_id: to,
-
-            outbound_date: departure,
-
-            return_date: returnDate,
-
-            travel_class: cabin
-
-        });
-
-    const response =
-        await fetch(
-            FLIGHTS_API_URL +
-            "?" +
-            params.toString()
-        );
-
-    const data =
-        await response.json();
-
-    console.log(
-        "Flight API response:",
-        data
-    );
-
-    if (!response.ok) {
-
-        throw new Error(
-            data.message ||
-            data.error ||
-            "Flight search failed."
-        );
-
-    }
-
-    if (
-        !data.results ||
-        data.results.length === 0
-    ) {
-
         message.innerHTML =
-            data.message ||
-            "😕 No flights were found.";
+            "✈️ Searching Google Flights...";
 
-        return;
+        searchFlightsButton.disabled =
+            true;
 
-    }
 
-    displayFlightResults(
-        data.results,
-        data.search,
-        adults,
-        children
-    );
+        try {
 
-} catch (error) {
+            const params =
+                new URLSearchParams({
 
-    console.error(
-        "Flight search error:",
-        error
-    );
+                    departure_id: from,
 
-    message.innerHTML =
-        "❌ Flight search failed. " +
-        error.message;
+                    arrival_id: to,
 
-} finally {
+                    outbound_date: departure,
 
-    searchFlightsButton.disabled = false;
+                    return_date: returnDate,
 
-}
+                    travel_class: cabin
+
+                });
+
+
+            const response =
+                await fetch(
+                    FLIGHTS_API_URL +
+                    "?" +
+                    params.toString()
+                );
+
+
+            const data =
+                await response.json();
+
+
+            console.log(
+                "Flight API response:",
+                data
+            );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    data.error ||
+                    "Flight search failed."
+                );
+
+            }
+
+
+            if (
+                !data.results ||
+                data.results.length === 0
+            ) {
+
+                message.innerHTML =
+                    data.message ||
+                    "😕 No flights were found.";
+
+                removeFlightResults();
+
+                return;
+            }
+
+
+            displayFlightResults(
+                data.results,
+                data.search,
+                adults,
+                children
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "Flight search error:",
+                error
+            );
+
+            message.innerHTML =
+                "❌ Flight search failed. " +
+                error.message;
+
+
+        } finally {
+
+            searchFlightsButton.disabled =
+                false;
+
+        }
+
+    };

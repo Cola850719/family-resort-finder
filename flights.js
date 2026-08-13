@@ -283,6 +283,9 @@ currentFlightAdults =
 
 currentFlightChildren =
     children;
+
+currentFlightSort =
+    "best";
             
             displayFlightResults(
                 data.results,
@@ -1290,6 +1293,10 @@ document.addEventListener(
 // FLIGHT SORT CONTROLS
 // ==========================================
 
+let currentFlightSort =
+    "best";
+
+
 function addFlightSortControls() {
 
     const resultsContainer =
@@ -1302,13 +1309,13 @@ function addFlightSortControls() {
     }
 
 
-    // Don't create duplicates
-    if (
+    const oldControls =
         document.getElementById(
             "flight-sort-controls"
-        )
-    ) {
-        return;
+        );
+
+    if (oldControls) {
+        oldControls.remove();
     }
 
 
@@ -1328,7 +1335,11 @@ function addFlightSortControls() {
 
         <button
             type="button"
-            class="flight-sort-button active"
+            class="flight-sort-button ${
+                currentFlightSort === "best"
+                    ? "active"
+                    : ""
+            }"
             data-sort="best"
         >
             🏆 Best Value
@@ -1336,7 +1347,11 @@ function addFlightSortControls() {
 
         <button
             type="button"
-            class="flight-sort-button"
+            class="flight-sort-button ${
+                currentFlightSort === "cheapest"
+                    ? "active"
+                    : ""
+            }"
             data-sort="cheapest"
         >
             💰 Cheapest
@@ -1344,7 +1359,11 @@ function addFlightSortControls() {
 
         <button
             type="button"
-            class="flight-sort-button"
+            class="flight-sort-button ${
+                currentFlightSort === "fastest"
+                    ? "active"
+                    : ""
+            }"
             data-sort="fastest"
         >
             ⚡ Fastest
@@ -1362,7 +1381,7 @@ function addFlightSortControls() {
 
 
 // ==========================================
-// SORT FLIGHTS
+// SORT FLIGHT RESULTS
 // ==========================================
 
 function sortFlightResults(
@@ -1374,12 +1393,16 @@ function sortFlightResults(
         [...results];
 
 
+    // --------------------------------------
+    // CHEAPEST
+    // --------------------------------------
+
     if (
         sortType ===
         "cheapest"
     ) {
 
-        return sorted.sort(
+        sorted.sort(
             function (a, b) {
 
                 return (
@@ -1394,15 +1417,20 @@ function sortFlightResults(
             }
         );
 
+        return sorted;
     }
 
+
+    // --------------------------------------
+    // FASTEST
+    // --------------------------------------
 
     if (
         sortType ===
         "fastest"
     ) {
 
-        return sorted.sort(
+        sorted.sort(
             function (a, b) {
 
                 return (
@@ -1419,38 +1447,94 @@ function sortFlightResults(
             }
         );
 
+        return sorted;
     }
 
 
+    // --------------------------------------
     // BEST VALUE
+    // --------------------------------------
 
-    return sorted.sort(
+    sorted.sort(
         function (a, b) {
 
-            const scoreA =
+            const priceA =
                 Number(
-                    a.price || 999999
-                ) +
+                    a.price ||
+                    999999
+                );
+
+            const priceB =
+                Number(
+                    b.price ||
+                    999999
+                );
+
+
+            const durationA =
                 Number(
                     a.total_duration ||
                     999999
-                ) * 0.5;
+                );
 
-
-            const scoreB =
-                Number(
-                    b.price || 999999
-                ) +
+            const durationB =
                 Number(
                     b.total_duration ||
                     999999
-                ) * 0.5;
+                );
 
 
-            return scoreA - scoreB;
+            const stopsA =
+                Math.max(
+                    (
+                        a.flights?.length ||
+                        1
+                    ) - 1,
+                    0
+                );
+
+
+            const stopsB =
+                Math.max(
+                    (
+                        b.flights?.length ||
+                        1
+                    ) - 1,
+                    0
+                );
+
+
+            // Lower score = better
+
+            const scoreA =
+                priceA +
+                (
+                    durationA * 0.35
+                ) +
+                (
+                    stopsA * 120
+                );
+
+
+            const scoreB =
+                priceB +
+                (
+                    durationB * 0.35
+                ) +
+                (
+                    stopsB * 120
+                );
+
+
+            return (
+                scoreA - scoreB
+            );
 
         }
     );
+
+
+    return sorted;
 
 }
 
@@ -1480,45 +1564,18 @@ document.addEventListener(
         ) {
 
             return;
-
         }
 
 
-        const sortType =
+        currentFlightSort =
             button.dataset.sort;
 
 
-        const sorted =
+        currentFlightResults =
             sortFlightResults(
                 currentFlightResults,
-                sortType
+                currentFlightSort
             );
-
-
-        currentFlightResults =
-            sorted;
-
-
-        // Update active button
-
-        document
-            .querySelectorAll(
-                ".flight-sort-button"
-            )
-            .forEach(
-                function (item) {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                }
-            );
-
-
-        button.classList.add(
-            "active"
-        );
 
 
         displayFlightResults(
@@ -1528,10 +1585,6 @@ document.addEventListener(
             currentFlightChildren
         );
 
-
-        // Re-add controls because
-        // displayFlightResults rebuilds
-        // the results area.
 
         addFlightSortControls();
 

@@ -277,6 +277,9 @@ currentFlightResults =
 
 currentFlightSearch =
     data.search;
+            
+ currentFlightSearch.google_flights_url =
+    data.google_flights_url || "";           
 
 currentFlightAdults =
     adults;
@@ -883,7 +886,7 @@ function displayFlightResults(
 
   <a
     href="${escapeHtml(
-        googleFlightsUrl || "#"
+        search.google_flights_url || "#"
     )}"
     target="_blank"
     rel="noopener noreferrer"

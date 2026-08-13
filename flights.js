@@ -816,7 +816,19 @@ function displayFlightResults(
                                 `
                         }
 
+<button
+    type="button"
+    class="flight-map-toggle"
+    data-flight-index="${sorted.indexOf(flight)}"
+>
+    🗺 Show Flight Path
+</button>
 
+<div
+    id="flight-map-${sorted.indexOf(flight)}"
+    class="flight-path-map"
+    style="display:none;"
+></div>
                         <div class="flight-card-footer">
 
                             <span>

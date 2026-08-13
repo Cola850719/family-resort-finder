@@ -277,9 +277,9 @@ currentFlightResults =
 
 currentFlightSearch =
     data.search;
-            
- currentFlightSearch.google_flights_url =
-    data.google_flights_url || "";           
+
+currentFlightSearch.google_flights_url =
+    data.google_flights_url || "";
 
 currentFlightAdults =
     adults;
@@ -290,17 +290,15 @@ currentFlightChildren =
 currentFlightSort =
     "best";
 
+displayFlightResults(
+    data.results,
+    data.search,
+    adults,
+    children,
+    data.google_flights_url
 );
-            
-            displayFlightResults(
-                data.results,
-                data.search,
-                adults,
-                children
-                data.google_flights_url
-            );
 
-            addFlightSortControls();
+addFlightSortControls();
 
         } catch (error) {
 

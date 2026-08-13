@@ -46,7 +46,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
+const searchFlightsButton =
+    document.getElementById(
+        "search-flights-button"
+    );
 
+if (!searchFlightsButton) {
+
+    console.error(
+        "Search Flights button not found"
+    );
+
+    return;
+
+}
+
+console.log(
+    "Search Flights button found"
+);
+    
    searchFlightsButton.onclick =
     async function () {
 

@@ -687,26 +687,25 @@ document.getElementById("find-resort").onclick = function(){
 
 document.getElementById("find-flights").onclick = function(){
 
-    const flightSection =
-        document.getElementById("flight-search-section");
+const flightSection =
+    document.getElementById("flight-search-section");
 
-    console.log("FIND FLIGHTS CLICKED", flightSection);
+console.log("FIND FLIGHTS CLICKED", flightSection);
 
-    if (flightSection) {
+console.log(
+    "SCROLL PARENT:",
+    flightSection.parentElement
+);
 
-        const top =
-            flightSection.getBoundingClientRect().top +
-            window.pageYOffset -
-            30;
+console.log(
+    "WINDOW SCROLL HEIGHT:",
+    document.documentElement.scrollHeight
+);
 
-        window.scrollTo({
-            top: top,
-            behavior: "smooth"
-        });
-
-    }
-
-};
+console.log(
+    "WINDOW INNER HEIGHT:",
+    window.innerHeight
+);
 
 
 // RECOMMENDATION ENGINE

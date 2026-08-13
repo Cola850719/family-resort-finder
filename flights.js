@@ -1082,3 +1082,75 @@ function createFlightPathMap(
     );
 
 }
+
+// ==========================================
+// FLIGHT MAP BUTTONS
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                ".flight-map-toggle"
+            );
+
+
+        if (!button) {
+            return;
+        }
+
+
+        const index =
+            Number(
+                button.dataset.flightIndex
+            );
+
+
+        const mapContainer =
+            document.getElementById(
+                "flight-map-" + index
+            );
+
+
+        if (!mapContainer) {
+            return;
+        }
+
+
+        if (
+            mapContainer.style.display ===
+            "block"
+        ) {
+
+            mapContainer.style.display =
+                "none";
+
+            button.textContent =
+                "🗺 Show Flight Path";
+
+            return;
+
+        }
+
+
+        mapContainer.style.display =
+            "block";
+
+
+        button.textContent =
+            "🗺 Hide Flight Path";
+
+
+        const flight =
+            currentFlightResults[index];
+
+
+        createFlightPathMap(
+            mapContainer.id,
+            flight
+        );
+
+    }
+);

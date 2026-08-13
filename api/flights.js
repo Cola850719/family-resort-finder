@@ -5,7 +5,7 @@
 console.log("Flights JS loaded");
 
 const FLIGHTS_API_URL =
-    "https://YOUR-VERCEL-DOMAIN.vercel.app/api/flights";
+    "https://family-resort-finder.vercel.app/api/flights";
 
 
 document.addEventListener(

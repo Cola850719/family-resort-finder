@@ -696,7 +696,7 @@ document.getElementById("find-flights").onclick = function(){
 
         flightSection.scrollIntoView({
             behavior: "smooth",
-            block: "start"
+            block: "center"
         });
 
     }

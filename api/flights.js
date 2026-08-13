@@ -18,6 +18,15 @@ export default async function handler(req, res) {
             travel_class
         } = req.query;
 
+        const classMap = {
+    ECONOMY: "1",
+    PREMIUM_ECONOMY: "2",
+    BUSINESS: "3"
+};
+
+const classValue =
+    classMap[travel_class] || "1";
+
         if (
             !departure_id ||
             !arrival_id ||

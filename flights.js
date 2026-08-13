@@ -1,23 +1,33 @@
 // ==========================================
 // FLIGHTS.JS
-// FLIGHT SEARCH FEATURE
 // ==========================================
 
 console.log("Flights JS loaded");
 
 
 // ==========================================
-// FIND FLIGHTS BUTTON
+// INITIALISE FLIGHT FEATURES
 // ==========================================
 
-document.addEventListener("DOMContentLoaded", function () {
+function initialiseFlights() {
+
+    console.log("Initialising Flights");
+
+
+    // ==========================================
+    // FIND FLIGHTS BUTTON
+    // ==========================================
 
     const findFlightsButton =
         document.getElementById("find-flights");
 
     if (findFlightsButton) {
 
-        findFlightsButton.addEventListener("click", function () {
+        console.log("Find Flights button found");
+
+        findFlightsButton.onclick = function () {
+
+            console.log("FIND FLIGHTS BUTTON CLICKED");
 
             const flightSection =
                 document.getElementById("flight-search-section");
@@ -25,39 +35,53 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!flightSection) {
 
                 console.error(
-                    "Flight search section not found"
+                    "flight-search-section not found"
                 );
 
                 return;
 
             }
 
-            flightSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
+            const top =
+                flightSection.getBoundingClientRect().top +
+                window.pageYOffset -
+                30;
+
+            window.scrollTo({
+                top: top,
+                behavior: "smooth"
             });
 
-        });
+        };
+
+    } else {
+
+        console.error(
+            "find-flights button not found"
+        );
 
     }
 
-});
 
-
-// ==========================================
-// FLIGHT SEARCH BUTTON
-// ==========================================
-
-document.addEventListener("DOMContentLoaded", function () {
+    // ==========================================
+    // SEARCH FLIGHTS BUTTON
+    // ==========================================
 
     const searchFlightsButton =
         document.getElementById("search-flights-button");
 
     if (!searchFlightsButton) {
+
+        console.error(
+            "search-flights-button not found"
+        );
+
         return;
+
     }
 
-    searchFlightsButton.addEventListener("click", function () {
+
+    searchFlightsButton.onclick = function () {
 
         const from =
             document.getElementById("flight-from").value;
@@ -87,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!message) {
 
             console.error(
-                "Flight search message element not found"
+                "flight-search-message not found"
             );
 
             return;
@@ -139,7 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         message.innerHTML =
-
             "✈️ Flight search ready" +
             "<br>" +
             from + " → " + to +
@@ -165,6 +188,24 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         );
 
-    });
+    };
 
-});
+}
+
+
+// ==========================================
+// START
+// ==========================================
+
+if (document.readyState === "loading") {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initialiseFlights
+    );
+
+} else {
+
+    initialiseFlights();
+
+}

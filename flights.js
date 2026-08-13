@@ -900,3 +900,172 @@ const flightAirportCoordinates = {
     PNH: [11.5466, 104.8441]
 
 };
+
+// ==========================================
+// CREATE FLIGHT PATH MAP
+// ==========================================
+
+function createFlightPathMap(
+    containerId,
+    flight
+) {
+
+    if (
+        typeof L === "undefined"
+    ) {
+
+        console.error(
+            "Leaflet has not loaded."
+        );
+
+        return;
+
+    }
+
+
+    const segments =
+        Array.isArray(flight.flights)
+            ? flight.flights
+            : [];
+
+
+    if (!segments.length) {
+        return;
+    }
+
+
+    const airportIds = [];
+
+
+    segments.forEach(
+        function (segment) {
+
+            const departure =
+                segment.departure_airport?.id;
+
+            const arrival =
+                segment.arrival_airport?.id;
+
+
+            if (
+                departure &&
+                !airportIds.includes(
+                    departure
+                )
+            ) {
+
+                airportIds.push(
+                    departure
+                );
+
+            }
+
+
+            if (
+                arrival &&
+                !airportIds.includes(
+                    arrival
+                )
+            ) {
+
+                airportIds.push(
+                    arrival
+                );
+
+            }
+
+        }
+    );
+
+
+    const coordinates =
+        airportIds
+            .map(
+                function (airport) {
+
+                    return flightAirportCoordinates[
+                        airport
+                    ];
+
+                }
+            )
+            .filter(Boolean);
+
+
+    if (
+        coordinates.length < 2
+    ) {
+
+        console.warn(
+            "Not enough airport coordinates for map."
+        );
+
+        return;
+
+    }
+
+
+    const map =
+        L.map(
+            containerId,
+            {
+                scrollWheelZoom: false
+            }
+        );
+
+
+    L.tileLayer(
+        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            attribution:
+                '&copy; OpenStreetMap contributors'
+        }
+    ).addTo(map);
+
+
+    const route =
+        L.polyline(
+            coordinates,
+            {
+                weight: 4,
+                opacity: 0.8
+            }
+        ).addTo(map);
+
+
+    airportIds.forEach(
+        function (airport, index) {
+
+            const coords =
+                flightAirportCoordinates[
+                    airport
+                ];
+
+
+            if (!coords) {
+                return;
+            }
+
+
+            L.marker(
+                coords
+            )
+                .addTo(map)
+                .bindPopup(
+                    "<strong>" +
+                    airport +
+                    "</strong>"
+                );
+
+        }
+    );
+
+
+    map.fitBounds(
+        route.getBounds(),
+        {
+            padding: [25, 25]
+        }
+    );
+
+}

@@ -330,7 +330,7 @@ function displayFlightResults(
     results,
     search,
     adults,
-    children
+    children,
     googleFlightsUrl
 ) {
 

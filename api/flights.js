@@ -84,10 +84,19 @@ const classValue =
             return_date
         );
 
-        params.set(
-            "travel_class",
-            travel_class || "1"
-        );
+        const classMap = {
+    ECONOMY: "1",
+    PREMIUM_ECONOMY: "2",
+    BUSINESS: "3"
+};
+
+const classValue =
+    classMap[travel_class] || "1";
+
+params.set(
+    "travel_class",
+    classValue
+);
 
         params.set(
             "currency",

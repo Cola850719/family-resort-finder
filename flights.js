@@ -882,17 +882,16 @@ function displayFlightResults(
             : ""
     }
 
-    <a
-        href="${escapeHtml(
-    currentGoogleFlightsUrl || ""
-)}"
-        
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flight-view-button"
-    >
-        View Flight ↗
-    </a>
+   <a
+    href="${escapeHtml(
+        googleFlightsUrl || "#"
+    )}"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="flight-view-button"
+>
+    View Flight ↗
+</a>
 
 </div>
 

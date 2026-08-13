@@ -2498,3 +2498,32 @@ button {
 
     text-align: center;
 }
+
+/* ==========================================
+   FLIGHT SORT CONTROLS
+========================================== */
+
+.flight-sort-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 auto 20px;
+}
+
+.flight-sort-button {
+    padding: 10px 16px;
+    border: 1px solid #d7dce2;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #222 !important;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.flight-sort-button.active {
+    background: #1d4ed8;
+    color: #ffffff !important;
+    border-color: #1d4ed8;
+}

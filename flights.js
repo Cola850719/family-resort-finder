@@ -5,6 +5,8 @@
 const FLIGHTS_API_URL =
     "https://family-resort-finder.vercel.app/api/flights";
 
+const flightMaps = {};
+
 let currentFlightResults = [];
 
 let currentFlightSearch = null;
@@ -936,10 +938,6 @@ const flightAirportCoordinates = {
 // CREATE FLIGHT PATH MAP
 // ==========================================
 
-// ==========================================
-// CREATE FLIGHT PATH MAP
-// ==========================================
-
 function createFlightPathMap(
     containerId,
     flight
@@ -961,29 +959,59 @@ function createFlightPathMap(
         );
 
     if (!container) {
+
+        console.error(
+            "Map container not found:",
+            containerId
+        );
+
         return;
     }
 
 
-    // If this container already has a Leaflet map,
-    // remove it before creating a fresh one.
-    if (container._leaflet_id) {
+    // ------------------------------------------
+    // Remove an existing Leaflet map
+    // ------------------------------------------
 
-        container._leaflet_id = null;
+    if (flightMaps[containerId]) {
+
+        flightMaps[containerId].remove();
+
+        delete flightMaps[containerId];
 
     }
 
 
+    // Clear the container completely
+
+    container.innerHTML = "";
+
+
+    // ------------------------------------------
+    // Get flight segments
+    // ------------------------------------------
+
     const segments =
-        Array.isArray(flight.flights)
+        Array.isArray(
+            flight.flights
+        )
             ? flight.flights
             : [];
 
 
     if (!segments.length) {
+
+        console.error(
+            "No flight segments found."
+        );
+
         return;
     }
 
+
+    // ------------------------------------------
+    // Build airport list
+    // ------------------------------------------
 
     const airportIds = [];
 
@@ -1029,24 +1057,32 @@ function createFlightPathMap(
     );
 
 
+    // ------------------------------------------
+    // Convert airports to coordinates
+    // ------------------------------------------
+
     const coordinates =
         airportIds
             .map(
                 function (airport) {
 
-                    return flightAirportCoordinates[
-                        airport
-                    ];
+                    return (
+                        flightAirportCoordinates[
+                            airport
+                        ]
+                    );
 
                 }
             )
             .filter(Boolean);
 
 
-    if (coordinates.length < 2) {
+    if (
+        coordinates.length < 2
+    ) {
 
-        console.warn(
-            "Not enough airport coordinates for map:",
+        console.error(
+            "Not enough airport coordinates:",
             airportIds
         );
 
@@ -1054,23 +1090,39 @@ function createFlightPathMap(
     }
 
 
+    // ------------------------------------------
+    // Create Leaflet map
+    // ------------------------------------------
+
     const map =
         L.map(
-            containerId,
+            container,
             {
                 scrollWheelZoom: false
             }
         );
 
 
+    flightMaps[containerId] =
+        map;
+
+
+    // ------------------------------------------
+    // Map tiles
+    // ------------------------------------------
+
     L.tileLayer(
         "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
         {
             attribution:
-                '&copy; OpenStreetMap contributors'
+                "&copy; OpenStreetMap contributors"
         }
     ).addTo(map);
 
+
+    // ------------------------------------------
+    // Draw route
+    // ------------------------------------------
 
     const route =
         L.polyline(
@@ -1081,6 +1133,10 @@ function createFlightPathMap(
             }
         ).addTo(map);
 
+
+    // ------------------------------------------
+    // Add airport markers
+    // ------------------------------------------
 
     airportIds.forEach(
         function (airport) {
@@ -1110,98 +1166,33 @@ function createFlightPathMap(
     );
 
 
+    // ------------------------------------------
+    // Fit map to route
+    // ------------------------------------------
+
     map.fitBounds(
         route.getBounds(),
         {
-            padding: [25, 25]
+            padding: [30, 30]
         }
     );
 
 
-    // Leaflet sometimes needs this after an
-    // initially hidden container becomes visible.
+    // ------------------------------------------
+    // Fix hidden-container sizing
+    // ------------------------------------------
+
     setTimeout(
         function () {
 
             map.invalidateSize();
 
         },
-        100
+        150
     );
 
 }
 
-// ==========================================
-// FLIGHT MAP BUTTONS
-// ==========================================
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const button =
-            event.target.closest(
-                ".flight-map-toggle"
-            );
-
-
-        if (!button) {
-            return;
-        }
-
-
-        const index =
-            Number(
-                button.dataset.flightIndex
-            );
-
-
-        const mapContainer =
-            document.getElementById(
-                "flight-map-" + index
-            );
-
-
-        if (!mapContainer) {
-            return;
-        }
-
-
-        if (
-            mapContainer.style.display ===
-            "block"
-        ) {
-
-            mapContainer.style.display =
-                "none";
-
-            button.textContent =
-                "🗺 Show Flight Path";
-
-            return;
-
-        }
-
-
-        mapContainer.style.display =
-            "block";
-
-
-        button.textContent =
-            "🗺 Hide Flight Path";
-
-
-        const flight =
-            currentFlightResults[index];
-
-
-        createFlightPathMap(
-            mapContainer.id,
-            flight
-        );
-
-    }
-);
 
 // ==========================================
 // FLIGHT MAP BUTTON
@@ -1216,28 +1207,72 @@ document.addEventListener(
                 ".flight-map-toggle"
             );
 
+
         if (!button) {
             return;
         }
+
 
         const index =
             Number(
                 button.dataset.flightIndex
             );
 
+
         const mapContainer =
             document.getElementById(
                 "flight-map-" + index
             );
 
+
         if (!mapContainer) {
+
+            console.error(
+                "Flight map container not found."
+            );
+
             return;
+
         }
 
-        if (
+
+        const flight =
+            currentFlightResults[index];
+
+
+        if (!flight) {
+
+            console.error(
+                "Flight result not found:",
+                index
+            );
+
+            return;
+
+        }
+
+
+        const isHidden =
             mapContainer.style.display ===
-            "block"
-        ) {
+            "none";
+
+
+        if (isHidden) {
+
+            mapContainer.style.display =
+                "block";
+
+            button.textContent =
+                "🗺 Hide Flight Path";
+
+
+            createFlightPathMap(
+                mapContainer.id,
+                flight
+            );
+
+
+        } else {
 
             mapContainer.style.display =
                 "none";
@@ -1245,27 +1280,7 @@ document.addEventListener(
             button.textContent =
                 "🗺 Show Flight Path";
 
-            return;
-
         }
-
-        mapContainer.style.display =
-            "block";
-
-        button.textContent =
-            "🗺 Hide Flight Path";
-
-        const flight =
-            currentFlightResults[index];
-
-        if (!flight) {
-            return;
-        }
-
-        createFlightPathMap(
-            mapContainer.id,
-            flight
-        );
 
     }
 );

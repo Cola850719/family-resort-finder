@@ -679,33 +679,39 @@ document.getElementById("find-resort").onclick = function(){
 
 };
 
-document.getElementById("find-resort").onclick = function(){
 
-    document.getElementById("finder-modal").style.display = "block";
-
-};
+// FIND FLIGHTS
 
 document.getElementById("find-flights").onclick = function(){
 
-const flightSection =
-    document.getElementById("flight-search-section");
+    const flightSection =
+        document.getElementById("flight-search-section");
 
-console.log("FIND FLIGHTS CLICKED", flightSection);
+    console.log("FIND FLIGHTS CLICKED", flightSection);
 
-console.log(
-    "SCROLL PARENT:",
-    flightSection.parentElement
-);
+    if (!flightSection) {
 
-console.log(
-    "WINDOW SCROLL HEIGHT:",
-    document.documentElement.scrollHeight
-);
+        console.error("flight-search-section not found");
+        return;
 
-console.log(
-    "WINDOW INNER HEIGHT:",
-    window.innerHeight
-);
+    }
+
+    const top =
+        flightSection.getBoundingClientRect().top +
+        window.pageYOffset -
+        30;
+
+    window.scrollTo({
+        top: top,
+        behavior: "smooth"
+    });
+
+};
+
+
+// RECOMMENDATION ENGINE
+
+document.getElementById("recommend-button").onclick = function(){
 
 
 // RECOMMENDATION ENGINE

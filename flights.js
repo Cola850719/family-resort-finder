@@ -254,7 +254,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             searchFlightsButton.disabled =
                 false;
-
-        }
+    }
 
     };
+
+});

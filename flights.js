@@ -886,8 +886,8 @@ function displayFlightResults(
 
    <a
     href="${escapeHtml(
-        googleFlightsUrl || "#"
-    )}"
+    currentGoogleFlightsUrl || "#"
+)}"
     target="_blank"
     rel="noopener noreferrer"
     class="flight-view-button"

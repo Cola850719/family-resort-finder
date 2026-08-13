@@ -5,6 +5,14 @@
 const FLIGHTS_API_URL =
     "https://family-resort-finder.vercel.app/api/flights";
 
+let currentFlightResults = [];
+
+let currentFlightSearch = null;
+
+let currentFlightAdults = 0;
+
+let currentFlightChildren = 0;
+
 console.log("Flights JS loaded");
 
 document.addEventListener("DOMContentLoaded", function () {

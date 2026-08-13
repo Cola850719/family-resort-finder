@@ -270,7 +270,18 @@ console.log(
                 return;
             }
 
+currentFlightResults =
+    data.results;
 
+currentFlightSearch =
+    data.search;
+
+currentFlightAdults =
+    adults;
+
+currentFlightChildren =
+    children;
+            
             displayFlightResults(
                 data.results,
                 data.search,

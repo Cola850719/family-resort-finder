@@ -289,8 +289,10 @@ currentFlightChildren =
 currentFlightSort =
     "best";
 
-            currentGoogleFlightsUrl =
-    data.google_flights_url || "";
+            console.log(
+    "GOOGLE FLIGHTS URL:",
+    currentGoogleFlightsUrl
+);
             
             displayFlightResults(
                 data.results,

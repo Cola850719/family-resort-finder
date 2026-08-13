@@ -2363,3 +2363,96 @@ button {
 .flight-card-footer {
     color: #555;
 }
+
+/* ==========================================
+   FORCE FLIGHT RESULT TEXT VISIBILITY
+========================================== */
+
+#flight-results,
+#flight-results * {
+    color: #222 !important;
+    opacity: 1 !important;
+}
+
+#flight-results {
+    background: transparent;
+}
+
+#flight-results .flight-results-header h2,
+#flight-results .flight-results-header p {
+    color: #222 !important;
+}
+
+#flight-results .flight-results-summary > div {
+    color: #222 !important;
+    background: #f5f7fa !important;
+}
+
+#flight-results .flight-results-summary strong,
+#flight-results .flight-results-summary span {
+    color: #222 !important;
+}
+
+#flight-results .flight-result-card {
+    background: #ffffff !important;
+    color: #222 !important;
+}
+
+#flight-results .flight-result-card strong {
+    color: #111 !important;
+}
+
+#flight-results .flight-result-card span,
+#flight-results .flight-result-card small {
+    color: #333 !important;
+}
+
+#flight-results .flight-airline strong {
+    color: #111 !important;
+}
+
+#flight-results .flight-airline small {
+    color: #555 !important;
+}
+
+#flight-results .flight-price strong {
+    color: #111 !important;
+    font-size: 25px;
+}
+
+#flight-results .flight-price span {
+    color: #555 !important;
+}
+
+#flight-results .flight-time strong {
+    color: #111 !important;
+    font-size: 24px;
+}
+
+#flight-results .flight-time span {
+    color: #333 !important;
+}
+
+#flight-results .flight-route-middle span {
+    color: #555 !important;
+}
+
+#flight-results .flight-layover,
+#flight-results .flight-direct {
+    color: #333 !important;
+    background: #f5f7fa !important;
+}
+
+#flight-results .flight-card-footer {
+    color: #555 !important;
+    border-top-color: #ddd !important;
+}
+
+
+/* Keep airline logos visible */
+
+#flight-results .flight-airline-logo {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}

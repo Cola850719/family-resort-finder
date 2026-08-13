@@ -936,20 +936,40 @@ const flightAirportCoordinates = {
 // CREATE FLIGHT PATH MAP
 // ==========================================
 
+// ==========================================
+// CREATE FLIGHT PATH MAP
+// ==========================================
+
 function createFlightPathMap(
     containerId,
     flight
 ) {
 
-    if (
-        typeof L === "undefined"
-    ) {
+    if (typeof L === "undefined") {
 
         console.error(
             "Leaflet has not loaded."
         );
 
         return;
+    }
+
+
+    const container =
+        document.getElementById(
+            containerId
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    // If this container already has a Leaflet map,
+    // remove it before creating a fresh one.
+    if (container._leaflet_id) {
+
+        container._leaflet_id = null;
 
     }
 
@@ -1023,16 +1043,14 @@ function createFlightPathMap(
             .filter(Boolean);
 
 
-    if (
-        coordinates.length < 2
-    ) {
+    if (coordinates.length < 2) {
 
         console.warn(
-            "Not enough airport coordinates for map."
+            "Not enough airport coordinates for map:",
+            airportIds
         );
 
         return;
-
     }
 
 
@@ -1065,7 +1083,7 @@ function createFlightPathMap(
 
 
     airportIds.forEach(
-        function (airport, index) {
+        function (airport) {
 
             const coords =
                 flightAirportCoordinates[
@@ -1097,6 +1115,18 @@ function createFlightPathMap(
         {
             padding: [25, 25]
         }
+    );
+
+
+    // Leaflet sometimes needs this after an
+    // initially hidden container becomes visible.
+    setTimeout(
+        function () {
+
+            map.invalidateSize();
+
+        },
+        100
     );
 
 }

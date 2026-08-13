@@ -244,6 +244,21 @@ console.log(
 
                 removeFlightResults();
 
+                function removeFlightResults() {
+
+    const existing =
+        document.getElementById(
+            "flight-results"
+        );
+
+    if (existing) {
+
+        existing.remove();
+
+    }
+
+}
+
                 return;
             }
 
@@ -741,5 +756,117 @@ function createFlightCard(
         </div>
 
     `;
+
+}
+// ==========================================
+// FLIGHT HELPER FUNCTIONS
+// ==========================================
+
+function formatDate(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    const date =
+        new Date(
+            value + "T00:00:00"
+        );
+
+    return date.toLocaleDateString(
+        "en-AU",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+function formatTime(value) {
+
+    if (!value) {
+        return "";
+    }
+
+    const date =
+        new Date(
+            value.replace(
+                " ",
+                "T"
+            )
+        );
+
+    return date.toLocaleTimeString(
+        "en-AU",
+        {
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+}
+
+
+function formatDuration(minutes) {
+
+    if (
+        typeof minutes !== "number" ||
+        !minutes
+    ) {
+        return "";
+    }
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+    const mins =
+        minutes % 60;
+
+    if (mins === 0) {
+
+        return hours + "h";
+
+    }
+
+    return (
+        hours +
+        "h " +
+        mins +
+        "m"
+    );
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(
+        value || ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }

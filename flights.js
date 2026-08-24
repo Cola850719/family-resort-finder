@@ -586,14 +586,12 @@ function displayFlightResults(
     // SORT RESULTS
     // ==========================================
 
-    const sorted =
-        [...results].sort(
-            function (a, b) {
 
-                return (
-                    Number(a.price || 999999) -
-                    Number(b.price || 999999)
-                );
+const sorted =
+    sortFlightResults(
+        results,
+        currentFlightSort
+    );
 
             }
         );

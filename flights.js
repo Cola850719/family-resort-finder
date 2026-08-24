@@ -1443,6 +1443,10 @@ document.addEventListener(
 let currentFlightSort = "best";
 
 
+// ==========================================
+// ADD SORT CONTROLS
+// ==========================================
+
 function addFlightSortControls() {
 
     const resultsContainer =
@@ -1523,51 +1527,6 @@ function addFlightSortControls() {
 
         </div>
 
-
-        <div class="flight-filter-group">
-
-            <span class="flight-filter-label">
-                Stops:
-            </span>
-
-            <button
-                type="button"
-                class="flight-stop-button ${
-                    currentFlightStopFilter === "all"
-                        ? "active"
-                        : ""
-                }"
-                data-stops="all"
-            >
-                All
-            </button>
-
-            <button
-                type="button"
-                class="flight-stop-button ${
-                    currentFlightStopFilter === "direct"
-                        ? "active"
-                        : ""
-                }"
-                data-stops="direct"
-            >
-                ✈️ Direct
-            </button>
-
-            <button
-                type="button"
-                class="flight-stop-button ${
-                    currentFlightStopFilter === "1"
-                        ? "active"
-                        : ""
-                }"
-                data-stops="1"
-            >
-                1 Stop
-            </button>
-
-        </div>
-
     `;
 
 
@@ -1580,7 +1539,7 @@ function addFlightSortControls() {
 
 
 // ==========================================
-// SORT BUTTON CLICK HANDLER
+// SORT BUTTON CLICK
 // ==========================================
 
 document.addEventListener(
@@ -1623,117 +1582,6 @@ document.addEventListener(
 
 
 // ==========================================
-// STOP FILTER CLICK HANDLER
-// ==========================================
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const button =
-            event.target.closest(
-                ".flight-stop-button"
-            );
-
-        if (!button) {
-            return;
-        }
-
-
-        currentFlightStopFilter =
-            button.dataset.stops;
-
-
-        console.log(
-            "Flight stop filter:",
-            currentFlightStopFilter
-        );
-
-
-        displayFlightResults(
-            currentFlightResults,
-            currentFlightSearch,
-            currentFlightAdults,
-            currentFlightChildren,
-            currentGoogleFlightsUrl
-        );
-
-
-        addFlightSortControls();
-
-    }
-);
-
-
-    // ==========================================
-    // SORT BUTTONS
-    // ==========================================
-
-    controls
-        .querySelectorAll(
-            ".flight-sort-button"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        currentFlightSort =
-                            this.dataset.sort;
-
-                        addFlightSortControls();
-
-                        displayFlightResults(
-                            currentFlightResults,
-                            currentFlightSearch,
-                            currentFlightAdults,
-                            currentFlightChildren,
-                            currentFlightSearch.google_flights_url
-                        );
-
-                        addFlightSortControls();
-
-                    }
-                );
-
-            }
-        );
-
-
-    // ==========================================
-    // STOP FILTERS
-    // ==========================================
-
-    controls
-        .querySelectorAll(
-            ".flight-stop-button"
-        )
-        .forEach(
-            button => {
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        const stopType =
-                            this.dataset.stops;
-
-                        filterFlightResults(
-                            stopType
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-}
-
-
-// ==========================================
 // SORT FLIGHT RESULTS
 // ==========================================
 
@@ -1746,13 +1594,8 @@ function sortFlightResults(
         [...results];
 
 
-    // --------------------------------------
-    // CHEAPEST
-    // --------------------------------------
-
     if (
-        sortType ===
-        "cheapest"
+        sortType === "cheapest"
     ) {
 
         sorted.sort(
@@ -1770,17 +1613,11 @@ function sortFlightResults(
             }
         );
 
-        return sorted;
     }
 
 
-    // --------------------------------------
-    // FASTEST
-    // --------------------------------------
-
-    if (
-        sortType ===
-        "fastest"
+    else if (
+        sortType === "fastest"
     ) {
 
         sorted.sort(
@@ -1800,144 +1637,49 @@ function sortFlightResults(
             }
         );
 
-        return sorted;
     }
 
 
-    // --------------------------------------
-    // BEST VALUE
-    // --------------------------------------
+    else {
 
-    sorted.sort(
-        function (a, b) {
+        // BEST VALUE
 
-            const priceA =
-                Number(
-                    a.price ||
-                    999999
+        sorted.sort(
+            function (a, b) {
+
+                const aScore =
+                    Number(
+                        a.price ||
+                        999999
+                    ) +
+                    Number(
+                        a.total_duration ||
+                        999999
+                    ) * 2;
+
+
+                const bScore =
+                    Number(
+                        b.price ||
+                        999999
+                    ) +
+                    Number(
+                        b.total_duration ||
+                        999999
+                    ) * 2;
+
+
+                return (
+                    aScore -
+                    bScore
                 );
 
-            const priceB =
-                Number(
-                    b.price ||
-                    999999
-                );
+            }
+        );
 
-
-            const durationA =
-                Number(
-                    a.total_duration ||
-                    999999
-                );
-
-            const durationB =
-                Number(
-                    b.total_duration ||
-                    999999
-                );
-
-
-            const stopsA =
-                Math.max(
-                    (
-                        a.flights?.length ||
-                        1
-                    ) - 1,
-                    0
-                );
-
-
-            const stopsB =
-                Math.max(
-                    (
-                        b.flights?.length ||
-                        1
-                    ) - 1,
-                    0
-                );
-
-
-            // Lower score = better
-
-            const scoreA =
-                priceA +
-                (
-                    durationA * 0.35
-                ) +
-                (
-                    stopsA * 120
-                );
-
-
-            const scoreB =
-                priceB +
-                (
-                    durationB * 0.35
-                ) +
-                (
-                    stopsB * 120
-                );
-
-
-            return (
-                scoreA - scoreB
-            );
-
-        }
-    );
+    }
 
 
     return sorted;
 
 }
-
-
-// ==========================================
-// SORT BUTTON CLICK
-// ==========================================
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const button =
-            event.target.closest(
-                ".flight-sort-button"
-            );
-
-
-        if (!button) {
-            return;
-        }
-
-
-        if (
-            !currentFlightResults ||
-            !currentFlightResults.length
-        ) {
-
-            return;
-        }
-
-
-        currentFlightSort =
-            button.dataset.sort;
-
-
-        currentFlightResults =
-            sortFlightResults(
-                currentFlightResults,
-                currentFlightSort
-            );
-
-
-        displayFlightResults(
-            currentFlightResults,
-            currentFlightSearch,
-            currentFlightAdults,
-            currentFlightChildren
-        );
-
-
-        addFlightSortControls();
-

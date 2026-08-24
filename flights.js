@@ -832,23 +832,51 @@ function displayFlightResults(
                         ${
                             stops > 0
                                 ? `
-                                    <div class="flight-layover">
+<div class="flight-layover">
 
-                                        🔄
-                                        ${stops}
-                                        ${stops === 1 ? "stop" : "stops"}
+    🔄
+    ${stops}
+    ${stops === 1 ? "stop" : "stops"}
 
-                                        ${
-                                            flight.layovers &&
-                                            flight.layovers[0]
-                                                ? "via " +
-                                                  escapeHtml(
-                                                      flight.layovers[0].id
-                                                  )
-                                                : ""
-                                        }
+    ${
+        flight.layovers &&
+        flight.layovers[0]
+            ? "via " +
+              escapeHtml(
+                  flight.layovers[0].id
+              )
+            : ""
+    }
 
-                                    </div>
+    ${
+        flight.flights &&
+        flight.flights.some(
+            segment => segment.overnight
+        )
+            ? `
+                <span class="flight-overnight">
+                    🌙 Overnight
+                </span>
+              `
+            : ""
+    }
+
+    ${
+        flight.carbon_emissions &&
+        flight.carbon_emissions.this_flight
+            ? `
+                <span class="flight-carbon">
+                    🌱
+                    ${Math.round(
+                        flight.carbon_emissions.this_flight / 1000
+                    )}
+                    kg CO₂
+                </span>
+              `
+            : ""
+    }
+
+</div>
                                 `
                                 : `
                                     <div class="flight-direct">

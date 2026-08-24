@@ -979,7 +979,7 @@ function displayFlightResults(
 <button
     type="button"
     class="flight-map-toggle"
-    data-flight-index="${sorted.indexOf(flight)}"
+    data-flight-index="${currentFlightResults.indexOf(flight)}"
 >
     🗺 Show Flight Path
 </button>
@@ -1846,4 +1846,48 @@ document.addEventListener(
         addFlightSortControls();
 
     }
+    // ==========================================
+// FLIGHT SORT BUTTON CLICK HANDLER
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                ".flight-sort-button"
+            );
+
+        if (!button) {
+            return;
+        }
+
+        const sort =
+            button.dataset.sort;
+
+        if (!sort) {
+            return;
+        }
+
+        currentFlightSort =
+            sort;
+
+        console.log(
+            "Flight sort changed:",
+            currentFlightSort
+        );
+
+        displayFlightResults(
+            currentFlightResults,
+            currentFlightSearch,
+            currentFlightAdults,
+            currentFlightChildren,
+            currentGoogleFlightsUrl
+        );
+
+        addFlightSortControls();
+
+    }
+);
 );

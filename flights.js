@@ -593,9 +593,6 @@ const sorted =
         currentFlightSort
     );
 
-            }
-        );
-
 
     const cheapest =
         sorted[0];

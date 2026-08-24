@@ -302,7 +302,7 @@ addFlightSortControls();
 
         } catch (error) {
 
-            console.error(
+            console.error(            
                 "Flight search error:",
                 error
             );
@@ -1389,41 +1389,82 @@ function addFlightSortControls() {
 
     controls.innerHTML = `
 
-        <button
-            type="button"
-            class="flight-sort-button ${
-                currentFlightSort === "best"
-                    ? "active"
-                    : ""
-            }"
-            data-sort="best"
-        >
-            🏆 Best Value
-        </button>
+        <div class="flight-filter-group">
 
-        <button
-            type="button"
-            class="flight-sort-button ${
-                currentFlightSort === "cheapest"
-                    ? "active"
-                    : ""
-            }"
-            data-sort="cheapest"
-        >
-            💰 Cheapest
-        </button>
+            <span class="flight-filter-label">
+                Sort:
+            </span>
 
-        <button
-            type="button"
-            class="flight-sort-button ${
-                currentFlightSort === "fastest"
-                    ? "active"
-                    : ""
-            }"
-            data-sort="fastest"
-        >
-            ⚡ Fastest
-        </button>
+            <button
+                type="button"
+                class="flight-sort-button ${
+                    currentFlightSort === "best"
+                        ? "active"
+                        : ""
+                }"
+                data-sort="best"
+            >
+                🏆 Best Value
+            </button>
+
+            <button
+                type="button"
+                class="flight-sort-button ${
+                    currentFlightSort === "cheapest"
+                        ? "active"
+                        : ""
+                }"
+                data-sort="cheapest"
+            >
+                💰 Cheapest
+            </button>
+
+            <button
+                type="button"
+                class="flight-sort-button ${
+                    currentFlightSort === "fastest"
+                        ? "active"
+                        : ""
+                }"
+                data-sort="fastest"
+            >
+                ⚡ Fastest
+            </button>
+
+        </div>
+
+
+        <div class="flight-filter-group">
+
+            <span class="flight-filter-label">
+                Stops:
+            </span>
+
+            <button
+                type="button"
+                class="flight-stop-button active"
+                data-stops="all"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="flight-stop-button"
+                data-stops="direct"
+            >
+                ✈️ Direct
+            </button>
+
+            <button
+                type="button"
+                class="flight-stop-button"
+                data-stops="1"
+            >
+                1 Stop
+            </button>
+
+        </div>
 
     `;
 
@@ -1432,6 +1473,72 @@ function addFlightSortControls() {
         controls,
         resultsContainer.firstChild
     );
+
+
+    // ==========================================
+    // SORT BUTTONS
+    // ==========================================
+
+    controls
+        .querySelectorAll(
+            ".flight-sort-button"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        currentFlightSort =
+                            this.dataset.sort;
+
+                        addFlightSortControls();
+
+                        displayFlightResults(
+                            currentFlightResults,
+                            currentFlightSearch,
+                            currentFlightAdults,
+                            currentFlightChildren,
+                            currentFlightSearch.google_flights_url
+                        );
+
+                        addFlightSortControls();
+
+                    }
+                );
+
+            }
+        );
+
+
+    // ==========================================
+    // STOP FILTERS
+    // ==========================================
+
+    controls
+        .querySelectorAll(
+            ".flight-stop-button"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const stopType =
+                            this.dataset.stops;
+
+                        filterFlightResults(
+                            stopType
+                        );
+
+                    }
+                );
+
+            }
+        );
 
 }
 

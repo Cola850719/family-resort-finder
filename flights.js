@@ -1561,13 +1561,13 @@ document.addEventListener(
         );
 
 
-        displayFlightResults(
-            currentFlightResults,
-            currentFlightSearch,
-            currentFlightAdults,
-            currentFlightChildren,
-            currentGoogleFlightsUrl
-        );
+       displayFlightResults(
+    currentFlightResults,
+    currentFlightSearch,
+    currentFlightAdults,
+    currentFlightChildren,
+    currentFlightSearch.google_flights_url
+);
 
 
         addFlightSortControls();

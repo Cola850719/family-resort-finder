@@ -744,19 +744,30 @@ function displayFlightResults(
                             </div>
 
 
-                            <div class="flight-price">
+ <div class="flight-price">
 
-                                <strong>
-                                    $${price.toLocaleString("en-AU")}
-                                </strong>
+    <strong>
+        $${price.toLocaleString("en-AU")}
+    </strong>
 
-                                <span>
-                                    AUD
-                                </span>
+    <span>
+        AUD total
+    </span>
 
-                            </div>
+    ${
+        adults + children > 0
+            ? `
+                <small>
+                    ≈ $${Math.round(
+                        price / (adults + children)
+                    ).toLocaleString("en-AU")}
+                    per traveller
+                </small>
+              `
+            : ""
+    }
 
-                        </div>
+</div>
 
 
                         <div class="flight-route">

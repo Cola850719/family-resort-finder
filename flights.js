@@ -1440,8 +1440,9 @@ document.addEventListener(
 // FLIGHT SORT CONTROLS
 // ==========================================
 
-let currentFlightSort =
-    "best";
+let currentFlightSort = "best";
+
+let currentFlightStopFilter = "all";
 
 
 function addFlightSortControls() {
@@ -1533,18 +1534,23 @@ function addFlightSortControls() {
 
             <button
                 type="button"
- class="flight-stop-button ${
-    currentFlightStopFilter === "1"
-        ? "active"
-        : ""
-}"
+                class="flight-stop-button ${
+                    currentFlightStopFilter === "all"
+                        ? "active"
+                        : ""
+                }"
+                data-stops="all"
             >
                 All
             </button>
 
             <button
                 type="button"
-                class="flight-stop-button"
+                class="flight-stop-button ${
+                    currentFlightStopFilter === "direct"
+                        ? "active"
+                        : ""
+                }"
                 data-stops="direct"
             >
                 ✈️ Direct
@@ -1552,7 +1558,11 @@ function addFlightSortControls() {
 
             <button
                 type="button"
-                class="flight-stop-button"
+                class="flight-stop-button ${
+                    currentFlightStopFilter === "1"
+                        ? "active"
+                        : ""
+                }"
                 data-stops="1"
             >
                 1 Stop
@@ -1567,6 +1577,94 @@ function addFlightSortControls() {
         controls,
         resultsContainer.firstChild
     );
+
+}
+
+
+// ==========================================
+// SORT BUTTON CLICK HANDLER
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                ".flight-sort-button"
+            );
+
+        if (!button) {
+            return;
+        }
+
+
+        currentFlightSort =
+            button.dataset.sort;
+
+
+        console.log(
+            "Flight sort:",
+            currentFlightSort
+        );
+
+
+        displayFlightResults(
+            currentFlightResults,
+            currentFlightSearch,
+            currentFlightAdults,
+            currentFlightChildren,
+            currentGoogleFlightsUrl
+        );
+
+
+        addFlightSortControls();
+
+    }
+);
+
+
+// ==========================================
+// STOP FILTER CLICK HANDLER
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const button =
+            event.target.closest(
+                ".flight-stop-button"
+            );
+
+        if (!button) {
+            return;
+        }
+
+
+        currentFlightStopFilter =
+            button.dataset.stops;
+
+
+        console.log(
+            "Flight stop filter:",
+            currentFlightStopFilter
+        );
+
+
+        displayFlightResults(
+            currentFlightResults,
+            currentFlightSearch,
+            currentFlightAdults,
+            currentFlightChildren,
+            currentGoogleFlightsUrl
+        );
+
+
+        addFlightSortControls();
+
+    }
+);
 
 
     // ==========================================
@@ -1845,49 +1943,3 @@ document.addEventListener(
 
         addFlightSortControls();
 
-    }
-    // ==========================================
-// FLIGHT SORT BUTTON CLICK HANDLER
-// ==========================================
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const button =
-            event.target.closest(
-                ".flight-sort-button"
-            );
-
-        if (!button) {
-            return;
-        }
-
-        const sort =
-            button.dataset.sort;
-
-        if (!sort) {
-            return;
-        }
-
-        currentFlightSort =
-            sort;
-
-        console.log(
-            "Flight sort changed:",
-            currentFlightSort
-        );
-
-        displayFlightResults(
-            currentFlightResults,
-            currentFlightSearch,
-            currentFlightAdults,
-            currentFlightChildren,
-            currentGoogleFlightsUrl
-        );
-
-        addFlightSortControls();
-
-    }
-);
-);

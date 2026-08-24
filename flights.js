@@ -15,6 +15,8 @@ let currentFlightAdults = 0;
 
 let currentFlightChildren = 0;
 
+let currentFlightStopFilter = "all";
+
 console.log("Flights JS loaded");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -321,6 +323,95 @@ addFlightSortControls();
     };
 
 });
+
+// ==========================================
+// FILTER FLIGHT RESULTS BY STOPS
+// ==========================================
+
+function filterFlightResults(stopType) {
+
+    if (!currentFlightResults ||
+        currentFlightResults.length === 0) {
+        return;
+    }
+
+
+    let filteredResults =
+        currentFlightResults;
+
+
+    // ==========================================
+    // DIRECT FLIGHTS
+    // ==========================================
+
+    if (stopType === "direct") {
+
+        filteredResults =
+            currentFlightResults.filter(
+                flight =>
+                    !flight.layovers ||
+                    flight.layovers.length === 0
+            );
+
+    }
+
+
+    // ==========================================
+    // ONE STOP
+    // ==========================================
+
+    else if (stopType === "1") {
+
+        filteredResults =
+            currentFlightResults.filter(
+                flight =>
+                    flight.layovers &&
+                    flight.layovers.length === 1
+            );
+
+    }
+
+
+    // ==========================================
+    // ALL FLIGHTS
+    // ==========================================
+
+    else {
+
+        filteredResults =
+            currentFlightResults;
+
+    }
+
+
+    // ==========================================
+    // REMEMBER ACTIVE FILTER
+    // ==========================================
+
+    currentFlightStopFilter =
+        stopType;
+
+
+    // ==========================================
+    // DISPLAY RESULTS
+    // ==========================================
+
+    displayFlightResults(
+        filteredResults,
+        currentFlightSearch,
+        currentFlightAdults,
+        currentFlightChildren,
+        currentFlightSearch.google_flights_url
+    );
+
+
+    // ==========================================
+    // REBUILD CONTROLS
+    // ==========================================
+
+    addFlightSortControls();
+
+}
 
 // ==========================================
 // DISPLAY FLIGHT RESULTS
@@ -1442,8 +1533,11 @@ function addFlightSortControls() {
 
             <button
                 type="button"
-                class="flight-stop-button active"
-                data-stops="all"
+ class="flight-stop-button ${
+    currentFlightStopFilter === "1"
+        ? "active"
+        : ""
+}"
             >
                 All
             </button>

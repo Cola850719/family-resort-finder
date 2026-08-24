@@ -1442,87 +1442,110 @@ let currentFlightSort = "best";
 // ADD SORT CONTROLS
 // ==========================================
 
-function addFlightSortControls() {
+controls.innerHTML = `
 
-    const resultsContainer =
-        document.getElementById(
-            "flight-results"
-        );
+    <div class="flight-filter-group">
 
-    if (!resultsContainer) {
-        return;
-    }
+        <span class="flight-filter-label">
+            Sort:
+        </span>
+
+        <button
+            type="button"
+            class="flight-sort-button ${
+                currentFlightSort === "best"
+                    ? "active"
+                    : ""
+            }"
+            data-sort="best"
+        >
+            🏆 Best Value
+        </button>
+
+        <button
+            type="button"
+            class="flight-sort-button ${
+                currentFlightSort === "cheapest"
+                    ? "active"
+                    : ""
+            }"
+            data-sort="cheapest"
+        >
+            💰 Cheapest
+        </button>
+
+        <button
+            type="button"
+            class="flight-sort-button ${
+                currentFlightSort === "fastest"
+                    ? "active"
+                    : ""
+            }"
+            data-sort="fastest"
+        >
+            ⚡ Fastest
+        </button>
+
+    </div>
 
 
-    const oldControls =
-        document.getElementById(
-            "flight-sort-controls"
-        );
+    <div class="flight-filter-group">
 
-    if (oldControls) {
-        oldControls.remove();
-    }
+        <span class="flight-filter-label">
+            Stops:
+        </span>
 
+        <button
+            type="button"
+            class="flight-stop-button ${
+                currentFlightStopFilter === "all"
+                    ? "active"
+                    : ""
+            }"
+            data-stops="all"
+        >
+            All
+        </button>
 
-    const controls =
-        document.createElement(
-            "div"
-        );
+        <button
+            type="button"
+            class="flight-stop-button ${
+                currentFlightStopFilter === "direct"
+                    ? "active"
+                    : ""
+            }"
+            data-stops="direct"
+        >
+            ✈️ Direct
+        </button>
 
-    controls.id =
-        "flight-sort-controls";
+        <button
+            type="button"
+            class="flight-stop-button ${
+                currentFlightStopFilter === "1"
+                    ? "active"
+                    : ""
+            }"
+            data-stops="1"
+        >
+            1 Stop
+        </button>
 
-    controls.className =
-        "flight-sort-controls";
+        <button
+            type="button"
+            class="flight-stop-button ${
+                currentFlightStopFilter === "2plus"
+                    ? "active"
+                    : ""
+            }"
+            data-stops="2plus"
+        >
+            2+ Stops
+        </button>
 
+    </div>
 
-    controls.innerHTML = `
-
-        <div class="flight-filter-group">
-
-            <span class="flight-filter-label">
-                Sort:
-            </span>
-
-            <button
-                type="button"
-                class="flight-sort-button ${
-                    currentFlightSort === "best"
-                        ? "active"
-                        : ""
-                }"
-                data-sort="best"
-            >
-                🏆 Best Value
-            </button>
-
-            <button
-                type="button"
-                class="flight-sort-button ${
-                    currentFlightSort === "cheapest"
-                        ? "active"
-                        : ""
-                }"
-                data-sort="cheapest"
-            >
-                💰 Cheapest
-            </button>
-
-            <button
-                type="button"
-                class="flight-sort-button ${
-                    currentFlightSort === "fastest"
-                        ? "active"
-                        : ""
-                }"
-                data-sort="fastest"
-            >
-                ⚡ Fastest
-            </button>
-
-        </div>
-
-    `;
+`;
 
 
     resultsContainer.insertBefore(
@@ -1676,5 +1699,74 @@ function sortFlightResults(
 
 
     return sorted;
+
+}
+// ==========================================
+// FILTER FLIGHT RESULTS BY STOPS
+// ==========================================
+
+function filterFlightResults(
+    results,
+    stopFilter
+) {
+
+    if (
+        stopFilter === "all"
+    ) {
+
+        return [...results];
+
+    }
+
+
+    return results.filter(
+        function (flight) {
+
+            const segments =
+                Array.isArray(
+                    flight.flights
+                )
+                    ? flight.flights
+                    : [];
+
+
+            const stops =
+                Math.max(
+                    segments.length - 1,
+                    0
+                );
+
+
+            if (
+                stopFilter === "direct"
+            ) {
+
+                return stops === 0;
+
+            }
+
+
+            if (
+                stopFilter === "1"
+            ) {
+
+                return stops === 1;
+
+            }
+
+
+            if (
+                stopFilter === "2plus"
+            ) {
+
+                return stops >= 2;
+
+            }
+
+
+            return true;
+
+        }
+    );
 
 }

@@ -1442,8 +1442,6 @@ document.addEventListener(
 
 let currentFlightSort = "best";
 
-let currentFlightStopFilter = "all";
-
 
 function addFlightSortControls() {
 

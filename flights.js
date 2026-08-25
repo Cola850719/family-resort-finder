@@ -1700,6 +1700,7 @@ function sortFlightResults(
     return sorted;
 
 }
+
 // ==========================================
 // FILTER FLIGHT RESULTS BY STOPS
 // ==========================================

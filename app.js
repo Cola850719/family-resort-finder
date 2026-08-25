@@ -56,7 +56,7 @@ function displayResorts(resorts) {
         card.innerHTML = `
 
 
-        <img src="${resort.image}" alt="${resort.resort}">
+        <="${resort.image}" alt="${resort.resort}">
 
 
         <div class="resort-info">
@@ -1062,7 +1062,24 @@ function displayFavourites(){
 
 
     }
-    
+
+    document.addEventListener("click", function(e) {
+
+    const thumbnail = e.target.closest(".resort-thumbnail");
+
+    if (!thumbnail) return;
+
+    const gallery = thumbnail.closest(".resort-photo-gallery");
+
+    if (!gallery) return;
+
+    const mainImage = gallery.querySelector(".resort-main-image");
+
+    if (!mainImage) return;
+
+    mainImage.src = thumbnail.dataset.mainImage;
+
+});
      
 
 // SAVED HOLIDAYS
@@ -1102,7 +1119,35 @@ function displaySavedHolidays(){
 
 
 
-            <img src="${resort.image}" width="100%">
+            <div class="resort-photo-gallery">
+
+    <img
+        class="resort-main-image"
+        src="${resort.image}"
+        width="100%"
+        alt="${resort.resort}"
+    >
+
+    ${
+        resort.images && resort.images.length > 1
+        ? `
+            <div class="resort-thumbnail-row">
+
+                ${resort.images.slice(0, 4).map((photo, index) => `
+                    <img
+                        class="resort-thumbnail"
+                        src="${photo}"
+                        data-main-image="${photo}"
+                        alt="${resort.resort} photo ${index + 1}"
+                    >
+                `).join("")}
+
+            </div>
+        `
+        : ""
+    }
+
+</div>
 
 
 

@@ -808,7 +808,7 @@ const fastest =
                     "";
 
 
-                let badge = "";
+   let badge = "";
 
 if (
     cheapest &&
@@ -842,32 +842,7 @@ if (
             ⚡ FASTEST
         </span>`;
 
-} {
-
-                    badge =
-                        `<span class="flight-badge best">
-                            🏆 BEST VALUE
-                        </span>`;
-
-                } else if (
-                    flight === cheapest
-                ) {
-
-                    badge =
-                        `<span class="flight-badge cheapest">
-                            💰 CHEAPEST
-                        </span>`;
-
-                } else if (
-                    flight === fastest
-                ) {
-
-                    badge =
-                        `<span class="flight-badge fastest">
-                            ⚡ FASTEST
-                        </span>`;
-
-                }
+}
 
 
                 html += `

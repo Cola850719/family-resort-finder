@@ -810,9 +810,6 @@ const fastest =
 
                 let badge = "";
 
-
-               let badge = "";
-
 if (
     cheapest &&
     fastest &&

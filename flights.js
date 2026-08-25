@@ -595,20 +595,28 @@ const sorted =
 
 
     const cheapest =
-        sorted[0];
+    sorted.length > 0
+        ? sorted[0]
+        : null;
 
 
-    const fastest =
-        [...results].sort(
+const fastest =
+    sorted.length > 0
+        ? [...sorted].sort(
             function (a, b) {
 
                 return (
-                    Number(a.total_duration || 999999) -
-                    Number(b.total_duration || 999999)
+                    Number(
+                        a.total_duration || 999999
+                    ) -
+                    Number(
+                        b.total_duration || 999999
+                    )
                 );
 
             }
-        )[0];
+        )[0]
+        : null;
 
 
     // ==========================================
@@ -640,21 +648,30 @@ const sorted =
                 💰
                 <strong>Cheapest</strong>
                 <span>
-                    $${Number(
-                        cheapest.price || 0
-                    ).toLocaleString("en-AU")}
-                    AUD
-                </span>
+    ${
+        cheapest
+            ? "$" +
+              Number(
+                  cheapest.price || 0
+              ).toLocaleString("en-AU") +
+              " AUD"
+            : "No flights"
+    }
+</span>
             </div>
 
             <div>
                 ⚡
                 <strong>Fastest</strong>
                 <span>
-                    ${formatDuration(
-                        fastest.total_duration
-                    )}
-                </span>
+    ${
+        fastest
+            ? formatDuration(
+                fastest.total_duration
+            )
+            : "No flights"
+    }
+</span>
             </div>
 
         </div>

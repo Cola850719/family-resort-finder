@@ -593,6 +593,40 @@ const sorted =
         currentFlightSort
     );
 
+    if (!sorted.length) {
+
+    resultsContainer.innerHTML = `
+
+        <div class="flight-no-results">
+
+            <div style="font-size:40px;">
+                ✈️
+            </div>
+
+            <h3>
+                No flights found
+            </h3>
+
+            <p>
+                No flights match your selected
+                stop filter.
+            </p>
+
+            <button
+                type="button"
+                class="flight-stop-button"
+                data-stops="all"
+            >
+                Show All Flights
+            </button>
+
+        </div>
+
+    `;
+
+    return;
+}
+
 
     const cheapest =
     sorted.length > 0
@@ -777,10 +811,41 @@ const fastest =
                 let badge = "";
 
 
-                if (
-                    flight === cheapest &&
-                    flight === fastest
-                ) {
+               let badge = "";
+
+if (
+    cheapest &&
+    fastest &&
+    flight === cheapest &&
+    flight === fastest
+) {
+
+    badge =
+        `<span class="flight-badge best">
+            🏆 BEST VALUE
+        </span>`;
+
+} else if (
+    cheapest &&
+    flight === cheapest
+) {
+
+    badge =
+        `<span class="flight-badge cheapest">
+            💰 CHEAPEST
+        </span>`;
+
+} else if (
+    fastest &&
+    flight === fastest
+) {
+
+    badge =
+        `<span class="flight-badge fastest">
+            ⚡ FASTEST
+        </span>`;
+
+} {
 
                     badge =
                         `<span class="flight-badge best">

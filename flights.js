@@ -830,7 +830,7 @@ const sorted =
                             </div>
 
 
- <div class="flight-price">
+<div class="flight-price">
 
     <strong>
         $${price.toLocaleString("en-AU")}
@@ -855,8 +855,10 @@ const sorted =
 
 </div>
 
+</div>
 
-                        <div class="flight-route">
+
+<div class="flight-route">
 
                             <div class="flight-time">
 

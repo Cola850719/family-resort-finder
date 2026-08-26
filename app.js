@@ -56,7 +56,7 @@ function displayResorts(resorts) {
         card.innerHTML = `
 
 
-        <="${resort.image}" alt="${resort.resort}">
+        <img src="${resort.image}" alt="${resort.resort}">
 
 
         <div class="resort-info">

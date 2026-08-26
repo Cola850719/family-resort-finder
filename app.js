@@ -1119,7 +1119,7 @@ function displaySavedHolidays(){
 
 
 
-
+<img src="${resort.image}" width="100%">
 
 
 

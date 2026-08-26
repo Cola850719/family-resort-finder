@@ -1119,35 +1119,7 @@ function displaySavedHolidays(){
 
 
 
-            <div class="resort-photo-gallery">
 
-    <img
-        class="resort-main-image"
-        src="${resort.image}"
-        width="100%"
-        alt="${resort.resort}"
-    >
-
-    ${
-        resort.images && resort.images.length > 1
-        ? `
-            <div class="resort-thumbnail-row">
-
-                ${resort.images.slice(0, 4).map((photo, index) => `
-                    <img
-                        class="resort-thumbnail"
-                        src="${photo}"
-                        data-main-image="${photo}"
-                        alt="${resort.resort} photo ${index + 1}"
-                    >
-                `).join("")}
-
-            </div>
-        `
-        : ""
-    }
-
-</div>
 
 
 

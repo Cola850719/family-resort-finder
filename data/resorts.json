@@ -1648,6 +1648,7 @@
   "description": "A comfortable family resort close to Cambodia's famous temples."
 },
 {
+  "id": 103,
   "resort": "RIHGA Royal Hotel Tokyo",
   "country": "Japan",
   "city": "Tokyo",
@@ -1668,6 +1669,7 @@
   "description": "Elegant Tokyo hotel offering families a comfortable base for exploring the city's major attractions."
 },
 {
+  "id": 104,
   "resort": "The Royal Park Hotel Iconic Tokyo Shiodome",
   "country": "Japan",
   "city": "Tokyo",
@@ -1688,6 +1690,7 @@
   "description": "Modern Tokyo hotel with convenient access to major attractions, shopping and transport."
 },
 {
+  "id": 105,
   "resort": "RIHGA Royal Hotel Osaka",
   "country": "Japan",
   "city": "Osaka",
@@ -1708,6 +1711,7 @@
   "description": "Large full-service Osaka hotel providing a convenient base for family sightseeing and Universal Studios trips."
 },
 {
+  "id": 106,
   "resort": "The Royal Park Hotel Iconic Osaka Midosuji",
   "country": "Japan",
   "city": "Osaka",
@@ -1728,6 +1732,7 @@
   "description": "Modern hotel in central Osaka, well positioned for restaurants, shopping and family sightseeing."
 },
 {
+  "id": 107,
   "resort": "RIHGA Royal Hotel Kyoto",
   "country": "Japan",
   "city": "Kyoto",
@@ -1748,6 +1753,7 @@
   "description": "Family-friendly Kyoto hotel close to Kyoto Station and major cultural attractions."
 },
 {
+  "id": 108,
   "resort": "The Royal Park Hotel Kyoto Umekoji",
   "country": "Japan",
   "city": "Kyoto",
@@ -1768,6 +1774,7 @@
   "description": "Comfortable Kyoto hotel in the Umekoji area, particularly convenient for families visiting nearby attractions."
 },
 {
+  "id": 109,
   "resort": "Halekulani Okinawa",
   "country": "Japan",
   "city": "Okinawa",
@@ -1788,6 +1795,7 @@
   "description": "Luxury Okinawa beachfront resort with extensive facilities, ocean views and exceptional family holiday potential."
 },
 {
+  "id": 110,
   "resort": "Hotel Mahaina Wellness Resort Okinawa",
   "country": "Japan",
   "city": "Okinawa",
@@ -1808,6 +1816,7 @@
   "description": "Family-oriented Okinawa resort with spacious accommodation and convenient access to beaches and attractions."
 },
 {
+  "id": 111,
   "resort": "The Royal Park Hotel Fukuoka",
   "country": "Japan",
   "city": "Fukuoka",
@@ -1828,6 +1837,7 @@
   "description": "Central Fukuoka hotel offering families convenient access to Hakata Station, shopping and local attractions."
 },
 {
+  "id": 112,
   "resort": "THE BLOSSOM HAKATA Premier",
   "country": "Japan",
   "city": "Fukuoka",
@@ -1846,10 +1856,9 @@
   "flightTimeHours": 9,
   "familyHighlight": "Modern hotel in the heart of Hakata",
   "description": "Modern Hakata hotel combining convenient transport access with comfortable accommodation for families."
-}
-
-,
+},
 {
+  "id": 113,
   "resort": "Grand Hyatt Seoul",
   "country": "South Korea",
   "city": "Seoul",
@@ -1870,6 +1879,7 @@
   "description": "Luxury Seoul hotel with extensive leisure facilities and convenient access to the city's major family attractions."
 },
 {
+  "id": 114,
   "resort": "Four Seasons Hotel Seoul",
   "country": "South Korea",
   "city": "Seoul",
@@ -1890,6 +1900,7 @@
   "description": "Luxury Seoul hotel with family-focused programs, spacious accommodation and easy access to Seoul's cultural attractions."
 },
 {
+  "id": 115,
   "resort": "Paradise Hotel Busan",
   "country": "South Korea",
   "city": "Busan",
@@ -1910,6 +1921,7 @@
   "description": "Five-star beachfront Busan hotel with family-focused facilities, pools and direct access to Haeundae Beach."
 },
 {
+  "id": 116,
   "resort": "Park Hyatt Busan",
   "country": "South Korea",
   "city": "Busan",
@@ -1930,6 +1942,7 @@
   "description": "Luxury waterfront hotel in Marine City with impressive ocean views and convenient access to Haeundae."
 },
 {
+  "id": 117,
   "resort": "Grand Hyatt Jeju",
   "country": "South Korea",
   "city": "Jeju",
@@ -1950,6 +1963,7 @@
   "description": "Large luxury Jeju resort offering extensive leisure facilities and easy access to the island's attractions."
 },
 {
+  "id": 118,
   "resort": "The Shilla Jeju",
   "country": "South Korea",
   "city": "Jeju",
@@ -1970,6 +1984,7 @@
   "description": "Luxury Jeju resort in the Jungmun area combining landscaped grounds, pools and access to the coast."
 },
 {
+  "id": 119,
   "resort": "Grand Hyatt Incheon",
   "country": "South Korea",
   "city": "Incheon",
@@ -1990,6 +2005,7 @@
   "description": "Large family-friendly hotel close to Incheon Airport with extensive leisure facilities."
 },
 {
+  "id": 120,
   "resort": "Hyatt Regency Incheon Paradise City",
   "country": "South Korea",
   "city": "Incheon",
@@ -2010,6 +2026,7 @@
   "description": "Modern resort-style property on Yeongjong Island offering families convenient access to Incheon and Seoul."
 },
 {
+  "id": 121,
   "resort": "The-K Hotel Gyeongju",
   "country": "South Korea",
   "city": "Gyeongju",
@@ -2030,6 +2047,7 @@
   "description": "Family-friendly resort in the Bomun Tourist Complex, well positioned for exploring Gyeongju's historic sites."
 },
 {
+  "id": 122,
   "resort": "SONO Calm Gyeongju",
   "country": "South Korea",
   "city": "Gyeongju",

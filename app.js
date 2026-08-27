@@ -942,11 +942,6 @@ function displayVoting(){
 }
 
 
-    document.getElementById("favourites-modal").style.display = "block";
-
-
-};
-
 
 // ==========================================
 // DISPLAY FAVOURITES

@@ -1,6 +1,7 @@
 [
 
 {
+  "id": 101,
   "resort": "Grand Hyatt Bali",
   "country": "Indonesia",
   "city": "Bali",
@@ -21,6 +22,7 @@
   "description": "Luxury Bali resort with multiple pools, gardens and family activities."
 },
  {
+  "id": 102,
   "resort": "Sokha Siem Reap Resort",
   "country": "Cambodia",
   "city": "Siem Reap",
@@ -41,6 +43,7 @@
   "description": "A comfortable family resort close to Cambodia's famous temples."
 },
 {
+  "id": 103,
   "resort": "Shangri-La Boracay",
   "country": "Philippines",
   "city": "Boracay",

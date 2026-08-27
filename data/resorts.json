@@ -1019,7 +1019,7 @@
     "allInclusive": "Yes",
     "description": "A family-friendly resort option in Nusa Dua, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting activities and an all-inclusive-style holiday",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Club%20Med%20Bali"
+    "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 52,
@@ -1035,7 +1035,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Nusa Dua, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Renaissance%20Bali%20Nusa%20Dua%20Resort"
+    "image": "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 53,
@@ -1051,7 +1051,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Sanur, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families looking for a premium beachfront escape",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Andaz%20Bali"
+    "image": "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 54,
@@ -1067,7 +1067,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Sanur, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Hyatt%20Regency%20Bali"
+    "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 55,
@@ -1083,7 +1083,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Jimbaran, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=M%C3%B6venpick%20Resort%20%26%20Spa%20Jimbaran%20Bali"
+    "image": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 56,
@@ -1099,7 +1099,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Jimbaran, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families looking for a premium beachfront escape",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=RIMBA%20by%20AYANA%20Bali"
+    "image": "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 57,
@@ -1115,7 +1115,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Jimbaran, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families looking for a premium beachfront escape",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=AYANA%20Resort%20Bali"
+    "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 58,
@@ -1131,7 +1131,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Ubud, Bali, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families interested in culture, nature and a quieter resort stay",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=The%20Westin%20Resort%20%26%20Spa%20Ubud%2C%20Bali"
+    "image": "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 59,
@@ -1147,7 +1147,7 @@
     "allInclusive": "No",
     "description": "A family-friendly resort option in Lombok, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Hotel%20Tugu%20Lombok"
+    "image": "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 60,
@@ -1163,7 +1163,7 @@
     "allInclusive": "Yes",
     "description": "A family-friendly resort option in Bintan Island, Indonesia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
     "bestFor": "Families wanting activities and an all-inclusive-style holiday",
-    "image": "https://placehold.co/800x500/dc2626/ffffff?text=Club%20Med%20Bintan%20Island"
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
   },
   {
     "id": 61,

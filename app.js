@@ -1038,76 +1038,113 @@ function displaySavedHolidays(){
             "saved-holidays-list"
         );
 
-    // ...the rest of Step 7D...
-}
+    if(!container){
+        return;
+    }
 
-    list.innerHTML = favourites.map(resort => `
+    const savedHolidays =
+        JSON.parse(
+            localStorage.getItem("savedHolidays")
+        ) || [];
 
+    if(savedHolidays.length === 0){
 
+        container.innerHTML =
+            "<p>No saved holidays yet.</p>";
 
-        <div class="recommend-card">
+        return;
+    }
 
+    container.innerHTML =
+        savedHolidays.map(holiday => `
 
+        <div class="saved-holiday-card">
 
-<img src="${resort.image}" width="100%">
+            <img
+                src="${holiday.image}"
+                alt="${holiday.resort}"
+                class="saved-holiday-image"
+            >
 
-
-
-            <h3>${resort.resort}</h3>
-
-
+            <h3>${holiday.resort}</h3>
 
             <p>
-            ${resort.city}, ${resort.country}
+                📍 ${holiday.city},
+                ${holiday.country}
             </p>
-
-
 
             <p>
-            ⭐ ${resort.familyScore}/100 Family Score
+                👨‍👩‍👧‍👦
+                ${holiday.adults} Adults +
+                ${holiday.children} Children
             </p>
-
-
 
             <p>
-            ${resort.priceDisplay}
+                🌙 ${holiday.nights} Nights
             </p>
 
+            <div class="saved-holiday-total">
 
+                <span>TOTAL HOLIDAY</span>
 
-            <button 
-            class="view-button"
-            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
+                <strong>
+                    $${holiday.total.toLocaleString()}
+                </strong>
 
-            View Resort
+            </div>
 
-            </button>
+            <div class="saved-holiday-breakdown">
 
+                <div>
+                    <span>🏨 Accommodation</span>
+                    <strong>
+                        $${holiday.accommodation.toLocaleString()}
+                    </strong>
+                </div>
 
+                <div>
+                    <span>✈️ Flights</span>
+                    <strong>
+                        $${holiday.flights.toLocaleString()}
+                    </strong>
+                </div>
 
+                <div>
+                    <span>🍽 Food</span>
+                    <strong>
+                        $${holiday.food.toLocaleString()}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>🎢 Activities</span>
+                    <strong>
+                        $${holiday.activities.toLocaleString()}
+                    </strong>
+                </div>
+
+                <div>
+                    <span>🚕 Transfers</span>
+                    <strong>
+                        $${holiday.transfers.toLocaleString()}
+                    </strong>
+                </div>
+
+            </div>
 
             <button
-
-            class="remove-favourite"
-
-            data-name="${resort.resort}">
-
-            ❌ Remove
-
+                class="delete-saved-holiday"
+                data-id="${holiday.id}">
+                🗑️ Delete Holiday
             </button>
-
-
 
         </div>
 
-
-
     `).join("");
-
-
 
 }
 
+    
 document.addEventListener("click", function(e){
 
     if(

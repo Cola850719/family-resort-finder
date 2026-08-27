@@ -948,49 +948,73 @@ function displayVoting(){
 };
 
 
+// ==========================================
+// DISPLAY FAVOURITES
+// ==========================================
 
+function displayFavourites() {
 
+    const list =
+        document.getElementById("favourites-list");
 
-
-function displayFavourites(){
-
-
-
-    const list = document.getElementById("favourites-list");
-
-
-
-
-    if(favourites.length === 0){
-
-
-        list.innerHTML =
-
-        "<p>No favourites saved yet.</p>";
-
-
+    if (!list) {
+        console.error("favourites-list not found");
         return;
-
-
     }
 
-    document.addEventListener("click", function(e) {
+    if (favourites.length === 0) {
 
-    const thumbnail = e.target.closest(".resort-thumbnail");
+        list.innerHTML =
+            "<p>No favourites saved yet.</p>";
 
-    if (!thumbnail) return;
+        return;
+    }
 
-    const gallery = thumbnail.closest(".resort-photo-gallery");
+    list.innerHTML = favourites.map(resort => `
 
-    if (!gallery) return;
+        <div class="recommend-card">
 
-    const mainImage = gallery.querySelector(".resort-main-image");
+            <img
+                src="${resort.image}"
+                width="100%"
+                alt="${resort.resort}"
+            >
 
-    if (!mainImage) return;
+            <h3>
+                ${resort.resort}
+            </h3>
 
-    mainImage.src = thumbnail.dataset.mainImage;
+            <p>
+                📍 ${resort.city}, ${resort.country}
+            </p>
 
-});
+            <p>
+                ⭐ ${resort.familyScore}/100 Family Score
+            </p>
+
+            <p>
+                ${resort.priceDisplay}
+            </p>
+
+            <button
+                class="view-button"
+                data-resort="${encodeURIComponent(
+                    JSON.stringify(resort)
+                )}">
+                View Resort
+            </button>
+
+            <button
+                class="remove-favourite"
+                data-name="${resort.resort}">
+                ❌ Remove
+            </button>
+
+        </div>
+
+    `).join("");
+
+}
      
 
 // SAVED HOLIDAYS
@@ -1801,25 +1825,28 @@ document.addEventListener("click", function(e){
 
 
 
+// ==========================================
 // CLEAR ALL FAVOURITES
+// ==========================================
 
+const clearFavouritesButton =
+    document.getElementById("clear-favourites");
 
-document.getElementById("clear-favourites").onclick = function(){
+if (clearFavouritesButton) {
 
+    clearFavouritesButton.addEventListener("click", function () {
 
-    favourites = [];
+        favourites = [];
 
+        localStorage.removeItem("favourites");
 
-    localStorage.removeItem("favourites");
+        displayFavourites();
 
+        updateFavouriteButtons();
 
-    displayFavourites();
+    });
 
-
-    updateFavouriteButtons();
-
-
-};
+}
 
 // COMPARE FAVOURITES
 

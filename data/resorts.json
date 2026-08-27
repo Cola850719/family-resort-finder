@@ -1390,29 +1390,30 @@
     "bestFor": "Families looking for a premium beachfront escape",
     "image": "https://placehold.co/800x500/7c3aed/ffffff?text=Four%20Seasons%20Resort%20Langkawi"
   },
-  {
-    "id": 84,
-    "resort": "The Westin Langkawi Resort & Spa",
-    "country": "Malaysia",
-    "city": "Langkawi",
-    "familyScore": 87,
-    "poolRating": 3.8,
-    "beachRating": 4.3,
-    "kidsClubRating": 4.5,
-    "nightlyCost": 330,
-    "priceDisplay": "From $330 per night",
-    "allInclusive": "No",
-    "description": "A family-friendly resort option in Langkawi, Malaysia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
-    "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
-        "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
-    "images": [
-  "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    "id": 85,
+{
+  "id": 84,
+  "resort": "The Westin Langkawi Resort & Spa",
+  "country": "Malaysia",
+  "city": "Langkawi",
+  "familyScore": 87,
+  "poolRating": 3.8,
+  "beachRating": 4.3,
+  "kidsClubRating": 4.5,
+  "nightlyCost": 330,
+  "priceDisplay": "From $330 per night",
+  "allInclusive": "No",
+  "description": "A family-friendly resort option in Langkawi, Malaysia, offering a useful base for a Southeast Asian holiday. Ratings and costs in this demo dataset are editorial estimates and should be checked before booking.",
+  "bestFor": "Families wanting a relaxing beach holiday with convenient resort facilities",
+  "image": "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
+  "images": [
+    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80"
+  ]
+},
+{
+  "id": 85,
     "resort": "The Danna Langkawi Resort & Beach Villas",
     "country": "Malaysia",
     "city": "Langkawi",

@@ -847,118 +847,29 @@ document.getElementById("recommend-button").onclick = function(){
 
 
 
-// SAVE FAVOURITES
+// ==========================================
+// OPEN FAVOURITES
+// ==========================================
 
-document.addEventListener("click", function(e){
+const showFavouritesButton =
+    document.getElementById("show-favourites");
 
+if (showFavouritesButton) {
 
+    showFavouritesButton.addEventListener("click", function () {
 
-    if(e.target.classList.contains("favourite-button")){
+        displayFavourites();
 
+        const favouritesModal =
+            document.getElementById("favourites-modal");
 
-
-        const resort = JSON.parse(
-    decodeURIComponent(e.target.dataset.resort)
-);
-
-
-
-
-        const exists = favourites.some(
-
-            f => f.resort === resort.resort
-
-        );
-
-
-
-
-
-        if(!exists){
-
-
-
-            favourites.push(resort);
-
-
-
-            localStorage.setItem(
-
-                "favourites",
-
-                JSON.stringify(favourites)
-
-            );
-
-
-
-            updateFavouriteButtons();
-
-
-
+        if (favouritesModal) {
+            favouritesModal.style.display = "block";
         }
 
+    });
 
-
-
-    }
-
-
-
-});
-
-
-
-
-
-
-// OPEN FAVOURITES
-
-
-document.getElementById("show-favourites").onclick = function(){
-
-    document.getElementById("show-voting").onclick = function(){
-
-    displayVoting();
-
-    document.getElementById("voting-modal")
-    .style.display = "block";
-
-};
-
-    document.addEventListener("click", function(e){
-
-
-    if(e.target.classList.contains("vote-button")){
-
-
-        const resort = e.target.dataset.name;
-
-
-        votes[resort] =
-        (votes[resort] || 0) + 1;
-
-
-        localStorage.setItem(
-            "votes",
-            JSON.stringify(votes)
-        );
-
-
-        displayVoting();
-
-
-    }
-
-
-});
-document.querySelector(".voting-close").onclick = function(){
-
-    document.getElementById("voting-modal")
-    .style.display = "none";
-
-};
-    displayFavourites();
+}
 
     // FAMILY VOTING DISPLAY
 

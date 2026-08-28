@@ -159,15 +159,24 @@ function displayResorts(resorts) {
 
 document.addEventListener("click", function(e) {
 
-    const button = e.target.closest(".save-holiday-resort");
+    const button =
+        e.target.closest(".save-holiday-resort");
 
     if (!button) {
         return;
     }
 
-    const resort = JSON.parse(
-        decodeURIComponent(button.dataset.resort)
-    );
+    e.preventDefault();
+    e.stopPropagation();
+
+
+    const resort =
+        JSON.parse(
+            decodeURIComponent(
+                button.dataset.resort
+            )
+        );
+
 
     let savedHolidays =
         JSON.parse(
@@ -175,7 +184,7 @@ document.addEventListener("click", function(e) {
         ) || [];
 
 
-    // CHECK IF THIS RESORT IS ALREADY SAVED
+    // CHECK WHETHER THIS RESORT IS ALREADY SAVED
 
     const existingIndex =
         savedHolidays.findIndex(
@@ -184,82 +193,116 @@ document.addEventListener("click", function(e) {
         );
 
 
-    // --------------------------------
-    // REMOVE SAVED HOLIDAY
-    // --------------------------------
+    // ==============================
+    // REMOVE HOLIDAY
+    // ==============================
 
     if (existingIndex !== -1) {
 
-        savedHolidays.splice(existingIndex, 1);
+        savedHolidays.splice(
+            existingIndex,
+            1
+        );
 
         localStorage.setItem(
             "savedHolidays",
             JSON.stringify(savedHolidays)
         );
 
-        button.innerHTML = "💾 Save Holiday";
 
-        button.disabled = false;
+        button.innerHTML =
+            "💾 Save Holiday";
+
+        button.classList.remove(
+            "holiday-saved"
+        );
 
         return;
     }
 
 
-    // --------------------------------
-    // GET CURRENT BUDGET VALUES
-    // --------------------------------
+    // ==============================
+    // GET BUDGET VALUES
+    // ==============================
 
     const adults =
         Number(
-            document.getElementById("budget-adults")?.value
+            document.getElementById(
+                "budget-adults"
+            )?.value
         ) || 2;
+
 
     const children =
         Number(
-            document.getElementById("budget-children")?.value
+            document.getElementById(
+                "budget-children"
+            )?.value
         ) || 0;
+
 
     const nights =
         Number(
-            document.getElementById("budget-nights")?.value
+            document.getElementById(
+                "budget-nights"
+            )?.value
         ) || 7;
+
 
     const flightPerPerson =
         Number(
-            document.getElementById("budget-flight")?.value
+            document.getElementById(
+                "budget-flight"
+            )?.value
         ) || 0;
+
 
     const foodPerNight =
         Number(
-            document.getElementById("budget-food")?.value
+            document.getElementById(
+                "budget-food"
+            )?.value
         ) || 0;
+
 
     const activities =
         Number(
-            document.getElementById("budget-activities")?.value
+            document.getElementById(
+                "budget-activities"
+            )?.value
         ) || 0;
+
 
     const transfers =
         Number(
-            document.getElementById("budget-transfers")?.value
+            document.getElementById(
+                "budget-transfers"
+            )?.value
         ) || 0;
 
 
-    // --------------------------------
+    // ==============================
     // CALCULATE COSTS
-    // --------------------------------
+    // ==============================
 
     const people =
         adults + children;
 
+
     const accommodation =
-        (resort.nightlyCost || 0) * nights;
+        (resort.nightlyCost || 0) *
+        nights;
+
 
     const flights =
-        people * flightPerPerson;
+        people *
+        flightPerPerson;
+
 
     const food =
-        foodPerNight * nights;
+        foodPerNight *
+        nights;
+
 
     const total =
         accommodation +
@@ -269,9 +312,9 @@ document.addEventListener("click", function(e) {
         transfers;
 
 
-    // --------------------------------
-    // CREATE SAVED HOLIDAY
-    // --------------------------------
+    // ==============================
+    // CREATE HOLIDAY
+    // ==============================
 
     const holiday = {
 
@@ -291,41 +334,56 @@ document.addEventListener("click", function(e) {
 
         nights: nights,
 
-        accommodation: accommodation,
+        accommodation:
+            accommodation,
 
-        flights: flights,
+        flights:
+            flights,
 
-        food: food,
+        food:
+            food,
 
-        activities: activities,
+        activities:
+            activities,
 
-        transfers: transfers,
+        transfers:
+            transfers,
 
-        total: total
+        total:
+            total
 
     };
 
 
-    // --------------------------------
-    // SAVE HOLIDAY
-    // --------------------------------
+    // ==============================
+    // SAVE
+    // ==============================
 
-    savedHolidays.push(holiday);
-
-    localStorage.setItem(
-        "savedHolidays",
-        JSON.stringify(savedHolidays)
+    savedHolidays.push(
+        holiday
     );
 
 
-    // --------------------------------
-    // UPDATE BUTTON
-    // --------------------------------
+    localStorage.setItem(
+        "savedHolidays",
+        JSON.stringify(
+            savedHolidays
+        )
+    );
 
-    button.innerHTML = "✅ Holiday Saved";
+
+    // ==============================
+    // UPDATE BUTTON
+    // ==============================
+
+    button.innerHTML =
+        "✅ Holiday Saved";
+
+    button.classList.add(
+        "holiday-saved"
+    );
 
 });
-
 
 function displayVoting(){
 

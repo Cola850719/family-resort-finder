@@ -155,7 +155,80 @@ function displayResorts(resorts) {
 
 }
 
+// SAVE HOLIDAY FROM RESORT CARD
 
+document.addEventListener("click", function(e) {
+
+    const button = e.target.closest(".save-holiday-resort");
+
+    if (!button) {
+        return;
+    }
+
+    const resort = JSON.parse(
+        decodeURIComponent(button.dataset.resort)
+    );
+
+    let savedHolidays =
+        JSON.parse(
+            localStorage.getItem("savedHolidays")
+        ) || [];
+
+    // Check if this resort is already saved
+    const alreadySaved = savedHolidays.some(
+        holiday => holiday.resort === resort.resort
+    );
+
+    if (alreadySaved) {
+        alert("This holiday is already saved.");
+        return;
+    }
+
+    // Create saved holiday
+    const holiday = {
+
+        id: Date.now(),
+
+        resort: resort.resort,
+
+        city: resort.city,
+
+        country: resort.country,
+
+        image: resort.image,
+
+        adults: 2,
+
+        children: 0,
+
+        nights: 7,
+
+        accommodation:
+            (resort.nightlyCost || 0) * 7,
+
+        flights: 0,
+
+        food: 0,
+
+        activities: 0,
+
+        transfers: 0,
+
+        total:
+            (resort.nightlyCost || 0) * 7
+
+    };
+
+    savedHolidays.push(holiday);
+
+    localStorage.setItem(
+        "savedHolidays",
+        JSON.stringify(savedHolidays)
+    );
+
+    alert("Holiday saved!");
+
+});
 
 
 

@@ -597,63 +597,7 @@ document.addEventListener("click", function(e){
     }
 
 });
-// CALCULATE VOTING WINNER
 
-document.addEventListener("click", function(e){
-
-    if(e.target.id === "calculate-winner"){
-
-
-        const results = Object.entries(votes)
-        .sort((a,b) => b[1] - a[1]);
-
-
-        const output = document.getElementById("voting-results");
-
-
-        if(results.length === 0){
-
-            output.innerHTML = `
-            <p>No votes have been recorded yet.</p>
-            `;
-
-            return;
-
-        }
-
-
-        output.innerHTML = `
-
-        <h2>
-        🏆 Family Holiday Winner
-        </h2>
-
-
-        ${results.slice(0,3).map((result,index)=>`
-
-            <div class="winner-card">
-
-                <h3>
-                ${["🥇","🥈","🥉"][index]}
-                ${result[0]}
-                </h3>
-
-                <p>
-                ${result[1]} votes
-                </p>
-
-            </div>
-
-
-        `).join("")}
-
-
-        `;
-
-
-    }
-
-});
 // VIEW RESORT BUTTONS
 
 document.addEventListener("click", function(e){

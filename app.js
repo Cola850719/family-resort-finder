@@ -327,8 +327,6 @@ document.addEventListener("click", function(e) {
 });
 
 
-}
-
 function displayVoting(){
 
     const list =

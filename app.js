@@ -123,21 +123,15 @@ function displayResorts(resorts) {
 
 
 
-            <button
-            class="favourite-button"
-            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
-
-            ❤️ Save Favourite
-
-            </button>
+           
+            
 
             <button
             class="save-holiday-resort"
             data-resort="${encodeURIComponent(JSON.stringify(resort))}">
 
             💾 Save Holiday
-
-</button>
+            </button>
 
 
 

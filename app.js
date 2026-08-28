@@ -1973,23 +1973,37 @@ document.addEventListener("click", function(e){
 });
 // OPEN BUDGET FROM HERO BUTTON
 
-document.addEventListener("click", function(e){
+document.addEventListener("click", function(e) {
 
-    if(e.target.id === "open-budget"){
+    if (e.target.id === "open-budget") {
 
-        document.getElementById("budget-modal")
-        .style.display = "block";
+        const modal = document.getElementById("budget-modal");
 
+        if (modal) {
+            modal.style.display = "block";
+        }
     }
 
 });
 
-document.querySelector(".budget-close").onclick = function(){
 
-    document.getElementById("budget-modal")
-    .style.display = "none";
+// CLOSE BUDGET MODAL
 
-};
+const budgetClose = document.querySelector(".budget-close");
+
+if (budgetClose) {
+
+    budgetClose.onclick = function() {
+
+        const modal = document.getElementById("budget-modal");
+
+        if (modal) {
+            modal.style.display = "none";
+        }
+
+    };
+
+}
 
 // CLICK OUTSIDE POPUPS TO CLOSE
 

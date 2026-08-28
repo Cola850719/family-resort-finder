@@ -155,7 +155,7 @@ function displayResorts(resorts) {
 
 }
 
-// SAVE HOLIDAY FROM RESORT CARD
+// SAVE / REMOVE HOLIDAY FROM RESORT CARD
 
 document.addEventListener("click", function(e) {
 
@@ -169,7 +169,45 @@ document.addEventListener("click", function(e) {
         decodeURIComponent(button.dataset.resort)
     );
 
+    let savedHolidays =
+        JSON.parse(
+            localStorage.getItem("savedHolidays")
+        ) || [];
+
+
+    // CHECK IF THIS RESORT IS ALREADY SAVED
+
+    const existingIndex =
+        savedHolidays.findIndex(
+            holiday =>
+                holiday.resort === resort.resort
+        );
+
+
+    // --------------------------------
+    // REMOVE SAVED HOLIDAY
+    // --------------------------------
+
+    if (existingIndex !== -1) {
+
+        savedHolidays.splice(existingIndex, 1);
+
+        localStorage.setItem(
+            "savedHolidays",
+            JSON.stringify(savedHolidays)
+        );
+
+        button.innerHTML = "💾 Save Holiday";
+
+        button.disabled = false;
+
+        return;
+    }
+
+
+    // --------------------------------
     // GET CURRENT BUDGET VALUES
+    // --------------------------------
 
     const adults =
         Number(
@@ -207,12 +245,12 @@ document.addEventListener("click", function(e) {
         ) || 0;
 
 
-    // TOTAL PEOPLE
-
-    const people = adults + children;
-
-
+    // --------------------------------
     // CALCULATE COSTS
+    // --------------------------------
+
+    const people =
+        adults + children;
 
     const accommodation =
         (resort.nightlyCost || 0) * nights;
@@ -223,7 +261,6 @@ document.addEventListener("click", function(e) {
     const food =
         foodPerNight * nights;
 
-
     const total =
         accommodation +
         flights +
@@ -232,31 +269,9 @@ document.addEventListener("click", function(e) {
         transfers;
 
 
-    // GET EXISTING SAVED HOLIDAYS
-
-    let savedHolidays =
-        JSON.parse(
-            localStorage.getItem("savedHolidays")
-        ) || [];
-
-
-    // CHECK IF ALREADY SAVED
-
-    const alreadySaved =
-        savedHolidays.some(
-            holiday =>
-                holiday.resort === resort.resort
-        );
-
-    if (alreadySaved) {
-
-        alert("This holiday is already saved.");
-
-        return;
-    }
-
-
+    // --------------------------------
     // CREATE SAVED HOLIDAY
+    // --------------------------------
 
     const holiday = {
 
@@ -291,7 +306,9 @@ document.addEventListener("click", function(e) {
     };
 
 
-    // SAVE
+    // --------------------------------
+    // SAVE HOLIDAY
+    // --------------------------------
 
     savedHolidays.push(holiday);
 
@@ -301,76 +318,13 @@ document.addEventListener("click", function(e) {
     );
 
 
+    // --------------------------------
     // UPDATE BUTTON
+    // --------------------------------
 
     button.innerHTML = "✅ Holiday Saved";
 
-    button.disabled = true;
-
-
-    // CONFIRM
-
-    alert(
-        `${resort.resort} has been saved!`
-    );
-
 });
-
-
-
-// UPDATE SAVED BUTTON STATUS
-
-function updateFavouriteButtons(){
-
-
-    document.querySelectorAll(".favourite-button")
-
-    .forEach(button => {
-
-
-
-        const resort = JSON.parse(
-    decodeURIComponent(button.dataset.resort)
-);
-
-
-
-        const saved = favourites.some(
-
-            f => f.resort === resort.resort
-
-        );
-
-
-
-        if(saved){
-
-
-            button.textContent = "💚 Saved";
-
-
-            button.classList.add("saved");
-
-
-
-        }
-
-
-        else {
-
-
-            button.textContent = "❤️ Save Favourite";
-
-
-            button.classList.remove("saved");
-
-
-        }
-
-
-
-    });
-
 
 
 }

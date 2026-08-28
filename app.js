@@ -131,6 +131,14 @@ function displayResorts(resorts) {
 
             </button>
 
+            <button
+            class="save-holiday-resort"
+            data-resort="${encodeURIComponent(JSON.stringify(resort))}">
+
+            💾 Save Holiday
+
+</button>
+
 
 
         </div>

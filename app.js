@@ -2109,15 +2109,6 @@ function displaySavedHolidays(){
 
 // SAVED HOLIDAYS
 
-document
-    .getElementById("show-saved-holidays")
-    .addEventListener("click", function(){
-
-        document
-            .getElementById("saved-holidays-modal")
-            .style.display = "block";
-
-    });
 document.getElementById("show-saved-holidays").addEventListener("click", function () {
 
     const list = document.getElementById("saved-holidays-list");

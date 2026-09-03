@@ -2601,5 +2601,192 @@ function initResortMap(resorts) {
     });
 
 }
+// ==========================================
+// RESORT MAP LOCATIONS
+// ==========================================
 
+function getResortMapLocation(resort) {
+
+    const city =
+        (resort.city || "").toLowerCase();
+
+    const country =
+        (resort.country || "").toLowerCase();
+
+
+    // THAILAND
+
+    if (
+        city.includes("phuket") ||
+        city.includes("karon") ||
+        city.includes("kamala") ||
+        city.includes("kata") ||
+        city.includes("patong")
+    ) {
+
+        return [7.8804, 98.3923];
+
+    }
+
+
+    if (
+        city.includes("krabi") ||
+        city.includes("ao nang")
+    ) {
+
+        return [8.0863, 98.9063];
+
+    }
+
+
+    // MALAYSIA
+
+    if (
+        city.includes("langkawi")
+    ) {
+
+        return [6.3500, 99.8000];
+
+    }
+
+
+    if (
+        city.includes("penang")
+    ) {
+
+        return [5.4141, 100.3288];
+
+    }
+
+
+    if (
+        city.includes("kuala lumpur")
+    ) {
+
+        return [3.1390, 101.6869];
+
+    }
+
+
+    if (
+        city.includes("kota kinabalu")
+    ) {
+
+        return [5.9804, 116.0735];
+
+    }
+
+
+    // INDONESIA / BALI
+
+    if (
+        city.includes("bali") ||
+        city.includes("seminyak") ||
+        city.includes("nusa dua") ||
+        city.includes("kuta") ||
+        city.includes("sanur") ||
+        country.includes("indonesia")
+    ) {
+
+        return [-8.4095, 115.1889];
+
+    }
+
+
+    // VIETNAM
+
+    if (
+        city.includes("da nang") ||
+        city.includes("danang")
+    ) {
+
+        return [16.0544, 108.2022];
+
+    }
+
+
+    if (
+        city.includes("phu quoc")
+    ) {
+
+        return [10.2899, 103.9840];
+
+    }
+
+
+    if (
+        city.includes("nha trang")
+    ) {
+
+        return [12.2388, 109.1967];
+
+    }
+
+
+    // CAMBODIA
+
+    if (
+        city.includes("siem reap")
+    ) {
+
+        return [13.3633, 103.8564];
+
+    }
+
+
+    if (
+        city.includes("phnom penh")
+    ) {
+
+        return [11.5564, 104.9282];
+
+    }
+
+
+    // JAPAN
+
+    if (
+        city.includes("tokyo")
+    ) {
+
+        return [35.6762, 139.6503];
+
+    }
+
+
+    if (
+        city.includes("osaka")
+    ) {
+
+        return [34.6937, 135.5023];
+
+    }
+
+
+    // KOREA
+
+    if (
+        city.includes("seoul")
+    ) {
+
+        return [37.5665, 126.9780];
+
+    }
+
+
+    // FIJI
+
+    if (
+        city.includes("nadi") ||
+        city.includes("denarau")
+    ) {
+
+        return [-17.7765, 177.4356];
+
+    }
+
+
+    return null;
+
+}
 console.log("APP JS FINISHED LOADING");

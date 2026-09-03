@@ -23,6 +23,7 @@ fetch("data/resorts.json")
 
     displayResorts(allResorts);
 
+    initResortMap(allResorts);
 
 })
 
@@ -2513,6 +2514,92 @@ if (compareClose) {
     });
 
 }
+// ==========================================
+// RESORT MAP
+// ==========================================
 
+let resortMap = null;
+let resortMarkers = [];
+
+function initResortMap(resorts) {
+
+    const mapElement =
+        document.getElementById("resort-map");
+
+    if (!mapElement) {
+        console.error("resort-map not found");
+        return;
+    }
+
+    if (resortMap) {
+        resortMap.remove();
+        resortMap = null;
+        resortMarkers = [];
+    }
+
+    resortMap = L.map("resort-map")
+        .setView([15, 115], 4);
+
+    L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+            attribution:
+                '&copy; OpenStreetMap contributors'
+        }
+    ).addTo(resortMap);
+
+    resorts.forEach(resort => {
+
+        const location =
+            getResortMapLocation(resort);
+
+        if (!location) {
+            return;
+        }
+
+        const marker =
+            L.marker(location)
+            .addTo(resortMap);
+
+        marker.bindPopup(`
+            <div class="map-resort-popup">
+
+                <img
+                    src="${resort.image}"
+                    alt="${resort.resort}"
+                    style="
+                        width:220px;
+                        max-width:100%;
+                        border-radius:8px;
+                    "
+                >
+
+                <h3>${resort.resort}</h3>
+
+                <p>
+                    📍 ${resort.city},
+                    ${resort.country}
+                </p>
+
+                <p>
+                    ⭐ Family Score:
+                    ${resort.familyScore}/100
+                </p>
+
+                <p>
+                    💰 $${resort.nightlyCost}/night
+                </p>
+
+            </div>
+        `);
+
+        resortMarkers.push({
+            marker: marker,
+            resort: resort
+        });
+
+    });
+
+}
 
 console.log("APP JS FINISHED LOADING");

@@ -1881,7 +1881,7 @@ button {
             rgba(0, 0, 0, 0.48),
             rgba(0, 0, 0, 0.48)
         ),
-        url("images/flights-background.jpg");
+        url("images/flights-background-color");
 
     background-size: cover;
     background-position: center;

@@ -33,6 +33,15 @@ fetch("data/resorts.json")
 
 });
 
+function updateFavouriteButtons() {
+  document.querySelectorAll(".favourite-button").forEach(button => {
+    if (!button.dataset.resort) return;
+    const resort = JSON.parse(decodeURIComponent(button.dataset.resort));
+    const isFavourited = favourites.some(f => f.resort === resort.resort);
+    button.classList.toggle("favourited", isFavourited);
+    button.textContent = isFavourited ? "❤️ Favourited" : "🤍 Favourite";
+  });
+}
 
 // DISPLAY RESORT CARDS
 
